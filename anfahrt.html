@@ -6,21 +6,6 @@
 <meta name="theme-color" content="#0A0806">
 <title>Anfahrt — Ristorante Boulevard, Agrigento</title>
 <meta name="description" content="So finden Sie das Ristorante Boulevard im historischen Zentrum von Agrigento.">
-<link rel="canonical" href="https://manuelbrandner85.github.io/Restaurante-pizza/anfahrt.html">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta property="og:type" content="restaurant">
-<meta property="og:site_name" content="Ristorante Boulevard">
-<meta property="og:title" content="Anfahrt — Ristorante Boulevard, Agrigento">
-<meta property="og:description" content="Viale della Vittoria 13, Agrigento. Karte, Parken und Entfernungen.">
-<meta property="og:url" content="https://manuelbrandner85.github.io/Restaurante-pizza/anfahrt.html">
-<meta property="og:image" content="https://manuelbrandner85.github.io/Restaurante-pizza/bilder/vorschau.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="de_DE">
-<meta property="og:locale:alternate" content="it_IT">
-<meta property="og:locale:alternate" content="en_GB">
-<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
@@ -221,17 +206,9 @@ h2 em{font-family:var(--f-akzent);font-style:italic;font-weight:400;letter-spaci
 
 /* ---------- Bildband ---------- */
 .band{position:relative;height:clamp(340px,58vh,560px);overflow:hidden;display:grid;place-items:center}
-.band .bild{position:absolute;inset:-14% 0;overflow:hidden;will-change:transform}
-.band .bild-innen{
-  position:absolute;inset:-5%;display:block;
-  background:14% 58%/185% auto no-repeat;
-  background-image:url("bilder/abend.webp");
-  animation:schwenk 40s ease-in-out infinite alternate;
-  will-change:transform;
-}
-@keyframes schwenk{
-  from{transform:scale(1.04) translate3d(-1%,0,0)}
-  to{transform:scale(1.1) translate3d(1.5%,-1%,0)}
+.band .bild{
+  position:absolute;inset:-14% 0;background:14% 58%/185% auto no-repeat;
+  background-image:url("bilder/abend.webp");will-change:transform;
 }
 .band .schleier{position:absolute;inset:0;background:
   radial-gradient(70% 60% at 50% 62%,rgba(10,8,6,.66),rgba(10,8,6,.32) 70%,transparent),
@@ -283,8 +260,8 @@ footer .zeile a:hover{color:var(--oro)}
 
 /* ---------- Mobil ---------- */
 @media (max-width:700px){
-  .auftakt .bild-innen{background-position:50% 32%;background-image:url("bilder/eingang-klein.webp")}
-  .band .bild-innen{background-image:url("bilder/abend-klein.webp")}
+  .auftakt .bild{background-position:50% 32%;background-image:url("bilder/eingang-klein.webp")}
+  .band .bild{background-image:url("bilder/abend-klein.webp")}
   .auftakt .schleier{
     background:
       linear-gradient(to bottom,rgba(10,8,6,.5),rgba(10,8,6,0) 20%,rgba(10,8,6,.55) 50%,var(--nero) 92%),
@@ -362,10 +339,6 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
   .szene:hover figure{transform:none}
 }
 
-@media (prefers-reduced-motion:reduce){
-  .auftakt .bild-innen,.band .bild-innen{animation:none}
-}
-
 .marke .wortmarke{text-transform:uppercase;padding-left:.34em}
 .marke .v{
   color:var(--rosa);
@@ -420,7 +393,7 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
 
 <header id="kopf" class="fest">
   <div class="wrap navzeile">
-    <a class="marke" href="index.html"><img class="marken-wappen" width="320" height="320" src="bilder/siegel.webp" alt=""><span class="wortmarke">Boule<span class="v">v</span>ard</span></a>
+    <a class="marke" href="index.html"><img class="marken-wappen" src="bilder/siegel.webp" alt=""><span class="wortmarke">Boule<span class="v">v</span>ard</span></a>
     <div class="sprachen" role="group" aria-label="Sprache / Lingua / Language">
       <button type="button" data-sprache="de" lang="de">DE</button>
       <button type="button" data-sprache="it" lang="it">IT</button>
@@ -429,14 +402,13 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
   </div>
 </header>
 
-<main>
 <div class="wrap a-kopf">
   <a class="zurueck" id="zurueck" href="index.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H6M11 18l-6-6 6-6"/></svg>
     <span data-t="zurueck">Zur Startseite</span>
   </a>
   <p class="eyebrow" style="margin-top:1.4rem" data-t="eyebrow">Come arrivare</p>
-  <h1><span data-t="titel1">So finden Sie uns</span> <em data-t="titel2">am Viale della Vittoria</em></h1>
+  <h1><span data-t="titel1">So finden Sie uns</span><em data-t="titel2">am Viale della Vittoria</em></h1>
 </div>
 
 <div class="wrap a-raster">
@@ -481,8 +453,6 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
     </div>
   </aside>
 </div>
-
-</main>
 
 <footer>
   <div class="wrap">
