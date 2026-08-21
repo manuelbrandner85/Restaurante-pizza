@@ -28,7 +28,7 @@
   --mass:clamp(1.1rem,4vw,2.4rem);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{
   margin:0;background:var(--nero);color:var(--avorio);
   font-family:var(--f-text);font-weight:300;font-size:clamp(15px,1.05vw,17px);line-height:1.75;
@@ -450,7 +450,7 @@ body.kasten-offen{overflow:hidden}
 }
 
 /* ---------- Kinosequenz ---------- */
-.kino{padding:clamp(4rem,9vw,7rem) 0 clamp(3.5rem,7vw,5.5rem);position:relative;overflow:hidden}
+.kino{padding:clamp(4rem,9vw,7rem) 0 clamp(3.5rem,7vw,5.5rem);position:relative}
 .kino-kopf{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:clamp(2rem,4vw,3rem)}
 .kino-steuer{display:flex;gap:.5rem;flex-shrink:0}
 .kino-steuer button{
@@ -532,6 +532,68 @@ body.kasten-offen{overflow:hidden}
   .sprachen button{padding:.34rem .46rem;font-size:.64rem}
 }
 
+/* ---------- Choreografie ---------- */
+/* 7 — Fortschrittslinie */
+.fortschritt{
+  position:fixed;top:0;left:0;height:2px;z-index:110;width:0;
+  background:linear-gradient(90deg,rgba(201,150,63,.4),var(--oro-hell));
+  box-shadow:0 0 12px rgba(242,212,147,.5);pointer-events:none;
+}
+/* 3 — Auftakt übergibt an die nächste Szene */
+.auftakt-inhalt{will-change:transform,opacity}
+.auftakt .uebergabe{
+  position:absolute;inset:0;background:var(--nero);opacity:0;pointer-events:none;
+}
+/* 4 — Überschriften wortweise */
+.worte span{
+  display:inline-block;opacity:0;transform:translateY(.42em) rotate(.6deg);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);
+  transition-delay:calc(var(--i) * 55ms);
+}
+.sichtbar .worte span,.worte.sichtbar span{opacity:1;transform:none}
+/* 5 — Gerichte gestaffelt */
+.gang .speise{
+  opacity:0;transform:translateY(14px);
+  transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);
+  transition-delay:calc(var(--i) * 90ms);
+}
+.gang.sichtbar .speise{opacity:1;transform:none}
+/* 6 — Kolonnade folgt dem Scroll */
+.kolonnade .strahl{transition:none}
+.kolonnade.sichtbar .strahl{animation:none}
+/* 2 — Angeheftete Tempelrolle */
+.kino-buehne{position:relative}
+.gepinnt .kino-fest{
+  position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;
+}
+.gepinnt .rolle{
+  overflow:visible;scroll-snap-type:none;padding-bottom:0;
+  will-change:transform;
+}
+.gepinnt .szene{scroll-snap-align:none}
+.kino-fest > .wrap{width:100%}
+/* 8 — Große Monitore */
+@media (min-width:1600px){
+  .wrap{width:min(1420px,88vw)}
+  body{font-size:18px}
+  .szene{flex:0 0 min(52vw,900px)}
+}
+@media (min-width:2000px){
+  .wrap{width:min(1600px,84vw)}
+  body{font-size:19px}
+}
+/* 9 — Tablet im Hochformat */
+@media (min-width:700px) and (max-width:900px){
+  .karte{grid-template-columns:repeat(2,1fr);gap:2.2rem}
+  .degu-liste{columns:2}
+  .kontakt-raster{grid-template-columns:1fr;gap:2.5rem}
+  .paar{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .worte span,.gang .speise{opacity:1;transform:none;transition:none}
+  .fortschritt{display:none}
+}
+
 /* ---------- Anfahrtskarte mit Rollover ---------- */
 .anfahrt-karte{
   display:block;text-decoration:none;margin-top:2.2rem;position:relative;
@@ -603,6 +665,7 @@ body.kasten-offen{overflow:hidden}
 <body>
 
 <div id="vorhang"><i class="flamme"></i></div>
+<div class="fortschritt" id="fortschritt" aria-hidden="true"></div>
 
 <header id="kopf">
   <div class="wrap navzeile">
@@ -633,6 +696,7 @@ body.kasten-offen{overflow:hidden}
   <div class="bild" id="auftaktbild" role="img" data-t-aria="hero.bildbeschreibung" aria-label="Beleuchteter Eingang des Ristorante Boulevard bei Nacht"></div>
   <div class="schleier"></div>
   <div class="laterne"></div>
+  <div class="uebergabe" id="uebergabe"></div>
   <div class="wrap auftakt-inhalt">
     <h1 class="sr-only" data-t="hero.h1">Ristorante Boulevard — Ristorante und Pizzeria in Agrigento, Sizilien</h1>
     <p class="unterzeile">Agrigento &middot; Sicilia</p>
@@ -664,7 +728,7 @@ body.kasten-offen{overflow:hidden}
   <div class="wrap zwei">
     <div class="fliess auf">
       <p class="eyebrow">Benvenuti</p>
-      <h2><span data-t="ben.titel1">Ein Tor, eine Laterne,</span><br><em data-t="ben.titel2">und dahinter der Abend.</em></h2>
+      <h2><span class="worte" data-t="ben.titel1">Ein Tor, eine Laterne,</span><br><em class="worte" data-t="ben.titel2">und dahinter der Abend.</em></h2>
       <p data-t="ben.text1">Das Boulevard liegt im historischen Zentrum von Agrigento, wenige Minuten von der Valle dei Templi entfernt.</p>
       <p data-t="ben.text2">Wir kochen sizilianisch — mit Fisch vom Markt in Porto Empedocle.</p>
       <blockquote class="merksatz"><span data-t="ben.zitat1">„Erst die Tempel, dann der Tisch.“</span><br><span data-t="ben.zitat2">Beides gehört zu einem Tag in Agrigento.</span></blockquote>
@@ -687,7 +751,7 @@ body.kasten-offen{overflow:hidden}
     <div class="kino-kopf">
       <div class="auf">
         <p class="eyebrow" data-t="kino.eyebrow">La Valle dei Templi</p>
-        <h2><span data-t="kino.titel1">Zehn Minuten von hier</span><br><em data-t="kino.titel2">stehen sie seit 2500 Jahren.</em></h2>
+        <h2><span class="worte" data-t="kino.titel1">Zehn Minuten von hier</span><br><em class="worte" data-t="kino.titel2">stehen sie seit 2500 Jahren.</em></h2>
       </div>
       <div class="kino-steuer auf v2">
         <button type="button" id="rolle-zurueck" data-t-aria="kino.zurueck" aria-label="Vorheriges Bild">
@@ -699,7 +763,9 @@ body.kasten-offen{overflow:hidden}
       </div>
     </div>
   </div>
-  <div class="wrap">
+  <div class="kino-buehne" id="kino-buehne">
+   <div class="kino-fest">
+    <div class="wrap">
     <div class="rolle" id="rolle">
       <div class="szene"><figure>
         <div class="blende"><span class="balken oben"></span><img src="bilder/concordia-notte.webp" srcset="bilder/concordia-notte-klein.webp 620w, bilder/concordia-notte.webp 1080w" sizes="(max-width:900px) 86vw, 760px" alt="" loading="lazy"><span class="balken unten"></span></div>
@@ -723,6 +789,8 @@ body.kasten-offen{overflow:hidden}
       </figure></div>
     </div>
     <p class="rollenhinweis" data-t="kino.hinweis">Seitwärts scrollen oder ziehen</p>
+    </div>
+   </div>
   </div>
 </section>
 
@@ -730,7 +798,7 @@ body.kasten-offen{overflow:hidden}
   <div class="wrap">
     <div class="auf" style="text-align:center;margin-bottom:clamp(2.5rem,6vw,4.5rem)">
       <p class="eyebrow">La cucina</p>
-      <h2 data-t="karte.titel">Die Karte</h2>
+      <h2 class="worte" data-t="karte.titel">Die Karte</h2>
     </div>
 
     <div class="degustazione auf">
@@ -828,7 +896,7 @@ body.kasten-offen{overflow:hidden}
   <div class="wrap kontakt-raster">
     <div class="auf">
       <p class="eyebrow" data-t="kontakt.eyebrow">Prenota &middot; Reservierung</p>
-      <h2><span data-t="kontakt.titel1">Einen Tisch</span><br><em data-t="kontakt.titel2">für Sie</em></h2>
+      <h2><span class="worte" data-t="kontakt.titel1">Einen Tisch</span><br><em class="worte" data-t="kontakt.titel2">für Sie</em></h2>
       <p style="color:rgba(237,227,208,.75);max-width:48ch" data-t="kontakt.text">Schreiben Sie uns, wann Sie kommen möchten.</p>
       <form id="reservierung" style="margin-top:2rem">
         <div class="paar">
@@ -963,7 +1031,7 @@ var TEXTE = {
     'kino.eyebrow': 'La Valle dei Templi',
     'kino.titel1': 'Zehn Minuten von hier', 'kino.titel2': 'stehen sie seit 2500 Jahren.',
     'kino.zurueck': 'Vorheriges Bild', 'kino.vor': 'Nächstes Bild',
-    'kino.hinweis': 'Seitwärts scrollen oder ziehen',
+    'kino.hinweis': 'Seitwärts scrollen oder ziehen', 'kino.hinweisFest': 'Weiterscrollen — die Bilder ziehen vorbei',
     'kino.1.ort': 'Tempio della Concordia', 'kino.1.satz': 'Der besterhaltene griechische Tempel Siziliens — nachts angestrahlt.',
     'kino.2.ort': 'Collina dei Templi', 'kino.2.satz': 'Ein Kamm aus Kalkstein, dahinter das Meer.',
     'kino.3.ort': 'Tempio dei Dioscuri', 'kino.3.satz': 'Vier Säulen, die zum Wahrzeichen Agrigents geworden sind.',
@@ -1042,7 +1110,7 @@ var TEXTE = {
     'kino.eyebrow': 'La Valle dei Templi',
     'kino.titel1': 'A dieci minuti da qui', 'kino.titel2': 'stanno in piedi da 2500 anni.',
     'kino.zurueck': 'Immagine precedente', 'kino.vor': 'Immagine successiva',
-    'kino.hinweis': 'Scorri di lato o trascina',
+    'kino.hinweis': 'Scorri di lato o trascina', 'kino.hinweisFest': 'Continua a scorrere — le immagini passano',
     'kino.1.ort': 'Tempio della Concordia', 'kino.1.satz': 'Il tempio greco meglio conservato della Sicilia — illuminato di notte.',
     'kino.2.ort': 'Collina dei Templi', 'kino.2.satz': 'Un crinale di calcarenite, e dietro il mare.',
     'kino.3.ort': 'Tempio dei Dioscuri', 'kino.3.satz': 'Quattro colonne diventate il simbolo di Agrigento.',
@@ -1123,7 +1191,7 @@ var TEXTE = {
     'kino.eyebrow': 'La Valle dei Templi',
     'kino.titel1': 'Ten minutes from here,', 'kino.titel2': 'standing for 2,500 years.',
     'kino.zurueck': 'Previous image', 'kino.vor': 'Next image',
-    'kino.hinweis': 'Scroll sideways or drag',
+    'kino.hinweis': 'Scroll sideways or drag', 'kino.hinweisFest': 'Keep scrolling — the frames pass by',
     'kino.1.ort': 'Tempio della Concordia', 'kino.1.satz': 'The best-preserved Greek temple in Sicily — floodlit after dark.',
     'kino.2.ort': 'Collina dei Templi', 'kino.2.satz': 'A limestone ridge, and the sea behind it.',
     'kino.3.ort': 'Tempio dei Dioscuri', 'kino.3.satz': 'Four columns that became the emblem of Agrigento.',
@@ -1194,6 +1262,21 @@ function textVon(schluessel){
   return (w === undefined) ? TEXTE.de[schluessel] : w;
 }
 
+function worteAufteilen(){
+  document.querySelectorAll('.worte').forEach(function(el){
+    var text = el.getAttribute('data-roh') || el.textContent;
+    el.setAttribute('data-roh', text);
+    el.textContent = '';
+    text.split(' ').forEach(function(wort, i){
+      var s = document.createElement('span');
+      s.textContent = wort;
+      s.style.setProperty('--i', i);
+      el.appendChild(s);
+      if(i < text.split(' ').length - 1) el.appendChild(document.createTextNode(' '));
+    });
+  });
+}
+
 function spracheSetzen(neu){
   if(!TEXTE[neu]) neu = 'de';
   sprache = neu;
@@ -1204,7 +1287,9 @@ function spracheSetzen(neu){
 
   document.querySelectorAll('[data-t]').forEach(function(el){
     el.textContent = textVon(el.getAttribute('data-t'));
+    if(el.classList.contains('worte')) el.removeAttribute('data-roh');
   });
+  worteAufteilen();
   document.querySelectorAll('[data-t-ph]').forEach(function(el){
     el.setAttribute('placeholder', textVon(el.getAttribute('data-t-ph')));
   });
@@ -1223,6 +1308,62 @@ function spracheSetzen(neu){
     if(ziel.indexOf('anfahrt.html') !== -1) anfahrt.setAttribute('href', ziel + '?l=' + neu);
   }
 }
+
+
+/* 1 — Trägheit: das Scrollen bekommt Masse */
+(function(){
+  var sanft = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var grob = window.matchMedia('(pointer: coarse)').matches;
+  if(sanft || grob) return;   /* Finger scrollen von selbst gut */
+
+  var ziel = window.scrollY, jetzt = window.scrollY, faehrt = false;
+  var GLAETTE = 0.11;
+
+  function grenze(){ return Math.max(0, document.body.scrollHeight - window.innerHeight); }
+
+  function takt(){
+    var rest = ziel - jetzt;
+    if(Math.abs(rest) < 0.4){
+      jetzt = ziel; window.scrollTo(0, jetzt); faehrt = false; return;
+    }
+    jetzt += rest * GLAETTE;
+    window.scrollTo(0, jetzt);
+    requestAnimationFrame(takt);
+  }
+
+  function anstossen(){
+    if(!faehrt){ faehrt = true; requestAnimationFrame(takt); }
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(e.ctrlKey) return;                       /* Zoom nicht stören */
+    if(e.target.closest('.leuchtkasten')) return;
+    var innenRolle = e.target.closest('.rolle');
+    var kino = document.getElementById('templi');
+    if(innenRolle && !(kino && kino.classList.contains('gepinnt'))) return;
+    e.preventDefault();
+    if(!faehrt) jetzt = window.scrollY;
+    ziel = Math.min(grenze(), Math.max(0, ziel + e.deltaY * (e.deltaMode === 1 ? 18 : 1)));
+    anstossen();
+  }, { passive: false });
+
+  /* Tastatur, Scrollbalken und Sprungmarken sollen weiter funktionieren */
+  window.addEventListener('scroll', function(){
+    if(!faehrt){ ziel = window.scrollY; jetzt = ziel; }
+  }, { passive: true });
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var el = id && document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    if(!faehrt) jetzt = window.scrollY;
+    ziel = Math.min(grenze(), el.getBoundingClientRect().top + window.scrollY - 76);
+    anstossen();
+  });
+})();
 
 (function(){
   var sanft = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1298,11 +1439,21 @@ function spracheSetzen(neu){
     var zurueck = document.getElementById('rolle-zurueck'), vor = document.getElementById('rolle-vor');
     function schritt(){ var s = rolle.querySelector('.szene'); return s ? s.offsetWidth + 24 : 400; }
     function knoepfe(){
+      if(document.getElementById('templi').classList.contains('gepinnt')){
+        zurueck.disabled = false; vor.disabled = false; return;
+      }
       zurueck.disabled = rolle.scrollLeft < 12;
       vor.disabled = rolle.scrollLeft > rolle.scrollWidth - rolle.clientWidth - 12;
     }
-    zurueck.addEventListener('click', function(){ rolle.scrollBy({left: -schritt(), behavior: 'smooth'}); });
-    vor.addEventListener('click', function(){ rolle.scrollBy({left: schritt(), behavior: 'smooth'}); });
+    function bewege(richtung){
+      if(document.getElementById('templi').classList.contains('gepinnt')){
+        window.scrollBy({ top: richtung * schritt(), behavior: 'smooth' });
+      } else {
+        rolle.scrollBy({ left: richtung * schritt(), behavior: 'smooth' });
+      }
+    }
+    zurueck.addEventListener('click', function(){ bewege(-1); });
+    vor.addEventListener('click', function(){ bewege(1); });
     rolle.addEventListener('scroll', knoepfe, { passive: true });
     knoepfe();
     var kinoblick = new IntersectionObserver(function(e){
@@ -1311,39 +1462,125 @@ function spracheSetzen(neu){
     rolle.querySelectorAll('.szene').forEach(function(sz){ kinoblick.observe(sz); });
   }
 
+  /* 5 — Reihenfolge für die gestaffelten Gerichte */
+  document.querySelectorAll('.gang').forEach(function(g){
+    g.querySelectorAll('.speise').forEach(function(sp, i){ sp.style.setProperty('--i', i); });
+  });
+
   /* Enthüllen beim Scrollen */
   var beobachter = new IntersectionObserver(function(eintraege){
     eintraege.forEach(function(e){
       if(e.isIntersecting){ e.target.classList.add('sichtbar'); beobachter.unobserve(e.target); }
     });
   }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.auf, [data-kolonnade]').forEach(function(el){ beobachter.observe(el); });
+  document.querySelectorAll('.auf, [data-kolonnade], .gang, .worte').forEach(function(el){ beobachter.observe(el); });
 
   /* Kopfzeile und Parallaxe */
   var kopf = document.getElementById('kopf');
   var auftaktbild = document.getElementById('auftaktbild');
   var bandbild = document.getElementById('bandbild');
   var band = document.getElementById('sera');
+  var auftaktInhalt = document.querySelector('.auftakt-inhalt');
+  var uebergabe = document.getElementById('uebergabe');
+  var fortschritt = document.getElementById('fortschritt');
+  var buehne = document.getElementById('kino-buehne');
+  var rolle = document.getElementById('rolle');
+  var kinoAbschnitt = document.getElementById('templi');
+  var strahlen = [].slice.call(document.querySelectorAll('.kolonnade'));
+  var klemm = function(v,a,b){ return v < a ? a : (v > b ? b : v); };
+
+  /* 2 — Bühne für die angeheftete Rolle bemessen */
+  var gepinnt = false, weg = 0;
+  function buehneMessen(){
+    gepinnt = window.matchMedia('(min-width: 900px)').matches && !sanft;
+    kinoAbschnitt.classList.toggle('gepinnt', gepinnt);
+    var hinweis = document.querySelector('.rollenhinweis');
+    if(hinweis){
+      hinweis.setAttribute('data-t', gepinnt ? 'kino.hinweisFest' : 'kino.hinweis');
+      hinweis.textContent = textVon(gepinnt ? 'kino.hinweisFest' : 'kino.hinweis');
+    }
+    if(gepinnt){
+      rolle.scrollLeft = 0;
+      weg = Math.max(0, rolle.scrollWidth - rolle.clientWidth);
+      buehne.style.height = (window.innerHeight + weg) + 'px';
+    } else {
+      buehne.style.height = '';
+      rolle.style.transform = '';
+    }
+  }
+
+  /* Alle Maße einmal nehmen, im Frame nur noch rechnen */
+  var M = {};
+  function masseNehmen(){
+    var y = window.scrollY, fh = window.innerHeight;
+    M.fh = fh;
+    M.gesamt = Math.max(1, document.body.scrollHeight - fh);
+    var rb = band.getBoundingClientRect();
+    M.bandOben = rb.top + y; M.bandHoehe = rb.height;
+    var bb = buehne.getBoundingClientRect();
+    M.buehneOben = bb.top + y; M.buehneHoehe = bb.height;
+    M.kolonnaden = strahlen.map(function(k){
+      var r = k.getBoundingClientRect();
+      return { el: k.querySelector('.strahl'), oben: r.top + y, hoehe: r.height };
+    });
+  }
+
   var laeuft = false;
   function beiScroll(){
     if(laeuft) return; laeuft = true;
     requestAnimationFrame(function(){
-      var y = window.scrollY;
+      var y = window.scrollY, fh = M.fh;
       kopf.classList.toggle('fest', y > 60);
-      if(!sanft && !klein){
-        if(y < window.innerHeight * 1.2){
-          auftaktbild.style.transform = 'scale(1.06) translateY(' + (y * 0.16) + 'px)';
+
+      if(fortschritt) fortschritt.style.width = (klemm(y / M.gesamt, 0, 1) * 100) + '%';
+
+      if(!sanft){
+        var a = klemm(y / fh, 0, 1);
+        if(a < 1.01 && auftaktInhalt){
+          auftaktInhalt.style.transform = 'translate3d(0,' + (-a * 90) + 'px,0)';
+          auftaktInhalt.style.opacity = String(1 - klemm(a * 1.5, 0, 1));
+          uebergabe.style.opacity = String(klemm((a - 0.35) * 1.4, 0, 0.85));
         }
-        var r = band.getBoundingClientRect();
-        if(r.top < window.innerHeight && r.bottom > 0){
-          var p = (window.innerHeight - r.top) / (window.innerHeight + r.height);
-          bandbild.style.transform = 'translateY(' + ((p - 0.5) * 70) + 'px)';
+        if(!klein){
+          if(y < fh * 1.2) auftaktbild.style.transform = 'scale(1.06) translateY(' + (y * 0.16) + 'px)';
+          var bo = M.bandOben - y;
+          if(bo < fh && bo + M.bandHoehe > 0){
+            var pb = (fh - bo) / (fh + M.bandHoehe);
+            bandbild.style.transform = 'translateY(' + ((pb - 0.5) * 70) + 'px)';
+          }
+        }
+        for(var i = 0; i < M.kolonnaden.length; i++){
+          var k = M.kolonnaden[i], ko = k.oben - y;
+          if(ko < fh && ko + k.hoehe > 0 && k.el){
+            var t = klemm((fh - ko) / (fh + k.hoehe), 0, 1);
+            k.el.style.transform = 'translateX(' + (t * 320 - 110) + '%)';
+          }
+        }
+        if(gepinnt && weg > 0){
+          var f = klemm((y - M.buehneOben) / (M.buehneHoehe - fh), 0, 1);
+          rolle.style.transform = 'translate3d(' + (-f * weg) + 'px,0,0)';
+          var mitte = Math.round(f * (rolle.children.length - 1));
+          if(mitte !== letzteMitte){
+            for(var j = 0; j < rolle.children.length; j++){
+              rolle.children[j].classList.toggle('imblick', Math.abs(j - mitte) <= 1);
+            }
+            letzteMitte = mitte;
+          }
         }
       }
       laeuft = false;
     });
   }
+  var letzteMitte = -1;
   window.addEventListener('scroll', beiScroll, { passive: true });
+  var neuMessen;
+  window.addEventListener('resize', function(){
+    clearTimeout(neuMessen);
+    neuMessen = setTimeout(function(){ buehneMessen(); masseNehmen(); beiScroll(); }, 150);
+  });
+  window.addEventListener('load', function(){ buehneMessen(); masseNehmen(); beiScroll(); });
+  buehneMessen();
+  masseNehmen();
   beiScroll();
 
   /* Mobiles Menü */
