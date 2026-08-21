@@ -260,7 +260,8 @@ footer .zeile a:hover{color:var(--oro)}
 
 /* ---------- Mobil ---------- */
 @media (max-width:700px){
-  .auftakt .bild{background-position:50% 32%}
+  .auftakt .bild{background-position:50% 32%;background-image:url("bilder/eingang-klein.webp")}
+  .band .bild{background-image:url("bilder/abend-klein.webp")}
   .auftakt .schleier{
     background:
       linear-gradient(to bottom,rgba(10,8,6,.5),rgba(10,8,6,0) 20%,rgba(10,8,6,.55) 50%,var(--nero) 92%),
@@ -485,6 +486,72 @@ body.kasten-offen{overflow:hidden}
   .sprachen button{padding:.34rem .46rem;font-size:.64rem}
 }
 
+/* ---------- Anfahrtskarte mit Rollover ---------- */
+.anfahrt-karte{
+  display:block;text-decoration:none;margin-top:2.2rem;position:relative;
+  border:1px solid var(--linie);background:linear-gradient(160deg,rgba(201,150,63,.06),transparent 60%),var(--pietra);
+  overflow:hidden;transition:border-color .45s ease,transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease;
+}
+.anfahrt-karte:hover,.anfahrt-karte:focus-visible{
+  border-color:var(--oro);transform:translateY(-4px);
+  box-shadow:0 22px 50px rgba(0,0,0,.55);outline:none;
+}
+.anfahrt-bild{display:block;position:relative;background:#0B0907;border-bottom:1px solid var(--linie)}
+.anfahrt-bild svg{display:block;width:100%;height:auto}
+.mini-route{
+  stroke-dasharray:260;stroke-dashoffset:260;
+  transition:stroke-dashoffset 1.5s cubic-bezier(.5,0,.2,1);
+}
+.anfahrt-karte:hover .mini-route,.anfahrt-karte:focus-visible .mini-route{stroke-dashoffset:0}
+.mini-marke{transform-origin:center;transition:transform .5s cubic-bezier(.3,1.5,.5,1)}
+.anfahrt-karte:hover .mini-marke,.anfahrt-karte:focus-visible .mini-marke{transform:translateY(-3px) scale(1.12)}
+.mini-schein{opacity:0;transition:opacity .8s ease}
+.anfahrt-karte:hover .mini-schein,.anfahrt-karte:focus-visible .mini-schein{opacity:1}
+.mini-ort{transition:opacity .5s ease .2s;opacity:.55}
+.anfahrt-karte:hover .mini-ort{opacity:1}
+.anfahrt-text{display:block;padding:clamp(1.3rem,3vw,1.9rem)}
+.anfahrt-satz{display:block;color:rgba(237,227,208,.75);font-size:.94rem;line-height:1.65;margin-bottom:1.1rem}
+.anfahrt-cta{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--oro);
+}
+.anfahrt-cta svg{width:15px;height:15px;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.anfahrt-karte:hover .anfahrt-cta svg,.anfahrt-karte:focus-visible .anfahrt-cta svg{transform:translateX(6px)}
+@media (prefers-reduced-motion:reduce){
+  .anfahrt-karte,.mini-route,.mini-marke,.anfahrt-cta svg{transition:none}
+  .mini-route{stroke-dashoffset:0}
+  .mini-schein{opacity:1}
+}
+
+/* ---------- Handy: Nachbesserung aus dem Prueflauf ---------- */
+@media (pointer: coarse){
+  /* Quer gehaltene Telefone fallen aus der Breitenabfrage – iOS zoomt sonst */
+  .feld input,.feld select,.feld textarea{font-size:16px}
+}
+@media (max-width:900px){
+  /* Lesbarkeit: nichts unter 12 px */
+  .knopf{font-size:.78rem}
+  .eyebrow{font-size:.76rem}
+  .auftakt-inhalt .unterzeile{font-size:.76rem;letter-spacing:.38em}
+  .szene .ort{font-size:.72rem}
+  .rollenhinweis{font-size:.72rem}
+  .blatt-knopf .lupe{font-size:.72rem}
+  .nachweis{font-size:.78rem}
+  .sprachen button{font-size:.72rem}
+  .tafel dt{font-size:.76rem}
+  nav a.knopf{font-size:.78rem}
+  .auftakt-inhalt .unterzeile{font-size:.76rem}
+  .nachweis a{padding:.75rem 0;min-height:44px;display:inline-flex;align-items:center}
+
+  /* Tippziele: Telefon, Mail, Adresse, Fusszeile, Impressum */
+  .marke{min-height:46px}
+  .direkt{gap:0}
+  .direkt a{min-height:48px;display:flex;align-items:center;padding:.35rem 0}
+  footer .zeile a{display:inline-block;padding:.7rem .5rem;font-size:.8rem}
+  footer .zeile{line-height:2}
+  .impressum summary{padding:.9rem 0;font-size:.74rem;min-height:44px;display:flex;align-items:center;justify-content:center}
+}
+
 </style>
 </head>
 <body>
@@ -544,7 +611,7 @@ body.kasten-offen{overflow:hidden}
 </div>
 
 <section class="wappenblock auf" aria-hidden="true">
-  <img loading="lazy" src="bilder/wappen.webp" alt="">
+  <img loading="lazy" src="bilder/wappen.webp" srcset="bilder/wappen-klein.webp 420w, bilder/wappen.webp 900w" sizes="(max-width:900px) 70vw, 420px" alt="">
 </section>
 
 <section class="stanza" id="benvenuti" style="padding-top:clamp(2rem,4vw,3rem)">
@@ -589,23 +656,23 @@ body.kasten-offen{overflow:hidden}
   <div class="wrap">
     <div class="rolle" id="rolle">
       <div class="szene"><figure>
-        <div class="blende"><span class="balken oben"></span><img src="bilder/concordia-notte.webp" alt="" loading="lazy"><span class="balken unten"></span></div>
+        <div class="blende"><span class="balken oben"></span><img src="bilder/concordia-notte.webp" srcset="bilder/concordia-notte-klein.webp 620w, bilder/concordia-notte.webp 1080w" sizes="(max-width:900px) 86vw, 760px" alt="" loading="lazy"><span class="balken unten"></span></div>
         <figcaption><span class="ort" data-t="kino.1.ort">Tempio della Concordia</span><span class="satz" data-t="kino.1.satz">Der besterhaltene griechische Tempel Siziliens — nachts angestrahlt.</span></figcaption>
       </figure></div>
       <div class="szene"><figure>
-        <div class="blende"><span class="balken oben"></span><img src="bilder/collina-templi.webp" alt="" loading="lazy"><span class="balken unten"></span></div>
+        <div class="blende"><span class="balken oben"></span><img src="bilder/collina-templi.webp" srcset="bilder/collina-templi-klein.webp 620w, bilder/collina-templi.webp 1080w" sizes="(max-width:900px) 86vw, 760px" alt="" loading="lazy"><span class="balken unten"></span></div>
         <figcaption><span class="ort" data-t="kino.2.ort">Collina dei Templi</span><span class="satz" data-t="kino.2.satz">Vierunddreißig Säulen, ein Kamm über dem Meer.</span></figcaption>
       </figure></div>
       <div class="szene"><figure>
-        <div class="blende"><span class="balken oben"></span><img src="bilder/dioscuri.webp" alt="" loading="lazy"><span class="balken unten"></span></div>
+        <div class="blende"><span class="balken oben"></span><img src="bilder/dioscuri.webp" srcset="bilder/dioscuri-klein.webp 620w, bilder/dioscuri.webp 1080w" sizes="(max-width:900px) 86vw, 760px" alt="" loading="lazy"><span class="balken unten"></span></div>
         <figcaption><span class="ort" data-t="kino.3.ort">Tempio dei Dioscuri</span><span class="satz" data-t="kino.3.satz">Vier Säulen, die das Wahrzeichen Agrigents geworden sind.</span></figcaption>
       </figure></div>
       <div class="szene"><figure>
-        <div class="blende"><span class="balken oben"></span><img src="bilder/giunone.webp" alt="" loading="lazy"><span class="balken unten"></span></div>
+        <div class="blende"><span class="balken oben"></span><img src="bilder/giunone.webp" srcset="bilder/giunone-klein.webp 620w, bilder/giunone.webp 1080w" sizes="(max-width:900px) 86vw, 760px" alt="" loading="lazy"><span class="balken unten"></span></div>
         <figcaption><span class="ort" data-t="kino.4.ort">Tempio di Giunone</span><span class="satz" data-t="kino.4.satz">Am östlichen Ende des Höhenzugs, zwischen Agaven und Mandelbäumen.</span></figcaption>
       </figure></div>
       <div class="szene"><figure>
-        <div class="blende"><span class="balken oben"></span><img src="bilder/agrigento.webp" alt="" loading="lazy"><span class="balken unten"></span></div>
+        <div class="blende"><span class="balken oben"></span><img src="bilder/agrigento.webp" srcset="bilder/agrigento-klein.webp 620w, bilder/agrigento.webp 1080w" sizes="(max-width:900px) 86vw, 760px" alt="" loading="lazy"><span class="balken unten"></span></div>
         <figcaption><span class="ort" data-t="kino.5.ort">Agrigento</span><span class="satz" data-t="kino.5.satz">Die Altstadt auf dem Hügel — dort liegt das Boulevard.</span></figcaption>
       </figure></div>
     </div>
@@ -622,7 +689,7 @@ body.kasten-offen{overflow:hidden}
 
     <div class="degustazione auf">
       <button class="blatt-knopf" type="button" id="karte-oeffnen" data-t-aria="degu.lupe" aria-label="Speisekarte vergrößert ansehen">
-        <img loading="lazy" src="bilder/degustazione.webp" alt="Menù Degustazione di pesce des Ristorante Boulevard">
+        <img loading="lazy" src="bilder/degustazione.webp" srcset="bilder/degustazione-klein.webp 520w, bilder/degustazione.webp 780w" sizes="(max-width:900px) 90vw, 440px" alt="Menù Degustazione di pesce des Ristorante Boulevard">
         <span class="lupe" data-t="degu.lupe">Karte vergrößern</span>
       </button>
       <div class="degu-text">
@@ -740,20 +807,67 @@ body.kasten-offen{overflow:hidden}
     <aside class="auf v2">
       <p class="eyebrow" data-t="zeiten.titel">Orari &middot; Öffnungszeiten</p>
       <ul class="zeiten">
-        <li><span data-t="tag.mo">Montag</span><span data-t="tag.zu">Ruhetag</span></li>
-        <li><span data-t="tag.didon">Dienstag – Donnerstag</span><span>18:30 – 23:30</span></li>
-        <li><span data-t="tag.frsa">Freitag – Samstag</span><span>12:00 – 15:00 &middot; 18:30 – 00:00</span></li>
-        <li><span data-t="tag.so">Sonntag</span><span>12:00 – 15:00 &middot; 18:30 – 23:00</span></li>
+        <li><span data-t="tag.mosa">Montag – Samstag</span><span>18:00 – 23:30</span></li>
+        <li><span data-t="tag.so">Sonntag</span><span>12:00 – 15:30 &middot; 18:00 – 23:30</span></li>
       </ul>
       <div class="direkt">
-        <a href="tel:+390922000000">+39 0922 000 000</a>
-        <a href="mailto:info@boulevard-agrigento.it">info@boulevard-agrigento.it</a>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Ristorante+Boulevard+Agrigento" target="_blank" rel="noopener">Via Atenea 00, 92100 Agrigento (AG) <span data-t="karte.link">— auf der Karte</span></a>
+        <a href="tel:+390922661578">+39 0922 661578</a>
+        <a href="https://www.facebook.com/boulevardagrigento" target="_blank" rel="noopener">facebook.com/boulevardagrigento</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Boulevard+Ristorante+Pizzeria,+Viale+della+Vittoria+13,+Agrigento" target="_blank" rel="noopener">Viale della Vittoria 13, 92100 Agrigento (AG) <span data-t="karte.link">— auf der Karte</span></a>
       </div>
-      <div class="tafel" style="margin-top:2.2rem">
-        <p class="eyebrow" style="margin-bottom:.8rem" data-t="anfahrt.titel">Anfahrt</p>
-        <p style="margin:0;color:rgba(237,227,208,.75);font-size:.94rem" data-t="anfahrt.text">Vom Tal der Tempel etwa zehn Minuten mit dem Auto.</p>
-      </div>
+      <a class="anfahrt-karte" id="anfahrt-karte" href="anfahrt.html">
+        <span class="anfahrt-bild">
+          <svg viewBox="0 0 420 220" role="img" aria-hidden="true">
+            <defs>
+              <radialGradient id="schein" cx="50%" cy="50%">
+                <stop offset="0%" stop-color="#F2D493" stop-opacity=".5"/>
+                <stop offset="100%" stop-color="#F2D493" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="420" height="220" fill="#0B0907"/>
+            <!-- Meer -->
+            <g stroke="rgba(201,150,63,.22)" fill="none" stroke-width="1">
+              <path d="M0 196 q28 -6 56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0"/>
+              <path d="M0 208 q28 -6 56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0"/>
+            </g>
+            <!-- Kueste und Huegel -->
+            <path d="M0 188 q60 -12 120 -6 t120 -12 t180 -16 L420 192 L0 192 Z" fill="rgba(201,150,63,.07)" stroke="rgba(201,150,63,.3)" stroke-width="1"/>
+            <path d="M0 132 q70 -26 150 -18 t130 -26 t140 -14" fill="none" stroke="rgba(201,150,63,.24)" stroke-width="1"/>
+            <!-- Tempel auf dem Kamm -->
+            <g fill="none" stroke="rgba(242,212,147,.75)" stroke-width="1.4">
+              <path d="M96 152 v-16 M104 152 v-16 M112 152 v-16 M120 152 v-16 M90 136 h36 M92 132 l16 -9 l16 9"/>
+              <path d="M158 148 v-13 M165 148 v-13 M172 148 v-13 M153 135 h24 M155 131 l11 -7 l11 7"/>
+            </g>
+            <text class="mini-ort" x="88" y="178" fill="var(--oro)" font-family="Cinzel,serif" font-size="9" letter-spacing="2">VALLE DEI TEMPLI</text>
+            <!-- Route -->
+            <circle cx="182" cy="150" r="2.4" fill="var(--oro)"/>
+            <path class="mini-route" d="M182 150 C 214 142, 240 110, 268 82" fill="none"
+                  stroke="var(--oro-hell)" stroke-width="1.6" stroke-dasharray="260" stroke-linecap="round"/>
+            <!-- Stadt -->
+            <path d="M232 62 q40 -18 96 -6" fill="none" stroke="rgba(201,150,63,.3)" stroke-width="1"/>
+            <g fill="rgba(201,150,63,.18)">
+              <rect x="238" y="46" width="9" height="14"/><rect x="252" y="40" width="9" height="20"/>
+              <rect x="266" y="44" width="9" height="16"/><rect x="280" y="36" width="9" height="24"/>
+              <rect x="294" y="44" width="9" height="16"/><rect x="308" y="48" width="9" height="12"/>
+            </g>
+            <text class="mini-ort" x="238" y="30" fill="var(--oro)" font-family="Cinzel,serif" font-size="9" letter-spacing="2">AGRIGENTO</text>
+            <!-- Standort -->
+            <circle class="mini-schein" cx="268" cy="74" r="34" fill="url(#schein)"/>
+            <g class="mini-marke">
+              <circle cx="268" cy="74" r="11" fill="#0B0907" stroke="var(--oro)" stroke-width="1.4"/>
+              <text x="268" y="78" text-anchor="middle" fill="var(--oro-hell)" font-family="Cinzel,serif" font-size="11" font-weight="700">B</text>
+            </g>
+          </svg>
+        </span>
+        <span class="anfahrt-text">
+          <span class="eyebrow" style="margin-bottom:.7rem;display:block" data-t="anfahrt.titel">Anfahrt</span>
+          <span class="anfahrt-satz" data-t="anfahrt.text">Vom Tal der Tempel etwa zehn Minuten mit dem Auto.</span>
+          <span class="anfahrt-cta">
+            <span data-t="anfahrt.cta">Karte öffnen</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </span>
+        </span>
+      </a>
     </aside>
   </div>
 </section>
@@ -762,7 +876,7 @@ body.kasten-offen{overflow:hidden}
   <button class="lk-zu" type="button" id="kasten-zu" data-t-aria="degu.schliessen" aria-label="Schließen">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
-  <img loading="lazy" src="bilder/degustazione-gross.webp" alt="Menù Degustazione di pesce — Antipasti, Primo piatto, 30 € pro Person">
+  <img id="kasten-bild" data-quelle="bilder/degustazione-gross.webp" alt="Menù Degustazione di pesce — Antipasti, Primo piatto, 30 € pro Person">
 </div>
 
 <footer>
@@ -771,9 +885,9 @@ body.kasten-offen{overflow:hidden}
     <p class="zeile">Agrigento &middot; Sicilia &nbsp;—&nbsp; <a href="#kontakt" data-t="fuss.reservierung">Reservierung</a> &nbsp;&middot;&nbsp; <a href="#cucina" data-t="fuss.karte">Karte</a></p>
     <details id="impressum" class="impressum">
       <summary data-t="impressum.titel">Impressum &amp; Datenschutz</summary>
-      <p>Ristorante Boulevard &middot; Via Atenea 00, 92100 Agrigento (AG), Italia<br>
+      <p>Ristorante Boulevard &middot; Viale della Vittoria 13, 92100 Agrigento (AG), Italia<br>
       <span data-t="impressum.inhaber">Inhaber</span>: Vor- und Nachname &middot; P. IVA 00000000000<br>
-      Tel. +39 0922 000 000 &middot; info@boulevard-agrigento.it</p>
+      Tel. +39 0922 661578 &middot; info@boulevard-agrigento.it</p>
       <p data-t="impressum.datenschutz">Diese Seite setzt keine Cookies und bindet keine externen Dienste ein.</p>
       <p class="nachweis"><span data-t="impressum.bilder">Bildnachweis</span>: Tempio della Concordia bei Nacht — Dreirik (CC0). Tempio dei Dioscuri, Tempio di Giunone, Panorama — Effems (CC BY-SA 4.0), <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>.</p>
     </details>
@@ -789,6 +903,8 @@ var TEXTE = {
     'meta.beschreibung': 'Ristorante Boulevard in Agrigento: sizilianische Küche und Pizza aus dem Holzofen, wenige Minuten vom Tal der Tempel. Abends geöffnet, Reservierung empfohlen.',
     'nav.willkommen': 'Benvenuti', 'nav.karte': 'Die Karte', 'nav.abend': 'Am Abend', 'nav.kontakt': 'Kontakt',
     'nav.templi': 'Die Tempel',
+    'anfahrt.cta': 'Karte öffnen',
+    'anfahrt.langtext': 'Das Boulevard liegt im historischen Zentrum von Agrigento. Vom Tal der Tempel sind es etwa zehn Minuten mit dem Auto, zu Fuß gut eine halbe Stunde bergauf.',
     'karte.alacarta': 'Alla carta',
     'degu.eyebrow': 'Menù degustazione', 'degu.proPerson': 'pro Person', 'degu.mindestens': 'Ab 2 Personen',
     'degu.lupe': 'Karte vergrößern', 'degu.schliessen': 'Schließen', 'degu.primo': 'Primo piatto',
@@ -806,7 +922,7 @@ var TEXTE = {
     'kino.2.ort': 'Collina dei Templi', 'kino.2.satz': 'Ein Kamm aus Kalkstein, dahinter das Meer.',
     'kino.3.ort': 'Tempio dei Dioscuri', 'kino.3.satz': 'Vier Säulen, die zum Wahrzeichen Agrigents geworden sind.',
     'kino.4.ort': 'Tempio di Giunone', 'kino.4.satz': 'Am östlichen Ende des Höhenzugs, zwischen Agaven und Mandelbäumen.',
-    'kino.5.ort': 'Agrigento', 'kino.5.satz': 'Die Altstadt auf dem Hügel — dort liegt das Boulevard.',
+    'kino.5.ort': 'Agrigento', 'kino.5.satz': 'Die Stadt auf dem Hügel — dort oben liegt das Boulevard.',
     'impressum.bilder': 'Bildnachweis',
     'nav.oeffnen': 'Menü öffnen', 'nav.schliessen': 'Menü schließen',
     'cta.reservieren': 'Tisch reservieren', 'cta.karte': 'Die Karte ansehen',
@@ -816,12 +932,12 @@ var TEXTE = {
     'hero.satz': 'Fisch vom Markt, Pasta wie zu Hause und Pizza aus dem Holzofen — zehn Minuten vom Tal der Tempel, hinter einem Tor aus Efeu.',
     'hero.scrollen': 'Scrollen',
     'ben.titel1': 'Ein Tor, eine Laterne,', 'ben.titel2': 'und dahinter der Abend.',
-    'ben.text1': 'Das Boulevard liegt im historischen Zentrum von Agrigento, wenige Minuten von der Valle dei Templi entfernt. Wer durch das schmiedeeiserne Tor tritt, lässt die Straße hinter sich: Naturstein, Efeu, warmes Licht und ein Gewölbe, das seit Jahrhunderten steht.',
+    'ben.text1': 'Das Boulevard liegt am Viale della Vittoria, der Allee über der Altstadt von Agrigento, wenige Minuten von der Valle dei Templi entfernt. Wer durch das schmiedeeiserne Tor tritt, lässt die Straße hinter sich: Naturstein, Efeu, warmes Licht und ein Gewölbe, das seit Jahrhunderten steht.',
     'ben.text2': 'Wir kochen sizilianisch — mit Fisch vom Markt in Porto Empedocle, Gemüse aus der Umgebung, Öl und Mandeln von Höfen, die wir kennen. Dazu Pizza aus dem Holzofen, langgeführter Teig, dünn und mit Rand.',
     'ben.zitat1': '„Erst die Tempel, dann der Tisch.“', 'ben.zitat2': 'Beides gehört zu einem Tag in Agrigento.',
     'tafel.titel': 'Auf einen Blick',
     'tafel.kueche': 'Küche', 'tafel.kueche.wert': 'Sizilianisch, Fisch, Pizza aus dem Holzofen',
-    'tafel.lage': 'Lage', 'tafel.lage.wert': 'Centro storico, Agrigento — 10 Minuten zum Tal der Tempel',
+    'tafel.lage': 'Lage', 'tafel.lage.wert': 'Viale della Vittoria 13 — 10 Minuten zum Tal der Tempel',
     'tafel.plaetze': 'Plätze', 'tafel.plaetze.wert': 'Innenraum im Gewölbe, Terrasse unter Efeu',
     'tafel.wissen': 'Gut zu wissen', 'tafel.wissen.wert': 'Reservierung empfohlen, besonders von Juni bis September',
     'tafel.gruppen': 'Gruppen', 'tafel.gruppen.wert': 'Feiern und Menüs für bis zu 40 Gäste auf Anfrage',
@@ -855,20 +971,21 @@ var TEXTE = {
     'mail.betreff': 'Tischanfrage', 'mail.name': 'Name', 'mail.telefon': 'Telefon', 'mail.datum': 'Datum',
     'mail.zeit': 'Uhrzeit', 'mail.personen': 'Personen', 'mail.wunsch': 'Wünsche',
     'zeiten.titel': 'Orari · Öffnungszeiten',
-    'tag.mo': 'Montag', 'tag.zu': 'Ruhetag', 'tag.didon': 'Dienstag – Donnerstag',
-    'tag.frsa': 'Freitag – Samstag', 'tag.so': 'Sonntag',
+    'tag.mosa': 'Montag – Samstag', 'tag.so': 'Sonntag',
     'karte.link': '— auf der Karte',
     'anfahrt.titel': 'Anfahrt',
-    'anfahrt.text': 'Vom Tal der Tempel etwa zehn Minuten mit dem Auto. Parken am Piazzale Rosselli, von dort fünf Minuten zu Fuß durch die Altstadt.',
+    'anfahrt.text': 'Am Viale della Vittoria, wenige Minuten zu Fuß vom Bahnhof. Vom Tal der Tempel etwa zehn Minuten mit dem Auto.',
     'fuss.reservierung': 'Reservierung', 'fuss.karte': 'Karte',
     'impressum.titel': 'Impressum & Datenschutz', 'impressum.inhaber': 'Inhaber',
-    'impressum.datenschutz': 'Diese Seite setzt keine Cookies und bindet keine externen Dienste ein. Reservierungsanfragen werden per E-Mail übermittelt und nur zur Bearbeitung der Anfrage verwendet.'
+    'impressum.datenschutz': 'Diese Seite setzt keine Cookies. Auf der Seite „Anfahrt“ kann eine Karte von Google Maps geladen werden — das geschieht erst nach ausdrücklichem Klick, vorher werden keine Daten an Google übertragen. Reservierungsanfragen werden per E-Mail übermittelt und nur zur Bearbeitung der Anfrage verwendet.'
   },
   it: {
     'meta.titel': 'Boulevard — Ristorante e Pizzeria ad Agrigento, Sicilia',
     'meta.beschreibung': 'Ristorante Boulevard ad Agrigento: cucina siciliana e pizza dal forno a legna, a pochi minuti dalla Valle dei Templi. Aperto la sera, prenotazione consigliata.',
     'nav.willkommen': 'Benvenuti', 'nav.karte': 'Il menu', 'nav.abend': 'La sera', 'nav.kontakt': 'Contatti',
     'nav.templi': 'I templi',
+    'anfahrt.cta': 'Apri la mappa',
+    'anfahrt.langtext': 'Il Boulevard si trova nel centro storico di Agrigento. Dalla Valle dei Templi sono circa dieci minuti in auto, a piedi una mezz’ora in salita.',
     'karte.alacarta': 'Alla carta',
     'degu.eyebrow': 'Menù degustazione', 'degu.proPerson': 'a persona', 'degu.mindestens': 'Minimo 2 persone',
     'degu.lupe': 'Ingrandisci il menu', 'degu.schliessen': 'Chiudi', 'degu.primo': 'Primo piatto',
@@ -884,7 +1001,7 @@ var TEXTE = {
     'kino.2.ort': 'Collina dei Templi', 'kino.2.satz': 'Un crinale di calcarenite, e dietro il mare.',
     'kino.3.ort': 'Tempio dei Dioscuri', 'kino.3.satz': 'Quattro colonne diventate il simbolo di Agrigento.',
     'kino.4.ort': 'Tempio di Giunone', 'kino.4.satz': "All'estremità est della collina, tra agavi e mandorli.",
-    'kino.5.ort': 'Agrigento', 'kino.5.satz': 'Il centro storico sulla collina — è lì che si trova il Boulevard.',
+    'kino.5.ort': 'Agrigento', 'kino.5.satz': 'La città sulla collina — è lassù che si trova il Boulevard.',
     'impressum.bilder': 'Crediti fotografici',
     'nav.oeffnen': 'Apri il menu', 'nav.schliessen': 'Chiudi il menu',
     'cta.reservieren': 'Prenota un tavolo', 'cta.karte': 'Guarda il menu',
@@ -894,12 +1011,12 @@ var TEXTE = {
     'hero.satz': 'Pesce del mercato, pasta come a casa e pizza dal forno a legna — a dieci minuti dalla Valle dei Templi, dietro un cancello di edera.',
     'hero.scrollen': 'Scorri',
     'ben.titel1': 'Un cancello, una lanterna,', 'ben.titel2': 'e dietro, la sera.',
-    'ben.text1': 'Il Boulevard si trova nel centro storico di Agrigento, a pochi minuti dalla Valle dei Templi. Chi varca il cancello in ferro battuto si lascia la strada alle spalle: pietra viva, edera, luce calda e una volta che resiste da secoli.',
+    'ben.text1': 'Il Boulevard si trova sul Viale della Vittoria, sopra il centro storico di Agrigento, a pochi minuti dalla Valle dei Templi. Chi varca il cancello in ferro battuto si lascia la strada alle spalle: pietra viva, edera, luce calda e una volta che resiste da secoli.',
     'ben.text2': 'Cuciniamo siciliano — con il pesce del mercato di Porto Empedocle, verdure della zona, olio e mandorle di aziende che conosciamo. E la pizza dal forno a legna, impasto a lunga lievitazione, sottile e con il cornicione.',
     'ben.zitat1': '«Prima i templi, poi la tavola.»', 'ben.zitat2': 'Fanno parte della stessa giornata ad Agrigento.',
     'tafel.titel': 'In breve',
     'tafel.kueche': 'Cucina', 'tafel.kueche.wert': 'Siciliana, pesce, pizza dal forno a legna',
-    'tafel.lage': 'Dove siamo', 'tafel.lage.wert': 'Centro storico, Agrigento — 10 minuti dalla Valle dei Templi',
+    'tafel.lage': 'Dove siamo', 'tafel.lage.wert': 'Viale della Vittoria 13 — 10 minuti dalla Valle dei Templi',
     'tafel.plaetze': 'Sala', 'tafel.plaetze.wert': "Sala nella volta, terrazza sotto l'edera",
     'tafel.wissen': 'Da sapere', 'tafel.wissen.wert': 'Prenotazione consigliata, soprattutto da giugno a settembre',
     'tafel.gruppen': 'Gruppi', 'tafel.gruppen.wert': 'Feste e menu fino a 40 persone su richiesta',
@@ -933,20 +1050,21 @@ var TEXTE = {
     'mail.betreff': 'Richiesta tavolo', 'mail.name': 'Nome', 'mail.telefon': 'Telefono', 'mail.datum': 'Data',
     'mail.zeit': 'Ora', 'mail.personen': 'Persone', 'mail.wunsch': 'Richieste',
     'zeiten.titel': 'Orari',
-    'tag.mo': 'Lunedì', 'tag.zu': 'Chiuso', 'tag.didon': 'Martedì – Giovedì',
-    'tag.frsa': 'Venerdì – Sabato', 'tag.so': 'Domenica',
+    'tag.mosa': 'Lunedì – Sabato', 'tag.so': 'Domenica',
     'karte.link': '— sulla mappa',
     'anfahrt.titel': 'Come arrivare',
-    'anfahrt.text': 'Dalla Valle dei Templi circa dieci minuti in auto. Parcheggio al Piazzale Rosselli, da lì cinque minuti a piedi nel centro storico.',
+    'anfahrt.text': 'Sul Viale della Vittoria, a pochi minuti a piedi dalla stazione. Dalla Valle dei Templi circa dieci minuti in auto.',
     'fuss.reservierung': 'Prenotazioni', 'fuss.karte': 'Menu',
     'impressum.titel': 'Informazioni legali e privacy', 'impressum.inhaber': 'Titolare',
-    'impressum.datenschutz': 'Questo sito non usa cookie e non integra servizi esterni. Le richieste di prenotazione arrivano via e-mail e vengono usate solo per rispondere.'
+    'impressum.datenschutz': 'Questo sito non usa cookie. Nella pagina „Come arrivare“ è possibile caricare una mappa di Google Maps: avviene solo dopo un clic esplicito, prima nessun dato viene trasmesso a Google. Le richieste di prenotazione arrivano via e-mail e vengono usate solo per rispondere.'
   },
   en: {
     'meta.titel': 'Boulevard — Restaurant & Pizzeria in Agrigento, Sicily',
     'meta.beschreibung': 'Ristorante Boulevard in Agrigento: Sicilian cooking and wood-fired pizza, minutes from the Valley of the Temples. Open evenings, booking recommended.',
     'nav.willkommen': 'Welcome', 'nav.karte': 'Menu', 'nav.abend': 'Evenings', 'nav.kontakt': 'Contact',
     'nav.templi': 'The temples',
+    'anfahrt.cta': 'Open the map',
+    'anfahrt.langtext': 'The Boulevard is in the old centre of Agrigento. From the Valley of the Temples it is about ten minutes by car, or a good half hour on foot, uphill.',
     'karte.alacarta': 'Alla carta',
     'degu.eyebrow': 'Tasting menu', 'degu.proPerson': 'per person', 'degu.mindestens': 'Two guests minimum',
     'degu.lupe': 'View the menu larger', 'degu.schliessen': 'Close', 'degu.primo': 'Primo piatto',
@@ -964,7 +1082,7 @@ var TEXTE = {
     'kino.2.ort': 'Collina dei Templi', 'kino.2.satz': 'A limestone ridge, and the sea behind it.',
     'kino.3.ort': 'Tempio dei Dioscuri', 'kino.3.satz': 'Four columns that became the emblem of Agrigento.',
     'kino.4.ort': 'Tempio di Giunone', 'kino.4.satz': 'At the eastern end of the ridge, among agaves and almond trees.',
-    'kino.5.ort': 'Agrigento', 'kino.5.satz': 'The old town on the hill — that is where the Boulevard is.',
+    'kino.5.ort': 'Agrigento', 'kino.5.satz': 'The town on the hill — that is where the Boulevard is.',
     'impressum.bilder': 'Image credits',
     'nav.oeffnen': 'Open menu', 'nav.schliessen': 'Close menu',
     'cta.reservieren': 'Book a table', 'cta.karte': 'See the menu',
@@ -974,12 +1092,12 @@ var TEXTE = {
     'hero.satz': 'Fish from the market, pasta the way it is made at home and pizza from the wood-fired oven — ten minutes from the Valley of the Temples, behind a gate of ivy.',
     'hero.scrollen': 'Scroll',
     'ben.titel1': 'A gate, a lantern,', 'ben.titel2': 'and the evening behind it.',
-    'ben.text1': 'The Boulevard sits in the old centre of Agrigento, a few minutes from the Valley of the Temples. Step through the wrought-iron gate and the street falls away: bare stone, ivy, warm light and a vault that has stood for centuries.',
+    'ben.text1': 'The Boulevard sits on Viale della Vittoria, the avenue above the old town of Agrigento, a few minutes from the Valley of the Temples. Step through the wrought-iron gate and the street falls away: bare stone, ivy, warm light and a vault that has stood for centuries.',
     'ben.text2': 'We cook Sicilian — fish from the market at Porto Empedocle, vegetables from nearby, oil and almonds from growers we know. And pizza from the wood-fired oven: slow-proved dough, thin, with a raised rim.',
     'ben.zitat1': '“Temples first, then the table.”', 'ben.zitat2': 'Both belong to the same day in Agrigento.',
     'tafel.titel': 'At a glance',
     'tafel.kueche': 'Kitchen', 'tafel.kueche.wert': 'Sicilian, fish, wood-fired pizza',
-    'tafel.lage': 'Where', 'tafel.lage.wert': 'Old town, Agrigento — 10 minutes from the Valley of the Temples',
+    'tafel.lage': 'Where', 'tafel.lage.wert': 'Viale della Vittoria 13 — 10 minutes from the Valley of the Temples',
     'tafel.plaetze': 'Seating', 'tafel.plaetze.wert': 'Vaulted dining room, terrace under the ivy',
     'tafel.wissen': 'Good to know', 'tafel.wissen.wert': 'Booking recommended, especially June to September',
     'tafel.gruppen': 'Groups', 'tafel.gruppen.wert': 'Parties and set menus for up to 40 guests on request',
@@ -1013,14 +1131,13 @@ var TEXTE = {
     'mail.betreff': 'Table request', 'mail.name': 'Name', 'mail.telefon': 'Phone', 'mail.datum': 'Date',
     'mail.zeit': 'Time', 'mail.personen': 'Guests', 'mail.wunsch': 'Requests',
     'zeiten.titel': 'Opening hours',
-    'tag.mo': 'Monday', 'tag.zu': 'Closed', 'tag.didon': 'Tuesday – Thursday',
-    'tag.frsa': 'Friday – Saturday', 'tag.so': 'Sunday',
+    'tag.mosa': 'Monday – Saturday', 'tag.so': 'Sunday',
     'karte.link': '— on the map',
     'anfahrt.titel': 'Getting here',
-    'anfahrt.text': 'About ten minutes by car from the Valley of the Temples. Park at Piazzale Rosselli, then five minutes on foot through the old town.',
+    'anfahrt.text': 'On Viale della Vittoria, a few minutes on foot from the station. About ten minutes by car from the Valley of the Temples.',
     'fuss.reservierung': 'Bookings', 'fuss.karte': 'Menu',
     'impressum.titel': 'Legal notice & privacy', 'impressum.inhaber': 'Owner',
-    'impressum.datenschutz': 'This site sets no cookies and loads no external services. Booking requests are sent by email and used only to answer them.'
+    'impressum.datenschutz': 'This site sets no cookies. On the „Getting here“ page a Google Maps view can be loaded — only after an explicit click; before that nothing is sent to Google. Booking requests are sent by email and used only to answer them.'
   }
 };
 
@@ -1054,6 +1171,11 @@ function spracheSetzen(neu){
   document.querySelectorAll('.sprachen button').forEach(function(b){
     b.setAttribute('aria-pressed', b.getAttribute('data-sprache') === neu ? 'true' : 'false');
   });
+  var anfahrt = document.getElementById('anfahrt-karte');
+  if(anfahrt){
+    var ziel = anfahrt.getAttribute('href').split('?')[0];
+    if(ziel.indexOf('anfahrt.html') !== -1) anfahrt.setAttribute('href', ziel + '?l=' + neu);
+  }
 }
 
 (function(){
@@ -1108,7 +1230,9 @@ function spracheSetzen(neu){
   var oeffner = document.getElementById('karte-oeffnen');
   if(kasten && oeffner){
     var zu = document.getElementById('kasten-zu');
+    var kastenBild = document.getElementById('kasten-bild');
     function kastenAuf(){
+      if(!kastenBild.getAttribute('src')) kastenBild.setAttribute('src', kastenBild.getAttribute('data-quelle'));
       kasten.classList.add('offen'); document.body.classList.add('kasten-offen'); zu.focus();
     }
     function kastenZu(){

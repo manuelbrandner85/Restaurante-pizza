@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0806">
+<title>Anfahrt — Ristorante Boulevard, Agrigento</title>
+<meta name="description" content="So finden Sie das Ristorante Boulevard im historischen Zentrum von Agrigento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --nero:#0A0806;
+  --pietra:#14100C;
+  --pietra2:#1E1811;
+  --oro:#C9963F;
+  --oro-hell:#F2D493;
+  --avorio:#EDE3D0;
+  --terra:#6E5231;
+  --linie:rgba(201,150,63,.28);
+  --rosa:#F0A6BC;
+  --rosa-hell:#FFD6E1;
+  --f-display:'Cinzel',Georgia,serif;
+  --f-akzent:'Cormorant Garamond',Georgia,serif;
+  --f-text:'Barlow',system-ui,sans-serif;
+  --mass:clamp(1.1rem,4vw,2.4rem);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--nero);color:var(--avorio);
+  font-family:var(--f-text);font-weight:300;font-size:clamp(15px,1.05vw,17px);line-height:1.75;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;letter-spacing:.09em;margin:0;line-height:1.15}
+.wrap{width:min(1180px,90vw);margin-inline:auto}
+.eyebrow{
+  font-family:var(--f-text);font-size:.7rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--oro);font-weight:400;margin:0 0 1.1rem;
+}
+.stanza{padding:clamp(4.5rem,10vw,8.5rem) 0}
+
+/* ---------- Ladevorhang ---------- */
+#vorhang{
+  position:fixed;inset:0;z-index:120;background:var(--nero);
+  display:grid;place-items:center;transition:opacity .8s ease,visibility .8s;
+}
+#vorhang .flamme{
+  width:2px;height:70px;border-radius:2px;
+  background:linear-gradient(to top,transparent,var(--oro),var(--oro-hell));
+  animation:aufflammen 1.1s ease-out both;transform-origin:bottom;
+}
+@keyframes aufflammen{0%{transform:scaleY(0);opacity:0}60%{opacity:1}100%{transform:scaleY(1);opacity:.9}}
+body.geladen #vorhang{opacity:0;visibility:hidden}
+
+/* ---------- Navigation ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  padding:1.4rem 0;transition:background .5s ease,padding .5s ease,box-shadow .5s ease;
+}
+header.fest{
+  background:rgba(10,8,6,.96);padding:.75rem 0;
+  box-shadow:0 1px 0 var(--linie);
+}
+.navzeile{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.marke{
+  font-family:var(--f-display);font-size:.95rem;letter-spacing:.34em;color:var(--avorio);
+  text-decoration:none;display:flex;align-items:center;gap:.85rem;
+}
+.marken-wappen{height:42px;width:42px;transition:height .5s ease,width .5s ease;filter:drop-shadow(0 3px 10px rgba(0,0,0,.6))}
+header.fest .marken-wappen{height:32px;width:32px}
+@media (max-width:900px){.marken-wappen{height:34px;width:34px}header.fest .marken-wappen{height:30px;width:30px}}
+
+nav ul{display:flex;gap:2rem;list-style:none;margin:0;padding:0}
+nav a{
+  text-decoration:none;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(237,227,208,.75);padding:.3rem 0;position:relative;transition:color .3s;
+}
+nav a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--oro);transition:width .35s ease;
+}
+nav a:hover,nav a:focus-visible{color:var(--oro-hell)}
+nav a:hover::after,nav a:focus-visible::after{width:100%}
+.knopf{
+  display:inline-block;text-decoration:none;font-family:var(--f-text);
+  font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+  padding:.85rem 1.7rem;border:1px solid var(--oro);color:var(--oro-hell);
+  background:transparent;cursor:pointer;position:relative;overflow:hidden;transition:color .4s ease;
+}
+.knopf::before{
+  content:"";position:absolute;inset:0;background:var(--oro);transform:translateY(101%);transition:transform .45s cubic-bezier(.7,0,.2,1);
+}
+.knopf:hover,.knopf:focus-visible{color:var(--nero)}
+.knopf:hover::before,.knopf:focus-visible::before{transform:translateY(0)}
+.knopf span{position:relative;z-index:2}
+.nur-mobil{display:none}
+nav a.knopf{font-size:.7rem;color:var(--oro-hell);margin-top:1rem}
+nav a.knopf::after{display:none}
+.burger{display:none;background:none;border:0;color:var(--oro);padding:.4rem;cursor:pointer;position:relative;z-index:3}
+.burger svg{width:26px;height:26px}
+
+/* ---------- Auftakt ---------- */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.auftakt{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.auftakt .bild{
+  position:absolute;inset:-8% 0 -8%;background:#000 center/cover no-repeat;
+  background-image:url("bilder/eingang.webp");
+  transform:scale(1.06);will-change:transform;
+}
+.auftakt .schleier{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(110% 65% at 50% 10%,rgba(255,196,105,.10),transparent 58%),
+    linear-gradient(to bottom,rgba(10,8,6,.5),rgba(10,8,6,0) 24%,rgba(10,8,6,.28) 66%,var(--nero) 99%),
+    linear-gradient(to right,rgba(10,8,6,.3),transparent 45%);
+}
+.laterne{
+  position:absolute;top:0;left:50%;width:44vw;height:52vh;transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,190,96,.16),transparent 70%);
+  animation:kerzenlicht 5.5s ease-in-out infinite;pointer-events:none;
+}
+@keyframes kerzenlicht{0%,100%{opacity:.75}42%{opacity:1}68%{opacity:.62}}
+.auftakt-inhalt{position:relative;padding-bottom:clamp(5rem,12vh,8rem);max-width:40rem}
+.auftakt-inhalt .unterzeile{
+  font-family:var(--f-display);font-size:clamp(.6rem,1.4vw,.74rem);letter-spacing:.5em;
+  text-transform:uppercase;color:var(--oro-hell);margin:0 0 1.2rem;
+  animation:heben 1.3s cubic-bezier(.2,.7,.2,1) .5s both;
+}
+.auftakt-inhalt .parole{
+  font-family:var(--f-display);font-weight:400;font-size:clamp(1.75rem,3.9vw,3rem);
+  line-height:1.12;letter-spacing:.05em;margin:0 0 1.4rem;color:var(--avorio);
+  text-shadow:0 6px 40px rgba(0,0,0,.85);
+  animation:heben 1.4s cubic-bezier(.2,.7,.2,1) .65s both;
+}
+.auftakt-inhalt .parole em{
+  display:block;font-family:var(--f-akzent);font-style:italic;font-weight:400;
+  letter-spacing:.01em;color:var(--oro-hell);font-size:1.05em;margin-top:.15em;
+}
+.auftakt-inhalt .satz{
+  font-size:1rem;color:rgba(237,227,208,.82);max-width:38ch;margin:0 0 2.2rem;
+  text-shadow:0 2px 20px rgba(0,0,0,.9);
+  animation:heben 1.4s cubic-bezier(.2,.7,.2,1) .85s both;
+}
+.auftakt-inhalt .knopfreihe{display:flex;gap:1rem;flex-wrap:wrap;animation:heben 1.4s cubic-bezier(.2,.7,.2,1) 1.05s both}
+@keyframes heben{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.abwaerts{
+  position:absolute;bottom:1.8rem;right:max(5vw,calc((100vw - 1180px)/2));
+  font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(237,227,208,.5);
+  display:flex;flex-direction:column;align-items:center;gap:.7rem;
+}
+.abwaerts i{display:block;width:1px;height:44px;background:linear-gradient(to bottom,var(--oro),transparent);animation:sinken 2.4s ease-in-out infinite}
+@keyframes sinken{0%,100%{transform:scaleY(.4);opacity:.4;transform-origin:top}50%{transform:scaleY(1);opacity:1;transform-origin:top}}
+
+/* Wappen als eigener Moment */
+.wappenblock{text-align:center;padding:clamp(2.5rem,6vw,4rem) 0 0}
+.wappenblock img{width:min(420px,70vw);margin:0 auto;filter:drop-shadow(0 18px 50px rgba(0,0,0,.7))}
+
+/* ---------- Kolonnade (Signaturelement) ---------- */
+.kolonnade{position:relative;height:96px;overflow:hidden;background:var(--nero)}
+.kolonnade svg{position:absolute;inset:0;width:100%;height:100%}
+.kolonnade .strahl{
+  position:absolute;top:0;bottom:0;width:34%;
+  background:linear-gradient(90deg,transparent,rgba(242,212,147,.16),transparent);
+  transform:translateX(-120%);
+}
+.kolonnade.sichtbar .strahl{animation:streifen 2.8s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes streifen{to{transform:translateX(400%)}}
+
+/* ---------- Textblöcke ---------- */
+.zwei{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:center}
+h2{font-size:clamp(1.7rem,3.6vw,2.9rem)}
+h2 em{font-family:var(--f-akzent);font-style:italic;font-weight:400;letter-spacing:.02em;color:var(--oro-hell);text-transform:none}
+.fliess p{color:rgba(237,227,208,.78);margin:0 0 1.1rem;max-width:56ch}
+.merksatz{
+  font-family:var(--f-akzent);font-style:italic;font-size:clamp(1.3rem,2.6vw,1.9rem);
+  color:var(--oro-hell);line-height:1.45;border-left:1px solid var(--linie);padding-left:1.6rem;margin:2rem 0 0;
+}
+.tafel{
+  border:1px solid var(--linie);padding:clamp(1.6rem,4vw,2.6rem);background:
+    linear-gradient(160deg,rgba(201,150,63,.07),transparent 60%),var(--pietra);
+  position:relative;
+}
+.tafel::after{content:"";position:absolute;inset:9px;border:1px solid rgba(201,150,63,.14);pointer-events:none}
+.tafel dl{display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.4rem;margin:0}
+.tafel dt{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro);padding-top:.25rem}
+.tafel dd{margin:0;color:rgba(237,227,208,.85)}
+
+/* ---------- Karte ---------- */
+.karte{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(2rem,5vw,4.5rem)}
+.gang{break-inside:avoid}
+.gang > h3{
+  font-size:.82rem;letter-spacing:.34em;text-transform:uppercase;color:var(--oro);
+  display:flex;align-items:center;gap:1rem;margin:0 0 1.6rem;
+}
+.gang > h3::after{content:"";flex:1;height:1px;background:var(--linie)}
+.speise{display:grid;grid-template-columns:1fr auto;gap:.4rem 1rem;align-items:baseline;padding:.7rem 0;border-bottom:1px dotted rgba(201,150,63,.18)}
+.speise:last-child{border-bottom:0}
+.speise .name{font-family:var(--f-akzent);font-size:1.22rem;color:var(--avorio);letter-spacing:.01em}
+.speise .preis{font-size:.86rem;color:var(--oro);letter-spacing:.08em;white-space:nowrap}
+.speise .zutaten{grid-column:1/-1;font-size:.82rem;color:rgba(237,227,208,.55);margin-top:-.15rem}
+.hinweis{font-size:.78rem;color:rgba(237,227,208,.45);margin-top:2.5rem;letter-spacing:.03em}
+
+/* ---------- Bildband ---------- */
+.band{position:relative;height:clamp(340px,58vh,560px);overflow:hidden;display:grid;place-items:center}
+.band .bild{
+  position:absolute;inset:-14% 0;background:14% 58%/185% auto no-repeat;
+  background-image:url("bilder/abend.webp");will-change:transform;
+}
+.band .schleier{position:absolute;inset:0;background:
+  radial-gradient(70% 60% at 50% 62%,rgba(10,8,6,.66),rgba(10,8,6,.32) 70%,transparent),
+  linear-gradient(to bottom,var(--nero),rgba(10,8,6,.2) 22%,rgba(10,8,6,.3) 70%,var(--nero))}
+.band blockquote{
+  position:relative;z-index:2;margin:0;text-align:center;width:min(680px,86vw);
+  font-family:var(--f-akzent);font-style:italic;font-size:clamp(1.35rem,3.2vw,2.15rem);
+  line-height:1.4;color:var(--avorio);text-shadow:0 4px 30px rgba(0,0,0,.9);
+}
+.band cite{display:block;margin-top:1.3rem;font-family:var(--f-text);font-style:normal;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--oro)}
+
+/* ---------- Kontakt ---------- */
+.kontakt{background:var(--pietra)}
+.kontakt-raster{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(2.5rem,6vw,5rem)}
+.feld{margin-bottom:1.15rem}
+.feld label{display:block;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--oro);margin-bottom:.5rem}
+.feld input,.feld textarea,.feld select{
+  width:100%;background:rgba(0,0,0,.32);border:1px solid var(--linie);color:var(--avorio);
+  font-family:var(--f-text);font-size:.95rem;padding:.8rem .9rem;border-radius:0;transition:border-color .3s,background .3s;
+}
+.feld input:focus,.feld textarea:focus,.feld select:focus{outline:none;border-color:var(--oro);background:rgba(0,0,0,.5)}
+.feld textarea{min-height:96px;resize:vertical}
+.paar{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem}
+.zeiten{list-style:none;margin:0;padding:0}
+.zeiten li{display:flex;justify-content:space-between;gap:1rem;padding:.62rem 0;border-bottom:1px dotted rgba(201,150,63,.18);font-size:.92rem}
+.zeiten li span:first-child{color:rgba(237,227,208,.7)}
+.zeiten li span:last-child{color:var(--oro-hell);letter-spacing:.04em}
+.zeiten li.zu span:last-child{color:rgba(237,227,208,.4)}
+.direkt{margin-top:2rem;display:flex;flex-direction:column;gap:.7rem;font-size:.95rem}
+.direkt a{color:var(--oro-hell);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s;width:fit-content}
+.direkt a:hover{border-color:var(--oro)}
+
+/* ---------- Fuß ---------- */
+footer{background:var(--nero);border-top:1px solid var(--linie);padding:3.5rem 0 2.5rem;text-align:center}
+footer .wappen{width:min(280px,60vw);margin:0 auto 1.6rem;opacity:.92}
+footer .zeile{font-size:.74rem;letter-spacing:.16em;color:rgba(237,227,208,.45)}
+footer .zeile a{color:rgba(237,227,208,.6);text-decoration:none}
+footer .zeile a:hover{color:var(--oro)}
+.impressum{margin-top:1.6rem;font-size:.78rem;color:rgba(237,227,208,.5);max-width:56ch;margin-inline:auto;text-align:left}
+.impressum summary{cursor:pointer;letter-spacing:.2em;text-transform:uppercase;font-size:.68rem;color:var(--oro);text-align:center;list-style:none}
+.impressum summary::-webkit-details-marker{display:none}
+.impressum p{margin:.9rem 0 0;line-height:1.7}
+
+/* ---------- Enthüllen ---------- */
+.auf{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.auf.sichtbar{opacity:1;transform:none}
+.auf.v2{transition-delay:.12s}
+.auf.v3{transition-delay:.24s}
+
+/* ---------- Mobil ---------- */
+@media (max-width:700px){
+  .auftakt .bild{background-position:50% 32%;background-image:url("bilder/eingang-klein.webp")}
+  .band .bild{background-image:url("bilder/abend-klein.webp")}
+  .auftakt .schleier{
+    background:
+      linear-gradient(to bottom,rgba(10,8,6,.5),rgba(10,8,6,0) 20%,rgba(10,8,6,.55) 50%,var(--nero) 92%),
+      radial-gradient(120% 50% at 50% 6%,rgba(255,196,105,.10),transparent 60%);
+  }
+  .auftakt-inhalt{padding-bottom:clamp(4rem,10vh,6rem)}
+  .abwaerts{display:none}
+}
+body.menue-offen{overflow:hidden}
+@media (max-width:900px){
+  .zwei,.karte,.kontakt-raster{grid-template-columns:1fr}
+  .burger{display:block}
+  nav{
+    position:fixed;inset:0 0 0 auto;width:min(320px,82vw);background:var(--pietra);
+    transform:translateX(100%);transition:transform .5s cubic-bezier(.6,0,.2,1);
+    display:flex;align-items:center;justify-content:center;box-shadow:-20px 0 60px rgba(0,0,0,.6);
+  }
+  nav.offen{transform:none}
+  nav ul{flex-direction:column;gap:2rem;text-align:center}
+  nav a{font-size:.9rem}
+  nav{border-left:1px solid var(--linie)}
+  .nur-mobil{display:block}
+  .navzeile > .knopf{display:none}
+  .merksatz{padding-left:1.1rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .auf{opacity:1;transform:none}
+}
+
+/* ---------- Anfahrtsseite ---------- */
+.zurueck{
+  display:inline-flex;align-items:center;gap:.7rem;text-decoration:none;
+  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(237,227,208,.7);
+  padding:.6rem 0;transition:color .3s ease;
+}
+.zurueck:hover{color:var(--oro-hell)}
+.zurueck svg{width:15px;height:15px;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.zurueck:hover svg{transform:translateX(-5px)}
+.a-kopf{padding:clamp(6.5rem,14vw,9rem) 0 clamp(2rem,5vw,3rem)}
+.a-kopf h1{font-family:var(--f-display);font-weight:600;font-size:clamp(1.9rem,4.4vw,3rem);letter-spacing:.07em;margin:.6rem 0 0}
+.a-kopf h1 em{font-family:var(--f-akzent);font-style:italic;font-weight:400;color:var(--oro-hell);letter-spacing:.01em;display:block;text-transform:none}
+.a-raster{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(2rem,4vw,3.5rem);align-items:start;padding-bottom:clamp(4rem,9vw,7rem)}
+.kartenfeld{position:relative;aspect-ratio:4/3;border:1px solid var(--linie);background:#0B0907;overflow:hidden}
+.kartenfeld iframe{width:100%;height:100%;border:0;display:block;filter:saturate(.85) contrast(1.05)}
+.vorschalt{
+  position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:2rem;
+  background:linear-gradient(160deg,rgba(201,150,63,.08),transparent 60%),var(--pietra);
+}
+.vorschalt p{max-width:36ch;color:rgba(237,227,208,.7);font-size:.9rem;margin:0 0 1.6rem}
+.vorschalt .eyebrow{margin-bottom:.9rem}
+.a-block{border:1px solid var(--linie);padding:clamp(1.4rem,3vw,2rem);margin-bottom:1.2rem;background:var(--pietra)}
+.a-block h2{font-family:var(--f-text);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--oro);font-weight:400;margin:0 0 .9rem}
+.a-block p{margin:0;color:rgba(237,227,208,.78);font-size:.94rem;line-height:1.7}
+.a-block a{color:var(--oro-hell);text-decoration:none;border-bottom:1px solid transparent}
+.a-block a:hover{border-color:var(--oro)}
+.a-liste{list-style:none;margin:0;padding:0}
+.a-liste li{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px dotted rgba(201,150,63,.18);font-size:.9rem}
+.a-liste li:last-child{border-bottom:0}
+.a-liste span:last-child{color:var(--oro-hell)}
+@media (max-width:900px){
+  .a-raster{grid-template-columns:1fr}
+  .kartenfeld{aspect-ratio:1/1}
+  .zurueck{min-height:46px}
+  .a-block a{display:inline-block;min-height:44px;display:inline-flex;align-items:center}
+}
+
+</style>
+</head>
+<body class="geladen">
+
+<header id="kopf" class="fest">
+  <div class="wrap navzeile">
+    <a class="marke" href="index.html"><img class="marken-wappen" src="bilder/siegel.webp" alt=""><span class="wortmarke">Boule<span class="v">v</span>ard</span></a>
+    <div class="sprachen" role="group" aria-label="Sprache / Lingua / Language">
+      <button type="button" data-sprache="de" lang="de">DE</button>
+      <button type="button" data-sprache="it" lang="it">IT</button>
+      <button type="button" data-sprache="en" lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap a-kopf">
+  <a class="zurueck" id="zurueck" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H6M11 18l-6-6 6-6"/></svg>
+    <span data-t="zurueck">Zur Startseite</span>
+  </a>
+  <p class="eyebrow" style="margin-top:1.4rem" data-t="eyebrow">Come arrivare</p>
+  <h1><span data-t="titel1">So finden Sie uns</span><em data-t="titel2">am Viale della Vittoria</em></h1>
+</div>
+
+<div class="wrap a-raster">
+  <div>
+    <div class="kartenfeld" id="kartenfeld">
+      <div class="vorschalt" id="vorschalt">
+        <div>
+          <p class="eyebrow" data-t="karte.eyebrow">Google Maps</p>
+          <p data-t="karte.hinweis">Die Karte wird erst auf Ihren Klick geladen. Dabei werden Daten an Google übertragen.</p>
+          <button class="knopf" type="button" id="karte-laden"><span data-t="karte.laden">Karte laden</span></button>
+        </div>
+      </div>
+    </div>
+    <p style="margin:1.2rem 0 0"><a class="knopf" href="https://www.google.com/maps/dir/?api=1&amp;destination=Boulevard+Ristorante+Pizzeria,+Viale+della+Vittoria+13,+Agrigento" target="_blank" rel="noopener"><span data-t="route">Route berechnen</span></a></p>
+  </div>
+
+  <aside>
+    <div class="a-block">
+      <h2 data-t="adresse">Adresse</h2>
+      <p>Ristorante Boulevard<br>Viale della Vittoria 13<br>92100 Agrigento (AG)<br>Italia</p>
+    </div>
+    <div class="a-block">
+      <h2 data-t="auto">Mit dem Auto</h2>
+      <p data-t="auto.text">Vom Tal der Tempel etwa zehn Minuten. Die Altstadt ist weitgehend Fußgängerzone — parken Sie am Piazzale Rosselli, von dort sind es fünf Minuten zu Fuß.</p>
+    </div>
+    <div class="a-block">
+      <h2 data-t="fuss">Zu Fuß</h2>
+      <p data-t="fuss.text">Von der Via Atenea aus liegt der Eingang hinter einem schmiedeeisernen Tor. Abends ist die Laterne über dem Bogen das sicherste Erkennungszeichen.</p>
+    </div>
+    <div class="a-block">
+      <h2 data-t="entfernungen">Entfernungen</h2>
+      <ul class="a-liste">
+        <li><span data-t="e1">Valle dei Templi</span><span>10 min</span></li>
+        <li><span data-t="e2">Bahnhof Agrigento Centrale</span><span data-t="e2.wert">zu Fuß</span></li>
+        <li><span data-t="e3">Scala dei Turchi</span><span>25 min</span></li>
+        <li><span data-t="e4">Flughafen Palermo</span><span>2 h</span></li>
+      </ul>
+    </div>
+    <div class="a-block">
+      <h2 data-t="kontakt">Kontakt</h2>
+      <p><a href="tel:+390922661578">+39 0922 661578</a><br><a href="mailto:info@boulevard-agrigento.it">info@boulevard-agrigento.it</a></p>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="wrap">
+    <a class="zurueck" href="index.html" style="margin-bottom:1.5rem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H6M11 18l-6-6 6-6"/></svg>
+      <span data-t="zurueck">Zur Startseite</span>
+    </a>
+    <p class="zeile">Agrigento &middot; Sicilia &nbsp;—&nbsp; © <span id="jahr"></span> Ristorante Boulevard</p>
+  </div>
+</footer>
+
+<script>
+
+var TEXTE = {
+  de: {
+    'meta.titel': 'Anfahrt — Ristorante Boulevard, Agrigento',
+    'meta.beschreibung': 'So finden Sie das Ristorante Boulevard am Viale della Vittoria 13 in Agrigento: Adresse, Parken, Entfernungen und Karte.',
+    'zurueck': 'Zur Startseite', 'eyebrow': 'Come arrivare',
+    'titel1': 'So finden Sie uns', 'titel2': 'am Viale della Vittoria',
+    'karte.eyebrow': 'Google Maps',
+    'karte.hinweis': 'Die Karte wird erst auf Ihren Klick geladen. Dabei werden Daten an Google übertragen.',
+    'karte.laden': 'Karte laden', 'route': 'Route berechnen',
+    'adresse': 'Adresse', 'auto': 'Mit dem Auto',
+    'auto.text': 'Vom Tal der Tempel etwa zehn Minuten. Der Viale della Vittoria liegt oberhalb der Altstadt; Parkplätze finden Sie entlang der Allee und am Piazzale Rosselli.',
+    'fuss': 'Zu Fuß',
+    'fuss.text': 'Vom Bahnhof Agrigento Centrale sind es wenige Minuten zu Fuß. Der Eingang liegt hinter einem schmiedeeisernen Tor — abends ist die Laterne über dem Bogen das sicherste Erkennungszeichen.',
+    'entfernungen': 'Entfernungen', 'e1': 'Valle dei Templi', 'e2': 'Bahnhof Agrigento Centrale', 'e2.wert': 'zu Fuß',
+    'e3': 'Scala dei Turchi', 'e4': 'Flughafen Palermo', 'kontakt': 'Kontakt'
+  },
+  it: {
+    'meta.titel': 'Come arrivare — Ristorante Boulevard, Agrigento',
+    'meta.beschreibung': 'Come raggiungere il Ristorante Boulevard nel centro storico di Agrigento: indirizzo, parcheggio, distanze e mappa.',
+    'zurueck': 'Torna alla home', 'eyebrow': 'Come arrivare',
+    'titel1': 'Dove ci trovate', 'titel2': 'sul Viale della Vittoria',
+    'karte.eyebrow': 'Google Maps',
+    'karte.hinweis': 'La mappa viene caricata solo dopo il vostro clic. In quel momento i dati vengono trasmessi a Google.',
+    'karte.laden': 'Carica la mappa', 'route': 'Calcola il percorso',
+    'adresse': 'Indirizzo', 'auto': 'In auto',
+    'auto.text': 'Dalla Valle dei Templi circa dieci minuti. Il Viale della Vittoria si trova sopra il centro storico; si parcheggia lungo il viale o al Piazzale Rosselli.',
+    'fuss': 'A piedi',
+    'fuss.text': "Dalla stazione di Agrigento Centrale sono pochi minuti a piedi. L'ingresso è dietro un cancello in ferro battuto — la sera la lanterna sopra l'arco è il riferimento più sicuro.",
+    'entfernungen': 'Distanze', 'e1': 'Valle dei Templi', 'e2': 'Stazione Agrigento Centrale', 'e2.wert': 'a piedi',
+    'e3': 'Scala dei Turchi', 'e4': 'Aeroporto di Palermo', 'kontakt': 'Contatti'
+  },
+  en: {
+    'meta.titel': 'Getting here — Ristorante Boulevard, Agrigento',
+    'meta.beschreibung': 'How to find Ristorante Boulevard in the old centre of Agrigento: address, parking, distances and map.',
+    'zurueck': 'Back to the home page', 'eyebrow': 'Come arrivare',
+    'titel1': 'How to find us', 'titel2': 'on Viale della Vittoria',
+    'karte.eyebrow': 'Google Maps',
+    'karte.hinweis': 'The map loads only when you click. At that point data is sent to Google.',
+    'karte.laden': 'Load the map', 'route': 'Get directions',
+    'adresse': 'Address', 'auto': 'By car',
+    'auto.text': 'About ten minutes from the Valley of the Temples. Viale della Vittoria runs above the old town; park along the avenue or at Piazzale Rosselli.',
+    'fuss': 'On foot',
+    'fuss.text': 'A few minutes on foot from Agrigento Centrale station. The entrance sits behind a wrought-iron gate — after dark the lantern above the arch is the surest landmark.',
+    'entfernungen': 'Distances', 'e1': 'Valle dei Templi', 'e2': 'Agrigento Centrale station', 'e2.wert': 'on foot',
+    'e3': 'Scala dei Turchi', 'e4': 'Palermo airport', 'kontakt': 'Contact'
+  }
+};
+
+var sprache = 'de';
+function textVon(k){ var w = TEXTE[sprache][k]; return w === undefined ? TEXTE.de[k] : w; }
+
+function spracheSetzen(neu){
+  if(!TEXTE[neu]) neu = 'de';
+  sprache = neu;
+  document.documentElement.lang = neu;
+  document.title = textVon('meta.titel');
+  var b = document.querySelector('meta[name="description"]');
+  if(b) b.setAttribute('content', textVon('meta.beschreibung'));
+  document.querySelectorAll('[data-t]').forEach(function(el){ el.textContent = textVon(el.getAttribute('data-t')); });
+  document.querySelectorAll('.sprachen button').forEach(function(x){
+    x.setAttribute('aria-pressed', x.getAttribute('data-sprache') === neu ? 'true' : 'false');
+  });
+  document.querySelectorAll('a[href^="index.html"], .marke, .zurueck').forEach(function(a){
+    if(a.tagName === 'A'){ a.setAttribute('href', 'index.html?l=' + neu); }
+  });
+}
+
+(function(){
+  document.getElementById('jahr').textContent = new Date().getFullYear();
+
+  var abfrage = new URLSearchParams(window.location.search).get('l');
+  var wunsch = abfrage || (navigator.language || 'de').slice(0,2).toLowerCase();
+  spracheSetzen(TEXTE[wunsch] ? wunsch : 'de');
+
+  document.querySelectorAll('.sprachen button').forEach(function(b){
+    b.addEventListener('click', function(){ spracheSetzen(b.getAttribute('data-sprache')); });
+  });
+
+  /* Zwei-Klick-Lösung: Google lädt erst auf Wunsch */
+  document.getElementById('karte-laden').addEventListener('click', function(){
+    var feld = document.getElementById('kartenfeld');
+    var rahmen = document.createElement('iframe');
+    rahmen.setAttribute('title', textVon('karte.eyebrow'));
+    rahmen.setAttribute('loading', 'lazy');
+    rahmen.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    rahmen.setAttribute('allowfullscreen', '');
+    rahmen.src = 'https://www.google.com/maps?q=' +
+      encodeURIComponent('Boulevard Ristorante Pizzeria, Viale della Vittoria 13, Agrigento, Italia') +
+      '&hl=' + sprache + '&z=16&output=embed';
+    feld.appendChild(rahmen);
+    document.getElementById('vorschalt').remove();
+  });
+})();
+
+</script>
+</body>
+</html>
