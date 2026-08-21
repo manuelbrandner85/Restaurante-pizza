@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0806">
+<title>Boulevard — Ristorante &amp; Pizzeria in Agrigento</title>
+<meta name="description" content="Ristorante Boulevard in Agrigento: sizilianische Küche und Pizza aus dem Holzofen, wenige Minuten vom Tal der Tempel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --nero:#0A0806;
+  --pietra:#14100C;
+  --pietra2:#1E1811;
+  --oro:#C9963F;
+  --oro-hell:#F2D493;
+  --avorio:#EDE3D0;
+  --terra:#6E5231;
+  --linie:rgba(201,150,63,.28);
+  --rosa:#F0A6BC;
+  --rosa-hell:#FFD6E1;
+  --f-display:'Cinzel',Georgia,serif;
+  --f-akzent:'Cormorant Garamond',Georgia,serif;
+  --f-text:'Barlow',system-ui,sans-serif;
+  --mass:clamp(1.1rem,4vw,2.4rem);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--nero);color:var(--avorio);
+  font-family:var(--f-text);font-weight:300;font-size:clamp(15px,1.05vw,17px);line-height:1.75;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;letter-spacing:.09em;margin:0;line-height:1.15}
+.wrap{width:min(1180px,90vw);margin-inline:auto}
+.eyebrow{
+  font-family:var(--f-text);font-size:.7rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--oro);font-weight:400;margin:0 0 1.1rem;
+}
+.stanza{padding:clamp(4.5rem,10vw,8.5rem) 0}
+
+/* ---------- Ladevorhang ---------- */
+#vorhang{
+  position:fixed;inset:0;z-index:120;background:var(--nero);
+  display:grid;place-items:center;transition:opacity .8s ease,visibility .8s;
+}
+#vorhang .flamme{
+  width:2px;height:70px;border-radius:2px;
+  background:linear-gradient(to top,transparent,var(--oro),var(--oro-hell));
+  animation:aufflammen 1.1s ease-out both;transform-origin:bottom;
+}
+@keyframes aufflammen{0%{transform:scaleY(0);opacity:0}60%{opacity:1}100%{transform:scaleY(1);opacity:.9}}
+body.geladen #vorhang{opacity:0;visibility:hidden}
+
+/* ---------- Navigation ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  padding:1.4rem 0;transition:background .5s ease,padding .5s ease,box-shadow .5s ease;
+}
+header.fest{
+  background:rgba(10,8,6,.96);padding:.75rem 0;
+  box-shadow:0 1px 0 var(--linie);
+}
+.navzeile{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.marke{
+  font-family:var(--f-display);font-size:.95rem;letter-spacing:.34em;color:var(--avorio);
+  text-decoration:none;display:flex;align-items:center;gap:.85rem;
+}
+.marken-wappen{height:42px;width:42px;transition:height .5s ease,width .5s ease;filter:drop-shadow(0 3px 10px rgba(0,0,0,.6))}
+header.fest .marken-wappen{height:32px;width:32px}
+@media (max-width:900px){.marken-wappen{height:34px;width:34px}header.fest .marken-wappen{height:30px;width:30px}}
+
+nav ul{display:flex;gap:2rem;list-style:none;margin:0;padding:0}
+nav a{
+  text-decoration:none;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(237,227,208,.75);padding:.3rem 0;position:relative;transition:color .3s;
+}
+nav a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--oro);transition:width .35s ease;
+}
+nav a:hover,nav a:focus-visible{color:var(--oro-hell)}
+nav a:hover::after,nav a:focus-visible::after{width:100%}
+.knopf{
+  display:inline-block;text-decoration:none;font-family:var(--f-text);
+  font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+  padding:.85rem 1.7rem;border:1px solid var(--oro);color:var(--oro-hell);
+  background:transparent;cursor:pointer;position:relative;overflow:hidden;transition:color .4s ease;
+}
+.knopf::before{
+  content:"";position:absolute;inset:0;background:var(--oro);transform:translateY(101%);transition:transform .45s cubic-bezier(.7,0,.2,1);
+}
+.knopf:hover,.knopf:focus-visible{color:var(--nero)}
+.knopf:hover::before,.knopf:focus-visible::before{transform:translateY(0)}
+.knopf span{position:relative;z-index:2}
+.nur-mobil{display:none}
+nav a.knopf{font-size:.7rem;color:var(--oro-hell);margin-top:1rem}
+nav a.knopf::after{display:none}
+.burger{display:none;background:none;border:0;color:var(--oro);padding:.4rem;cursor:pointer;position:relative;z-index:3}
+.burger svg{width:26px;height:26px}
+
+/* ---------- Auftakt ---------- */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.auftakt{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.auftakt .bild{
+  position:absolute;inset:-8% 0 -8%;background:#000 center/cover no-repeat;
+  background-image:url("bilder/eingang.webp");
+  transform:scale(1.06);will-change:transform;
+}
+.auftakt .schleier{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(110% 65% at 50% 10%,rgba(255,196,105,.10),transparent 58%),
+    linear-gradient(to bottom,rgba(10,8,6,.5),rgba(10,8,6,0) 24%,rgba(10,8,6,.28) 66%,var(--nero) 99%),
+    linear-gradient(to right,rgba(10,8,6,.3),transparent 45%);
+}
+.laterne{
+  position:absolute;top:0;left:50%;width:44vw;height:52vh;transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,190,96,.16),transparent 70%);
+  animation:kerzenlicht 5.5s ease-in-out infinite;pointer-events:none;
+}
+@keyframes kerzenlicht{0%,100%{opacity:.75}42%{opacity:1}68%{opacity:.62}}
+.auftakt-inhalt{position:relative;padding-bottom:clamp(5rem,12vh,8rem);max-width:40rem}
+.auftakt-inhalt .unterzeile{
+  font-family:var(--f-display);font-size:clamp(.6rem,1.4vw,.74rem);letter-spacing:.5em;
+  text-transform:uppercase;color:var(--oro-hell);margin:0 0 1.2rem;
+  animation:heben 1.3s cubic-bezier(.2,.7,.2,1) .5s both;
+}
+.auftakt-inhalt .parole{
+  font-family:var(--f-display);font-weight:400;font-size:clamp(1.75rem,3.9vw,3rem);
+  line-height:1.12;letter-spacing:.05em;margin:0 0 1.4rem;color:var(--avorio);
+  text-shadow:0 6px 40px rgba(0,0,0,.85);
+  animation:heben 1.4s cubic-bezier(.2,.7,.2,1) .65s both;
+}
+.auftakt-inhalt .parole em{
+  display:block;font-family:var(--f-akzent);font-style:italic;font-weight:400;
+  letter-spacing:.01em;color:var(--oro-hell);font-size:1.05em;margin-top:.15em;
+}
+.auftakt-inhalt .satz{
+  font-size:1rem;color:rgba(237,227,208,.82);max-width:38ch;margin:0 0 2.2rem;
+  text-shadow:0 2px 20px rgba(0,0,0,.9);
+  animation:heben 1.4s cubic-bezier(.2,.7,.2,1) .85s both;
+}
+.auftakt-inhalt .knopfreihe{display:flex;gap:1rem;flex-wrap:wrap;animation:heben 1.4s cubic-bezier(.2,.7,.2,1) 1.05s both}
+@keyframes heben{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.abwaerts{
+  position:absolute;bottom:1.8rem;right:max(5vw,calc((100vw - 1180px)/2));
+  font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(237,227,208,.5);
+  display:flex;flex-direction:column;align-items:center;gap:.7rem;
+}
+.abwaerts i{display:block;width:1px;height:44px;background:linear-gradient(to bottom,var(--oro),transparent);animation:sinken 2.4s ease-in-out infinite}
+@keyframes sinken{0%,100%{transform:scaleY(.4);opacity:.4;transform-origin:top}50%{transform:scaleY(1);opacity:1;transform-origin:top}}
+
+/* Wappen als eigener Moment */
+.wappenblock{text-align:center;padding:clamp(2.5rem,6vw,4rem) 0 0}
+.wappenblock img{width:min(420px,70vw);margin:0 auto;filter:drop-shadow(0 18px 50px rgba(0,0,0,.7))}
+
+/* ---------- Kolonnade (Signaturelement) ---------- */
+.kolonnade{position:relative;height:96px;overflow:hidden;background:var(--nero)}
+.kolonnade svg{position:absolute;inset:0;width:100%;height:100%}
+.kolonnade .strahl{
+  position:absolute;top:0;bottom:0;width:34%;
+  background:linear-gradient(90deg,transparent,rgba(242,212,147,.16),transparent);
+  transform:translateX(-120%);
+}
+.kolonnade.sichtbar .strahl{animation:streifen 2.8s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes streifen{to{transform:translateX(400%)}}
+
+/* ---------- Textblöcke ---------- */
+.zwei{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:center}
+h2{font-size:clamp(1.7rem,3.6vw,2.9rem)}
+h2 em{font-family:var(--f-akzent);font-style:italic;font-weight:400;letter-spacing:.02em;color:var(--oro-hell);text-transform:none}
+.fliess p{color:rgba(237,227,208,.78);margin:0 0 1.1rem;max-width:56ch}
+.merksatz{
+  font-family:var(--f-akzent);font-style:italic;font-size:clamp(1.3rem,2.6vw,1.9rem);
+  color:var(--oro-hell);line-height:1.45;border-left:1px solid var(--linie);padding-left:1.6rem;margin:2rem 0 0;
+}
+.tafel{
+  border:1px solid var(--linie);padding:clamp(1.6rem,4vw,2.6rem);background:
+    linear-gradient(160deg,rgba(201,150,63,.07),transparent 60%),var(--pietra);
+  position:relative;
+}
+.tafel::after{content:"";position:absolute;inset:9px;border:1px solid rgba(201,150,63,.14);pointer-events:none}
+.tafel dl{display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.4rem;margin:0}
+.tafel dt{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro);padding-top:.25rem}
+.tafel dd{margin:0;color:rgba(237,227,208,.85)}
+
+/* ---------- Karte ---------- */
+.karte{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(2rem,5vw,4.5rem)}
+.gang{break-inside:avoid}
+.gang > h3{
+  font-size:.82rem;letter-spacing:.34em;text-transform:uppercase;color:var(--oro);
+  display:flex;align-items:center;gap:1rem;margin:0 0 1.6rem;
+}
+.gang > h3::after{content:"";flex:1;height:1px;background:var(--linie)}
+.speise{display:grid;grid-template-columns:1fr auto;gap:.4rem 1rem;align-items:baseline;padding:.7rem 0;border-bottom:1px dotted rgba(201,150,63,.18)}
+.speise:last-child{border-bottom:0}
+.speise .name{font-family:var(--f-akzent);font-size:1.22rem;color:var(--avorio);letter-spacing:.01em}
+.speise .preis{font-size:.86rem;color:var(--oro);letter-spacing:.08em;white-space:nowrap}
+.speise .zutaten{grid-column:1/-1;font-size:.82rem;color:rgba(237,227,208,.55);margin-top:-.15rem}
+.hinweis{font-size:.78rem;color:rgba(237,227,208,.45);margin-top:2.5rem;letter-spacing:.03em}
+
+/* ---------- Bildband ---------- */
+.band{position:relative;height:clamp(340px,58vh,560px);overflow:hidden;display:grid;place-items:center}
+.band .bild{
+  position:absolute;inset:-14% 0;background:14% 58%/185% auto no-repeat;
+  background-image:url("bilder/abend.webp");will-change:transform;
+}
+.band .schleier{position:absolute;inset:0;background:
+  radial-gradient(70% 60% at 50% 62%,rgba(10,8,6,.66),rgba(10,8,6,.32) 70%,transparent),
+  linear-gradient(to bottom,var(--nero),rgba(10,8,6,.2) 22%,rgba(10,8,6,.3) 70%,var(--nero))}
+.band blockquote{
+  position:relative;z-index:2;margin:0;text-align:center;width:min(680px,86vw);
+  font-family:var(--f-akzent);font-style:italic;font-size:clamp(1.35rem,3.2vw,2.15rem);
+  line-height:1.4;color:var(--avorio);text-shadow:0 4px 30px rgba(0,0,0,.9);
+}
+.band cite{display:block;margin-top:1.3rem;font-family:var(--f-text);font-style:normal;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--oro)}
+
+/* ---------- Kontakt ---------- */
+.kontakt{background:var(--pietra)}
+.kontakt-raster{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(2.5rem,6vw,5rem)}
+.feld{margin-bottom:1.15rem}
+.feld label{display:block;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--oro);margin-bottom:.5rem}
+.feld input,.feld textarea,.feld select{
+  width:100%;background:rgba(0,0,0,.32);border:1px solid var(--linie);color:var(--avorio);
+  font-family:var(--f-text);font-size:.95rem;padding:.8rem .9rem;border-radius:0;transition:border-color .3s,background .3s;
+}
+.feld input:focus,.feld textarea:focus,.feld select:focus{outline:none;border-color:var(--oro);background:rgba(0,0,0,.5)}
+.feld textarea{min-height:96px;resize:vertical}
+.paar{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem}
+.zeiten{list-style:none;margin:0;padding:0}
+.zeiten li{display:flex;justify-content:space-between;gap:1rem;padding:.62rem 0;border-bottom:1px dotted rgba(201,150,63,.18);font-size:.92rem}
+.zeiten li span:first-child{color:rgba(237,227,208,.7)}
+.zeiten li span:last-child{color:var(--oro-hell);letter-spacing:.04em}
+.zeiten li.zu span:last-child{color:rgba(237,227,208,.4)}
+.direkt{margin-top:2rem;display:flex;flex-direction:column;gap:.7rem;font-size:.95rem}
+.direkt a{color:var(--oro-hell);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s;width:fit-content}
+.direkt a:hover{border-color:var(--oro)}
+
+/* ---------- Fuß ---------- */
+footer{background:var(--nero);border-top:1px solid var(--linie);padding:3.5rem 0 2.5rem;text-align:center}
+footer .wappen{width:min(280px,60vw);margin:0 auto 1.6rem;opacity:.92}
+footer .zeile{font-size:.74rem;letter-spacing:.16em;color:rgba(237,227,208,.45)}
+footer .zeile a{color:rgba(237,227,208,.6);text-decoration:none}
+footer .zeile a:hover{color:var(--oro)}
+.impressum{margin-top:1.6rem;font-size:.78rem;color:rgba(237,227,208,.5);max-width:56ch;margin-inline:auto;text-align:left}
+.impressum summary{cursor:pointer;letter-spacing:.2em;text-transform:uppercase;font-size:.68rem;color:var(--oro);text-align:center;list-style:none}
+.impressum summary::-webkit-details-marker{display:none}
+.impressum p{margin:.9rem 0 0;line-height:1.7}
+
+/* ---------- Enthüllen ---------- */
+.auf{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.auf.sichtbar{opacity:1;transform:none}
+.auf.v2{transition-delay:.12s}
+.auf.v3{transition-delay:.24s}
+
+/* ---------- Mobil ---------- */
+@media (max-width:700px){
+  .auftakt .bild{background-position:50% 32%}
+  .auftakt .schleier{
+    background:
+      linear-gradient(to bottom,rgba(10,8,6,.5),rgba(10,8,6,0) 20%,rgba(10,8,6,.55) 50%,var(--nero) 92%),
+      radial-gradient(120% 50% at 50% 6%,rgba(255,196,105,.10),transparent 60%);
+  }
+  .auftakt-inhalt{padding-bottom:clamp(4rem,10vh,6rem)}
+  .abwaerts{display:none}
+}
+body.menue-offen{overflow:hidden}
+@media (max-width:900px){
+  .zwei,.karte,.kontakt-raster{grid-template-columns:1fr}
+  .burger{display:block}
+  nav{
+    position:fixed;inset:0 0 0 auto;width:min(320px,82vw);background:var(--pietra);
+    transform:translateX(100%);transition:transform .5s cubic-bezier(.6,0,.2,1);
+    display:flex;align-items:center;justify-content:center;box-shadow:-20px 0 60px rgba(0,0,0,.6);
+  }
+  nav.offen{transform:none}
+  nav ul{flex-direction:column;gap:2rem;text-align:center}
+  nav a{font-size:.9rem}
+  nav{border-left:1px solid var(--linie)}
+  .nur-mobil{display:block}
+  .navzeile > .knopf{display:none}
+  .merksatz{padding-left:1.1rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .auf{opacity:1;transform:none}
+}
+
+/* ---------- Handy-Feinschliff ---------- */
+html{scroll-padding-top:86px}
+*{-webkit-tap-highlight-color:rgba(201,150,63,.18)}
+header{padding-top:max(1.4rem,env(safe-area-inset-top))}
+header.fest{padding-top:max(.75rem,env(safe-area-inset-top))}
+.navzeile{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+footer{padding-bottom:max(2.5rem,env(safe-area-inset-bottom))}
+
+@media (max-width:900px){
+  /* Fingerfreundliche Ziele: mindestens 44 px */
+  .sprachen{padding:0}
+  .sprachen button{min-width:44px;min-height:44px;padding:0 .3rem;font-size:.66rem}
+  .burger{min-width:46px;min-height:46px}
+  .knopf{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding:.9rem 1.6rem}
+  nav ul{gap:.4rem}
+  nav a{padding:.9rem 1.4rem;display:block}
+  nav a::after{display:none}
+  .kino-steuer{display:none}
+}
+@media (max-width:700px){
+  /* iOS zoomt Formulare unter 16 px hinein */
+  .feld input,.feld select,.feld textarea{font-size:16px;padding:.85rem .9rem}
+  .paar{grid-template-columns:1fr;gap:0}
+  .paar .feld{margin-bottom:1.15rem}
+  .zeiten li{font-size:.88rem;gap:.6rem}
+  .zeiten li span:last-child{text-align:right}
+  .band{height:clamp(300px,52vh,420px)}
+  .band .bild{background-position:6% 74%;background-size:300% auto}
+  .band blockquote{width:88vw}
+  .direkt a{padding:.35rem 0}
+  .leuchtkasten img{max-width:96vw;max-height:82vh}
+  .lk-zu{top:max(.8rem,env(safe-area-inset-top));right:.8rem}
+  .rolle{scroll-padding-inline:5vw}
+  .kolonnade{height:66px}
+  .impressum{text-align:left}
+}
+@media (max-width:420px){
+  .marke .wortmarke{font-size:.82rem;letter-spacing:.24em}
+  .preiszeile{gap:.6rem}
+  .preiszeile .mindest{width:100%}
+}
+
+/* ---------- Degustationsmenü ---------- */
+.degustazione{
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);
+  gap:clamp(2rem,5vw,4.5rem);align-items:center;
+  margin-bottom:clamp(3.5rem,8vw,6rem);
+}
+.blatt-knopf{
+  display:block;width:100%;padding:0;border:1px solid var(--linie);background:#0B0907;
+  cursor:zoom-in;position:relative;overflow:hidden;
+}
+.blatt-knopf img{width:100%;display:block;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.blatt-knopf:hover img,.blatt-knopf:focus-visible img{transform:scale(1.04)}
+.blatt-knopf .lupe{
+  position:absolute;left:0;right:0;bottom:0;padding:1.5rem 1rem .9rem;
+  background:linear-gradient(to top,rgba(6,5,4,.92),transparent);
+  font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--oro-hell);
+}
+.degu-text h3{
+  font-family:var(--f-akzent);font-style:italic;font-weight:400;letter-spacing:.01em;
+  font-size:clamp(2rem,4.4vw,3.1rem);color:var(--avorio);margin:0 0 .2rem;text-transform:none;
+}
+.degu-text .untertitel{
+  font-family:var(--f-display);font-size:clamp(.78rem,1.6vw,.95rem);letter-spacing:.42em;
+  text-transform:uppercase;color:var(--oro);margin:0 0 1.6rem;
+}
+.preiszeile{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;margin:0 0 1.8rem;padding-bottom:1.5rem;border-bottom:1px solid var(--linie)}
+.preiszeile .zahl{font-family:var(--f-display);font-size:clamp(1.8rem,3.6vw,2.5rem);color:var(--oro-hell);letter-spacing:.04em}
+.preiszeile .pro{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(237,227,208,.6)}
+.preiszeile .mindest{margin-left:auto;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro);border:1px solid var(--linie);padding:.4rem .8rem}
+.degu-rubrik{
+  font-family:var(--f-text);font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--oro);
+  margin:0 0 1rem;display:flex;align-items:center;gap:1rem;
+}
+.degu-rubrik::after{content:"";flex:1;height:1px;background:var(--linie)}
+.degu-liste{list-style:none;margin:0 0 2rem;padding:0;columns:2;column-gap:2.5rem}
+.degu-liste li{break-inside:avoid;padding:.32rem 0;font-family:var(--f-akzent);font-size:1.12rem;color:var(--avorio)}
+.degu-liste .uebersetzt{display:block;font-family:var(--f-text);font-size:.76rem;color:rgba(237,227,208,.5);letter-spacing:.02em}
+.degu-liste .uebersetzt:empty{display:none}
+.primo{font-family:var(--f-akzent);font-size:1.3rem;color:var(--avorio);margin:0 0 .3rem}
+.primo-zusatz{font-size:.78rem;color:rgba(237,227,208,.5);margin:0 0 2rem}
+.inklusive{display:flex;gap:1.6rem;flex-wrap:wrap;font-size:.82rem;letter-spacing:.06em;color:rgba(237,227,208,.72);margin:0 0 1.2rem}
+.inklusive span{display:flex;align-items:center;gap:.5rem}
+.inklusive span::before{content:"";width:5px;height:5px;background:var(--oro);transform:rotate(45deg)}
+.fussnote{font-size:.74rem;color:rgba(237,227,208,.4);line-height:1.6;margin:0}
+.trenner-karte{border:0;border-top:1px solid var(--linie);margin:0 0 clamp(2.5rem,6vw,4rem)}
+
+/* Leuchtkasten */
+.leuchtkasten{
+  position:fixed;inset:0;z-index:200;background:rgba(6,5,4,.94);
+  display:grid;place-items:center;padding:clamp(1rem,4vw,3rem);
+  opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s;
+}
+.leuchtkasten.offen{opacity:1;visibility:visible}
+.leuchtkasten img{max-width:min(760px,92vw);max-height:88vh;width:auto;box-shadow:0 30px 90px rgba(0,0,0,.8)}
+.lk-zu{
+  position:absolute;top:clamp(1rem,3vw,2rem);right:clamp(1rem,3vw,2rem);
+  width:46px;height:46px;border:1px solid var(--linie);background:rgba(10,8,6,.8);
+  color:var(--oro);cursor:pointer;display:grid;place-items:center;transition:background .3s,color .3s;
+}
+.lk-zu:hover{background:var(--oro);color:var(--nero)}
+.lk-zu svg{width:18px;height:18px}
+body.kasten-offen{overflow:hidden}
+@media (max-width:900px){
+  .degustazione{grid-template-columns:1fr}
+  .degu-liste{columns:1}
+  .preiszeile .mindest{margin-left:0}
+}
+
+/* ---------- Kinosequenz ---------- */
+.kino{padding:clamp(4rem,9vw,7rem) 0 clamp(3.5rem,7vw,5.5rem);position:relative;overflow:hidden}
+.kino-kopf{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:clamp(2rem,4vw,3rem)}
+.kino-steuer{display:flex;gap:.5rem;flex-shrink:0}
+.kino-steuer button{
+  width:44px;height:44px;border:1px solid var(--linie);background:transparent;color:var(--oro);
+  cursor:pointer;display:grid;place-items:center;transition:background .35s ease,color .35s ease,border-color .35s ease;
+}
+.kino-steuer button:hover:not(:disabled){background:var(--oro);color:var(--nero);border-color:var(--oro)}
+.kino-steuer button:disabled{opacity:.28;cursor:default}
+.kino-steuer svg{width:17px;height:17px}
+.rolle{
+  display:flex;gap:clamp(1rem,2.4vw,1.8rem);overflow-x:auto;scroll-snap-type:x mandatory;
+  padding-bottom:1.6rem;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.rolle::-webkit-scrollbar{display:none}
+.szene{flex:0 0 min(66vw,760px);scroll-snap-align:center}
+.szene figure{margin:0}
+.blende{
+  position:relative;aspect-ratio:16/9;overflow:hidden;background:#060504;
+  border:1px solid rgba(201,150,63,.22);
+}
+.blende img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.08);transition:transform 9s linear,filter 1.2s ease;filter:saturate(.94)
+}
+.szene.imblick .blende img{transform:scale(1)}
+.blende::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to bottom,rgba(6,5,4,.5),transparent 26%,transparent 62%,rgba(6,5,4,.72)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23k)' opacity='.42'/%3E%3C/svg%3E");
+  background-size:auto,160px 160px;mix-blend-mode:overlay;opacity:.55;
+}
+.balken{position:absolute;left:0;right:0;height:5.5%;background:var(--nero);z-index:2;pointer-events:none}
+.balken.oben{top:0}
+.balken.unten{bottom:0}
+.szene figcaption{padding:1.1rem .2rem 0}
+.szene .ort{
+  display:block;font-size:.64rem;letter-spacing:.34em;text-transform:uppercase;color:var(--oro);margin-bottom:.5rem;
+}
+.szene .satz{font-family:var(--f-akzent);font-style:italic;font-size:1.15rem;color:rgba(237,227,208,.8);line-height:1.5}
+.rollenhinweis{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(237,227,208,.35);margin:0}
+.nachweis{font-size:.72rem;color:rgba(237,227,208,.38);margin-top:1.2rem;line-height:1.7}
+.nachweis a{color:rgba(237,227,208,.55)}
+@media (max-width:900px){
+  .szene{flex:0 0 86vw}
+  .kino-steuer{display:none}
+  .szene .satz{font-size:1.05rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .blende img{transform:none;transition:none}
+}
+
+/* ---------- Wortmarke ---------- */
+.marke .wortmarke{text-transform:uppercase;padding-left:.34em}
+.marke .v{
+  color:var(--rosa);
+  background:linear-gradient(180deg,var(--rosa-hell),var(--rosa) 58%,#C97F92);
+  font-weight:700;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 18px rgba(233,160,175,.35);
+}
+@supports not (background-clip:text){.marke .v{-webkit-text-fill-color:var(--rosa)}}
+
+/* ---------- Sprachumschalter ---------- */
+.sprachen{display:flex;align-items:center;gap:.15rem;border:1px solid var(--linie);padding:.22rem}
+.sprachen button{
+  background:none;border:0;cursor:pointer;color:rgba(237,227,208,.6);
+  font-family:var(--f-text);font-size:.68rem;letter-spacing:.16em;font-weight:400;
+  padding:.36rem .58rem;transition:color .3s ease,background .3s ease;
+}
+.sprachen button:hover{color:var(--oro-hell)}
+.sprachen button[aria-pressed="true"]{background:var(--oro);color:var(--nero);font-weight:500}
+.sprachen button:focus-visible{outline:2px solid var(--oro-hell);outline-offset:2px}
+.navzeile > .knopf{margin-left:.4rem}
+@media (max-width:900px){
+  .navzeile{gap:.6rem}
+  .sprachen{margin-left:auto}
+  .sprachen button{padding:.34rem .46rem;font-size:.64rem}
+}
+
+</style>
+</head>
+<body>
+
+<div id="vorhang"><i class="flamme"></i></div>
+
+<header id="kopf">
+  <div class="wrap navzeile">
+    <a class="marke" href="#oben"><img class="marken-wappen" src="bilder/siegel.webp" alt=""><span class="wortmarke">Boule<span class="v">v</span>ard</span></a>
+    <nav id="menue">
+      <ul>
+        <li><a href="#benvenuti" data-t="nav.willkommen">Benvenuti</a></li>
+        <li><a href="#templi" data-t="nav.templi">Die Tempel</a></li>
+        <li><a href="#cucina" data-t="nav.karte">Die Karte</a></li>
+        <li><a href="#sera" data-t="nav.abend">Am Abend</a></li>
+        <li><a href="#kontakt" data-t="nav.kontakt">Kontakt</a></li>
+        <li class="nur-mobil"><a class="knopf" href="#kontakt"><span data-t="cta.reservieren">Tisch reservieren</span></a></li>
+      </ul>
+    </nav>
+    <div class="sprachen" role="group" aria-label="Sprache / Lingua / Language">
+      <button type="button" data-sprache="de" lang="de">DE</button>
+      <button type="button" data-sprache="it" lang="it">IT</button>
+      <button type="button" data-sprache="en" lang="en">EN</button>
+    </div>
+    <a class="knopf" href="#kontakt"><span data-t="cta.reservieren">Tisch reservieren</span></a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menue" data-t-aria="nav.oeffnen" aria-label="Menü öffnen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="auftakt" id="oben">
+  <div class="bild" id="auftaktbild" role="img" data-t-aria="hero.bildbeschreibung" aria-label="Beleuchteter Eingang des Ristorante Boulevard bei Nacht"></div>
+  <div class="schleier"></div>
+  <div class="laterne"></div>
+  <div class="wrap auftakt-inhalt">
+    <h1 class="sr-only" data-t="hero.h1">Ristorante Boulevard — Ristorante und Pizzeria in Agrigento, Sizilien</h1>
+    <p class="unterzeile">Agrigento &middot; Sicilia</p>
+    <p class="parole"><span data-t="hero.zeile1">Sizilianisch essen</span><em data-t="hero.zeile2">im Licht der Laterne</em></p>
+    <p class="satz" data-t="hero.satz">Fisch vom Markt, Pasta wie zu Hause und Pizza aus dem Holzofen — zehn Minuten vom Tal der Tempel, hinter einem Tor aus Efeu.</p>
+    <div class="knopfreihe">
+      <a class="knopf" href="#kontakt"><span data-t="cta.reservieren">Tisch reservieren</span></a>
+      <a class="knopf" href="#cucina"><span data-t="cta.karte">Die Karte ansehen</span></a>
+    </div>
+  </div>
+  <div class="abwaerts"><i></i><span data-t="hero.scrollen">Scrollen</span></div>
+</section>
+
+<div class="kolonnade" data-kolonnade>
+  <svg viewBox="0 0 1200 96" preserveAspectRatio="none" aria-hidden="true">
+    <g stroke="rgba(201,150,63,.4)" fill="none" stroke-width="1">
+      <line x1="0" y1="14" x2="1200" y2="14"/><line x1="0" y1="19" x2="1200" y2="19"/><line x1="0" y1="88" x2="1200" y2="88"/>
+    </g>
+    <g fill="rgba(201,150,63,.16)"></g>
+  </svg>
+  <div class="strahl"></div>
+</div>
+
+<section class="wappenblock auf" aria-hidden="true">
+  <img loading="lazy" src="bilder/wappen.webp" alt="">
+</section>
+
+<section class="stanza" id="benvenuti" style="padding-top:clamp(2rem,4vw,3rem)">
+  <div class="wrap zwei">
+    <div class="fliess auf">
+      <p class="eyebrow">Benvenuti</p>
+      <h2><span data-t="ben.titel1">Ein Tor, eine Laterne,</span><br><em data-t="ben.titel2">und dahinter der Abend.</em></h2>
+      <p data-t="ben.text1">Das Boulevard liegt im historischen Zentrum von Agrigento, wenige Minuten von der Valle dei Templi entfernt.</p>
+      <p data-t="ben.text2">Wir kochen sizilianisch — mit Fisch vom Markt in Porto Empedocle.</p>
+      <blockquote class="merksatz"><span data-t="ben.zitat1">„Erst die Tempel, dann der Tisch.“</span><br><span data-t="ben.zitat2">Beides gehört zu einem Tag in Agrigento.</span></blockquote>
+    </div>
+    <aside class="tafel auf v2">
+      <p class="eyebrow" data-t="tafel.titel">Auf einen Blick</p>
+      <dl>
+        <dt data-t="tafel.kueche">Küche</dt><dd data-t="tafel.kueche.wert">Sizilianisch, Fisch, Pizza aus dem Holzofen</dd>
+        <dt data-t="tafel.lage">Lage</dt><dd data-t="tafel.lage.wert">Centro storico, Agrigento</dd>
+        <dt data-t="tafel.plaetze">Plätze</dt><dd data-t="tafel.plaetze.wert">Innenraum im Gewölbe, Terrasse unter Efeu</dd>
+        <dt data-t="tafel.wissen">Gut zu wissen</dt><dd data-t="tafel.wissen.wert">Reservierung empfohlen</dd>
+        <dt data-t="tafel.gruppen">Gruppen</dt><dd data-t="tafel.gruppen.wert">Feiern und Menüs auf Anfrage</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section class="kino" id="templi">
+  <div class="wrap">
+    <div class="kino-kopf">
+      <div class="auf">
+        <p class="eyebrow" data-t="kino.eyebrow">La Valle dei Templi</p>
+        <h2><span data-t="kino.titel1">Zehn Minuten von hier</span><br><em data-t="kino.titel2">stehen sie seit 2500 Jahren.</em></h2>
+      </div>
+      <div class="kino-steuer auf v2">
+        <button type="button" id="rolle-zurueck" data-t-aria="kino.zurueck" aria-label="Vorheriges Bild">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button type="button" id="rolle-vor" data-t-aria="kino.vor" aria-label="Nächstes Bild">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="rolle" id="rolle">
+      <div class="szene"><figure>
+        <div class="blende"><span class="balken oben"></span><img src="bilder/concordia-notte.webp" alt="" loading="lazy"><span class="balken unten"></span></div>
+        <figcaption><span class="ort" data-t="kino.1.ort">Tempio della Concordia</span><span class="satz" data-t="kino.1.satz">Der besterhaltene griechische Tempel Siziliens — nachts angestrahlt.</span></figcaption>
+      </figure></div>
+      <div class="szene"><figure>
+        <div class="blende"><span class="balken oben"></span><img src="bilder/collina-templi.webp" alt="" loading="lazy"><span class="balken unten"></span></div>
+        <figcaption><span class="ort" data-t="kino.2.ort">Collina dei Templi</span><span class="satz" data-t="kino.2.satz">Vierunddreißig Säulen, ein Kamm über dem Meer.</span></figcaption>
+      </figure></div>
+      <div class="szene"><figure>
+        <div class="blende"><span class="balken oben"></span><img src="bilder/dioscuri.webp" alt="" loading="lazy"><span class="balken unten"></span></div>
+        <figcaption><span class="ort" data-t="kino.3.ort">Tempio dei Dioscuri</span><span class="satz" data-t="kino.3.satz">Vier Säulen, die das Wahrzeichen Agrigents geworden sind.</span></figcaption>
+      </figure></div>
+      <div class="szene"><figure>
+        <div class="blende"><span class="balken oben"></span><img src="bilder/giunone.webp" alt="" loading="lazy"><span class="balken unten"></span></div>
+        <figcaption><span class="ort" data-t="kino.4.ort">Tempio di Giunone</span><span class="satz" data-t="kino.4.satz">Am östlichen Ende des Höhenzugs, zwischen Agaven und Mandelbäumen.</span></figcaption>
+      </figure></div>
+      <div class="szene"><figure>
+        <div class="blende"><span class="balken oben"></span><img src="bilder/agrigento.webp" alt="" loading="lazy"><span class="balken unten"></span></div>
+        <figcaption><span class="ort" data-t="kino.5.ort">Agrigento</span><span class="satz" data-t="kino.5.satz">Die Altstadt auf dem Hügel — dort liegt das Boulevard.</span></figcaption>
+      </figure></div>
+    </div>
+    <p class="rollenhinweis" data-t="kino.hinweis">Seitwärts scrollen oder ziehen</p>
+  </div>
+</section>
+
+<section class="stanza" id="cucina" style="background:var(--pietra)">
+  <div class="wrap">
+    <div class="auf" style="text-align:center;margin-bottom:clamp(2.5rem,6vw,4.5rem)">
+      <p class="eyebrow">La cucina</p>
+      <h2 data-t="karte.titel">Die Karte</h2>
+    </div>
+
+    <div class="degustazione auf">
+      <button class="blatt-knopf" type="button" id="karte-oeffnen" data-t-aria="degu.lupe" aria-label="Speisekarte vergrößert ansehen">
+        <img loading="lazy" src="bilder/degustazione.webp" alt="Menù Degustazione di pesce des Ristorante Boulevard">
+        <span class="lupe" data-t="degu.lupe">Karte vergrößern</span>
+      </button>
+      <div class="degu-text">
+        <p class="eyebrow" data-t="degu.eyebrow">Menù degustazione</p>
+        <h3>Degustazione</h3>
+        <p class="untertitel">di pesce</p>
+        <p class="preiszeile">
+          <span class="zahl">30,00 €</span>
+          <span class="pro" data-t="degu.proPerson">pro Person</span>
+          <span class="mindest" data-t="degu.mindestens">Ab 2 Personen</span>
+        </p>
+        <p class="degu-rubrik">Antipasti</p>
+        <ul class="degu-liste">
+          <li>Insalata di polpo<span class="uebersetzt" data-t="degu.a1">Oktopussalat</span></li>
+          <li>Caponata di pesce spada<span class="uebersetzt" data-t="degu.a2">Caponata mit Schwertfisch</span></li>
+          <li>Cocktail di gamberi<span class="uebersetzt" data-t="degu.a3">Garnelencocktail</span></li>
+          <li>Arancina di pesce<span class="uebersetzt" data-t="degu.a4">Frittierter Reisball mit Fisch</span></li>
+          <li>Ostrica<span class="uebersetzt" data-t="degu.a5">Auster</span></li>
+          <li>Alici marinate<span class="uebersetzt" data-t="degu.a6">Marinierte Sardellen</span></li>
+          <li>Zuppa di cozze<span class="uebersetzt" data-t="degu.a7">Miesmuscheln im Sud</span></li>
+          <li>Tonno in agrodolce<span class="uebersetzt" data-t="degu.a8">Thunfisch süßsauer</span></li>
+        </ul>
+        <p class="degu-rubrik" data-t="degu.primo">Primo piatto</p>
+        <p class="primo">Pacchero ai frutti di mare</p>
+        <p class="primo-zusatz" data-t="degu.primoZusatz">Pacchero mit Meeresfrüchten — ein Teller für zwei</p>
+        <p class="inklusive">
+          <span data-t="degu.wasser">Wasser inklusive</span>
+          <span data-t="degu.kaffee">Kaffee oder Digestif</span>
+        </p>
+        <p class="fussnote" data-t="degu.fussnote">Ist keine frische Ware verfügbar, kann hochwertige Tiefkühlware verwendet werden.</p>
+      </div>
+    </div>
+
+    <hr class="trenner-karte">
+    <p class="eyebrow auf" style="text-align:center;margin-bottom:clamp(2rem,4vw,3rem)" data-t="karte.alacarta">Alla carta</p>
+    <div class="karte">
+      <div class="gang auf">
+        <h3>Antipasti</h3>
+        <div class="speise"><span class="name">Caponata agrigentina</span><span class="preis">9 €</span><span class="zutaten" data-t="g1">Aubergine, Sellerie, Kapern, geröstete Mandeln</span></div>
+        <div class="speise"><span class="name">Sarde a beccafico</span><span class="preis">11 €</span><span class="zutaten" data-t="g2">Gefüllte Sardinen, Pinienkerne, Orange, Lorbeer</span></div>
+        <div class="speise"><span class="name">Tagliere del Boulevard</span><span class="preis">14 €</span><span class="zutaten" data-t="g3">Pecorino, Salame, Oliven, hausgebackenes Brot</span></div>
+        <div class="speise"><span class="name">Insalata di arance</span><span class="preis">8 €</span><span class="zutaten" data-t="g4">Orange, Fenchel, rote Zwiebel, Olivenöl</span></div>
+      </div>
+      <div class="gang auf v2">
+        <h3>Primi</h3>
+        <div class="speise"><span class="name">Busiate alla trapanese</span><span class="preis">13 €</span><span class="zutaten" data-t="g5">Mandel-Basilikum-Pesto, Kirschtomaten</span></div>
+        <div class="speise"><span class="name">Spaghetti ai ricci di mare</span><span class="preis">19 €</span><span class="zutaten" data-t="g6">Seeigel, saisonal — bitte erfragen</span></div>
+        <div class="speise"><span class="name">Risotto al nero di seppia</span><span class="preis">16 €</span><span class="zutaten" data-t="g7">Tintenfisch, Zitrone, Petersilie</span></div>
+        <div class="speise"><span class="name">Pasta con le sarde</span><span class="preis">14 €</span><span class="zutaten" data-t="g8">Sardinen, wilder Fenchel, Rosinen, Safran</span></div>
+      </div>
+      <div class="gang auf">
+        <h3>Dal forno a legna</h3>
+        <div class="speise"><span class="name">Margherita</span><span class="preis">8 €</span><span class="zutaten" data-t="g9">San-Marzano-Tomate, Fior di latte, Basilikum</span></div>
+        <div class="speise"><span class="name">Contadina</span><span class="preis">12 €</span><span class="zutaten" data-t="g10">Grillgemüse, Ricotta salata, Oregano</span></div>
+        <div class="speise"><span class="name">Vulcano</span><span class="preis">13 €</span><span class="zutaten" data-t="g11">Salame piccante, Nduja, Honig, Chili</span></div>
+        <div class="speise"><span class="name">Valle dei Templi</span><span class="preis">14 €</span><span class="zutaten" data-t="g12">Pistazie aus Bronte, Mortadella, Burrata</span></div>
+      </div>
+      <div class="gang auf v2">
+        <h3 data-t="karte.secondi">Secondi &amp; Dolci</h3>
+        <div class="speise"><span class="name">Pesce del giorno alla griglia</span><span class="preis" data-t="karte.tagespreis">Tagespreis</span><span class="zutaten" data-t="g13">Ganzer Fisch vom Markt, Zitrone, Olivenöl</span></div>
+        <div class="speise"><span class="name">Involtini di pesce spada</span><span class="preis">22 €</span><span class="zutaten" data-t="g14">Schwertfischröllchen, Semmelbrösel, Minze</span></div>
+        <div class="speise"><span class="name">Cannolo siciliano</span><span class="preis">6 €</span><span class="zutaten" data-t="g15">Frisch gefüllt mit Schafsricotta</span></div>
+        <div class="speise"><span class="name">Granita al limone</span><span class="preis">5 €</span><span class="zutaten" data-t="g16">Zitronen aus Sizilien, mit Brioche</span></div>
+      </div>
+    </div>
+    <p class="hinweis auf" data-t="karte.hinweis">Allergene und Zusatzstoffe nennen wir Ihnen gern am Tisch.</p>
+  </div>
+</section>
+
+<div class="kolonnade" data-kolonnade>
+  <svg viewBox="0 0 1200 96" preserveAspectRatio="none" aria-hidden="true">
+    <g stroke="rgba(201,150,63,.4)" fill="none" stroke-width="1">
+      <line x1="0" y1="14" x2="1200" y2="14"/><line x1="0" y1="19" x2="1200" y2="19"/><line x1="0" y1="88" x2="1200" y2="88"/>
+    </g>
+    <g fill="rgba(201,150,63,.16)"></g>
+  </svg>
+  <div class="strahl"></div>
+</div>
+
+<section class="band" id="sera">
+  <div class="bild" id="bandbild"></div>
+  <div class="schleier"></div>
+  <blockquote>
+    <span data-t="abend.zitat">Wenn die Tempel angestrahlt werden, geht bei uns die Laterne an.</span>
+    <cite data-t="abend.quelle">Am Abend im Boulevard</cite>
+  </blockquote>
+</section>
+
+<section class="stanza kontakt" id="kontakt">
+  <div class="wrap kontakt-raster">
+    <div class="auf">
+      <p class="eyebrow" data-t="kontakt.eyebrow">Prenota &middot; Reservierung</p>
+      <h2><span data-t="kontakt.titel1">Einen Tisch</span><br><em data-t="kontakt.titel2">für Sie</em></h2>
+      <p style="color:rgba(237,227,208,.75);max-width:48ch" data-t="kontakt.text">Schreiben Sie uns, wann Sie kommen möchten.</p>
+      <form id="reservierung" style="margin-top:2rem">
+        <div class="paar">
+          <div class="feld"><label for="name" data-t="form.name">Name</label><input id="name" name="name" type="text" required></div>
+          <div class="feld"><label for="telefon" data-t="form.telefon">Telefon</label><input id="telefon" name="telefon" type="tel"></div>
+        </div>
+        <div class="paar">
+          <div class="feld"><label for="datum" data-t="form.datum">Datum</label><input id="datum" name="datum" type="date" required></div>
+          <div class="feld"><label for="zeit" data-t="form.zeit">Uhrzeit</label><input id="zeit" name="zeit" type="time" value="20:00" required></div>
+        </div>
+        <div class="feld"><label for="personen" data-t="form.personen">Personen</label>
+          <select id="personen" name="personen">
+            <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option>
+            <option value="7+" data-t="form.mehr">7 oder mehr</option>
+          </select>
+        </div>
+        <div class="feld"><label for="wunsch" data-t="form.wunsch">Wünsche</label><textarea id="wunsch" name="wunsch" data-t-ph="form.wunsch.ph" placeholder="Terrasse, Kinderstuhl, Allergien …"></textarea></div>
+        <button class="knopf" type="submit"><span data-t="form.senden">Anfrage senden</span></button>
+        <p class="hinweis" id="formhinweis" data-t="form.hinweis" style="margin-top:1rem">Die Anfrage öffnet Ihr E-Mail-Programm mit den ausgefüllten Angaben.</p>
+      </form>
+    </div>
+    <aside class="auf v2">
+      <p class="eyebrow" data-t="zeiten.titel">Orari &middot; Öffnungszeiten</p>
+      <ul class="zeiten">
+        <li><span data-t="tag.mo">Montag</span><span data-t="tag.zu">Ruhetag</span></li>
+        <li><span data-t="tag.didon">Dienstag – Donnerstag</span><span>18:30 – 23:30</span></li>
+        <li><span data-t="tag.frsa">Freitag – Samstag</span><span>12:00 – 15:00 &middot; 18:30 – 00:00</span></li>
+        <li><span data-t="tag.so">Sonntag</span><span>12:00 – 15:00 &middot; 18:30 – 23:00</span></li>
+      </ul>
+      <div class="direkt">
+        <a href="tel:+390922000000">+39 0922 000 000</a>
+        <a href="mailto:info@boulevard-agrigento.it">info@boulevard-agrigento.it</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Ristorante+Boulevard+Agrigento" target="_blank" rel="noopener">Via Atenea 00, 92100 Agrigento (AG) <span data-t="karte.link">— auf der Karte</span></a>
+      </div>
+      <div class="tafel" style="margin-top:2.2rem">
+        <p class="eyebrow" style="margin-bottom:.8rem" data-t="anfahrt.titel">Anfahrt</p>
+        <p style="margin:0;color:rgba(237,227,208,.75);font-size:.94rem" data-t="anfahrt.text">Vom Tal der Tempel etwa zehn Minuten mit dem Auto.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="leuchtkasten" id="leuchtkasten" role="dialog" aria-modal="true" data-t-aria="degu.lupe" aria-label="Speisekarte">
+  <button class="lk-zu" type="button" id="kasten-zu" data-t-aria="degu.schliessen" aria-label="Schließen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <img loading="lazy" src="bilder/degustazione-gross.webp" alt="Menù Degustazione di pesce — Antipasti, Primo piatto, 30 € pro Person">
+</div>
+
+<footer>
+  <div class="wrap">
+    <img class="wappen" loading="lazy" src="bilder/wappen.webp" alt="Boulevard Ristorante Pizzeria">
+    <p class="zeile">Agrigento &middot; Sicilia &nbsp;—&nbsp; <a href="#kontakt" data-t="fuss.reservierung">Reservierung</a> &nbsp;&middot;&nbsp; <a href="#cucina" data-t="fuss.karte">Karte</a></p>
+    <details id="impressum" class="impressum">
+      <summary data-t="impressum.titel">Impressum &amp; Datenschutz</summary>
+      <p>Ristorante Boulevard &middot; Via Atenea 00, 92100 Agrigento (AG), Italia<br>
+      <span data-t="impressum.inhaber">Inhaber</span>: Vor- und Nachname &middot; P. IVA 00000000000<br>
+      Tel. +39 0922 000 000 &middot; info@boulevard-agrigento.it</p>
+      <p data-t="impressum.datenschutz">Diese Seite setzt keine Cookies und bindet keine externen Dienste ein.</p>
+      <p class="nachweis"><span data-t="impressum.bilder">Bildnachweis</span>: Tempio della Concordia bei Nacht — Dreirik (CC0). Tempio dei Dioscuri, Tempio di Giunone, Panorama — Effems (CC BY-SA 4.0), <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>.</p>
+    </details>
+    <p class="zeile" style="margin-top:1.2rem;opacity:.6">© <span id="jahr"></span> Ristorante Boulevard</p>
+  </div>
+</footer>
+
+<script>
+
+var TEXTE = {
+  de: {
+    'meta.titel': 'Boulevard — Ristorante & Pizzeria in Agrigento, Sizilien',
+    'meta.beschreibung': 'Ristorante Boulevard in Agrigento: sizilianische Küche und Pizza aus dem Holzofen, wenige Minuten vom Tal der Tempel. Abends geöffnet, Reservierung empfohlen.',
+    'nav.willkommen': 'Benvenuti', 'nav.karte': 'Die Karte', 'nav.abend': 'Am Abend', 'nav.kontakt': 'Kontakt',
+    'nav.templi': 'Die Tempel',
+    'karte.alacarta': 'Alla carta',
+    'degu.eyebrow': 'Menù degustazione', 'degu.proPerson': 'pro Person', 'degu.mindestens': 'Ab 2 Personen',
+    'degu.lupe': 'Karte vergrößern', 'degu.schliessen': 'Schließen', 'degu.primo': 'Primo piatto',
+    'degu.a1': 'Oktopussalat', 'degu.a2': 'Caponata mit Schwertfisch', 'degu.a3': 'Garnelencocktail',
+    'degu.a4': 'Frittierter Reisball mit Fisch', 'degu.a5': 'Auster', 'degu.a6': 'Marinierte Sardellen',
+    'degu.a7': 'Miesmuscheln im Sud', 'degu.a8': 'Thunfisch süßsauer',
+    'degu.primoZusatz': 'Pacchero mit Meeresfrüchten — ein Teller für zwei',
+    'degu.wasser': 'Wasser inklusive', 'degu.kaffee': 'Kaffee oder Digestif',
+    'degu.fussnote': 'Ist frische Ware nicht verfügbar, kann hochwertige Tiefkühlware verwendet werden.',
+    'kino.eyebrow': 'La Valle dei Templi',
+    'kino.titel1': 'Zehn Minuten von hier', 'kino.titel2': 'stehen sie seit 2500 Jahren.',
+    'kino.zurueck': 'Vorheriges Bild', 'kino.vor': 'Nächstes Bild',
+    'kino.hinweis': 'Seitwärts scrollen oder ziehen',
+    'kino.1.ort': 'Tempio della Concordia', 'kino.1.satz': 'Der besterhaltene griechische Tempel Siziliens — nachts angestrahlt.',
+    'kino.2.ort': 'Collina dei Templi', 'kino.2.satz': 'Ein Kamm aus Kalkstein, dahinter das Meer.',
+    'kino.3.ort': 'Tempio dei Dioscuri', 'kino.3.satz': 'Vier Säulen, die zum Wahrzeichen Agrigents geworden sind.',
+    'kino.4.ort': 'Tempio di Giunone', 'kino.4.satz': 'Am östlichen Ende des Höhenzugs, zwischen Agaven und Mandelbäumen.',
+    'kino.5.ort': 'Agrigento', 'kino.5.satz': 'Die Altstadt auf dem Hügel — dort liegt das Boulevard.',
+    'impressum.bilder': 'Bildnachweis',
+    'nav.oeffnen': 'Menü öffnen', 'nav.schliessen': 'Menü schließen',
+    'cta.reservieren': 'Tisch reservieren', 'cta.karte': 'Die Karte ansehen',
+    'hero.h1': 'Ristorante Boulevard — Ristorante und Pizzeria in Agrigento, Sizilien',
+    'hero.bildbeschreibung': 'Beleuchteter Eingang des Ristorante Boulevard bei Nacht',
+    'hero.zeile1': 'Sizilianisch essen', 'hero.zeile2': 'im Licht der Laterne',
+    'hero.satz': 'Fisch vom Markt, Pasta wie zu Hause und Pizza aus dem Holzofen — zehn Minuten vom Tal der Tempel, hinter einem Tor aus Efeu.',
+    'hero.scrollen': 'Scrollen',
+    'ben.titel1': 'Ein Tor, eine Laterne,', 'ben.titel2': 'und dahinter der Abend.',
+    'ben.text1': 'Das Boulevard liegt im historischen Zentrum von Agrigento, wenige Minuten von der Valle dei Templi entfernt. Wer durch das schmiedeeiserne Tor tritt, lässt die Straße hinter sich: Naturstein, Efeu, warmes Licht und ein Gewölbe, das seit Jahrhunderten steht.',
+    'ben.text2': 'Wir kochen sizilianisch — mit Fisch vom Markt in Porto Empedocle, Gemüse aus der Umgebung, Öl und Mandeln von Höfen, die wir kennen. Dazu Pizza aus dem Holzofen, langgeführter Teig, dünn und mit Rand.',
+    'ben.zitat1': '„Erst die Tempel, dann der Tisch.“', 'ben.zitat2': 'Beides gehört zu einem Tag in Agrigento.',
+    'tafel.titel': 'Auf einen Blick',
+    'tafel.kueche': 'Küche', 'tafel.kueche.wert': 'Sizilianisch, Fisch, Pizza aus dem Holzofen',
+    'tafel.lage': 'Lage', 'tafel.lage.wert': 'Centro storico, Agrigento — 10 Minuten zum Tal der Tempel',
+    'tafel.plaetze': 'Plätze', 'tafel.plaetze.wert': 'Innenraum im Gewölbe, Terrasse unter Efeu',
+    'tafel.wissen': 'Gut zu wissen', 'tafel.wissen.wert': 'Reservierung empfohlen, besonders von Juni bis September',
+    'tafel.gruppen': 'Gruppen', 'tafel.gruppen.wert': 'Feiern und Menüs für bis zu 40 Gäste auf Anfrage',
+    'karte.titel': 'Die Karte', 'karte.secondi': 'Secondi & Dolci', 'karte.tagespreis': 'Tagespreis',
+    'karte.hinweis': 'Allergene und Zusatzstoffe nennen wir Ihnen gern am Tisch. Einige Gerichte hängen vom Fang und von der Saison ab — die Tageskarte steht am Eingang.',
+    'g1': 'Aubergine, Sellerie, Kapern, geröstete Mandeln',
+    'g2': 'Gefüllte Sardinen, Pinienkerne, Orange, Lorbeer',
+    'g3': 'Pecorino, Salame, Oliven, hausgebackenes Brot',
+    'g4': 'Orange, Fenchel, rote Zwiebel, Olivenöl',
+    'g5': 'Mandel-Basilikum-Pesto, Kirschtomaten',
+    'g6': 'Seeigel, saisonal — bitte erfragen',
+    'g7': 'Tintenfisch, Zitrone, Petersilie',
+    'g8': 'Sardinen, wilder Fenchel, Rosinen, Safran',
+    'g9': 'San-Marzano-Tomate, Fior di latte, Basilikum',
+    'g10': 'Grillgemüse, Ricotta salata, Oregano',
+    'g11': 'Salame piccante, Nduja, Honig, Chili',
+    'g12': 'Pistazie aus Bronte, Mortadella, Burrata',
+    'g13': 'Ganzer Fisch vom Markt, Zitrone, Olivenöl',
+    'g14': 'Schwertfischröllchen, Semmelbrösel, Minze',
+    'g15': 'Frisch gefüllt mit Schafsricotta',
+    'g16': 'Zitronen aus Sizilien, mit Brioche',
+    'abend.zitat': 'Wenn die Tempel angestrahlt werden, geht bei uns die Laterne an.',
+    'abend.quelle': 'Am Abend im Boulevard',
+    'kontakt.eyebrow': 'Prenota · Reservierung', 'kontakt.titel1': 'Einen Tisch', 'kontakt.titel2': 'für Sie',
+    'kontakt.text': 'Schreiben Sie uns, wann Sie kommen möchten — wir bestätigen so schnell wie möglich. Für denselben Abend rufen Sie am besten kurz an.',
+    'form.name': 'Name', 'form.telefon': 'Telefon', 'form.datum': 'Datum', 'form.zeit': 'Uhrzeit',
+    'form.personen': 'Personen', 'form.mehr': '7 oder mehr', 'form.wunsch': 'Wünsche',
+    'form.wunsch.ph': 'Terrasse, Kinderstuhl, Allergien …', 'form.senden': 'Anfrage senden',
+    'form.hinweis': 'Die Anfrage öffnet Ihr E-Mail-Programm mit den ausgefüllten Angaben.',
+    'form.gesendet': 'Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Bitte noch absenden.',
+    'mail.betreff': 'Tischanfrage', 'mail.name': 'Name', 'mail.telefon': 'Telefon', 'mail.datum': 'Datum',
+    'mail.zeit': 'Uhrzeit', 'mail.personen': 'Personen', 'mail.wunsch': 'Wünsche',
+    'zeiten.titel': 'Orari · Öffnungszeiten',
+    'tag.mo': 'Montag', 'tag.zu': 'Ruhetag', 'tag.didon': 'Dienstag – Donnerstag',
+    'tag.frsa': 'Freitag – Samstag', 'tag.so': 'Sonntag',
+    'karte.link': '— auf der Karte',
+    'anfahrt.titel': 'Anfahrt',
+    'anfahrt.text': 'Vom Tal der Tempel etwa zehn Minuten mit dem Auto. Parken am Piazzale Rosselli, von dort fünf Minuten zu Fuß durch die Altstadt.',
+    'fuss.reservierung': 'Reservierung', 'fuss.karte': 'Karte',
+    'impressum.titel': 'Impressum & Datenschutz', 'impressum.inhaber': 'Inhaber',
+    'impressum.datenschutz': 'Diese Seite setzt keine Cookies und bindet keine externen Dienste ein. Reservierungsanfragen werden per E-Mail übermittelt und nur zur Bearbeitung der Anfrage verwendet.'
+  },
+  it: {
+    'meta.titel': 'Boulevard — Ristorante e Pizzeria ad Agrigento, Sicilia',
+    'meta.beschreibung': 'Ristorante Boulevard ad Agrigento: cucina siciliana e pizza dal forno a legna, a pochi minuti dalla Valle dei Templi. Aperto la sera, prenotazione consigliata.',
+    'nav.willkommen': 'Benvenuti', 'nav.karte': 'Il menu', 'nav.abend': 'La sera', 'nav.kontakt': 'Contatti',
+    'nav.templi': 'I templi',
+    'karte.alacarta': 'Alla carta',
+    'degu.eyebrow': 'Menù degustazione', 'degu.proPerson': 'a persona', 'degu.mindestens': 'Minimo 2 persone',
+    'degu.lupe': 'Ingrandisci il menu', 'degu.schliessen': 'Chiudi', 'degu.primo': 'Primo piatto',
+    'degu.a1': '', 'degu.a2': '', 'degu.a3': '', 'degu.a4': '', 'degu.a5': '', 'degu.a6': '', 'degu.a7': '', 'degu.a8': '',
+    'degu.primoZusatz': 'Piatto x 2',
+    'degu.wasser': 'Acqua compresa', 'degu.kaffee': 'Caffè o digestivo',
+    'degu.fussnote': 'In mancanza di prodotto fresco potrebbe essere utilizzato surgelato di qualità.',
+    'kino.eyebrow': 'La Valle dei Templi',
+    'kino.titel1': 'A dieci minuti da qui', 'kino.titel2': 'stanno in piedi da 2500 anni.',
+    'kino.zurueck': 'Immagine precedente', 'kino.vor': 'Immagine successiva',
+    'kino.hinweis': 'Scorri di lato o trascina',
+    'kino.1.ort': 'Tempio della Concordia', 'kino.1.satz': 'Il tempio greco meglio conservato della Sicilia — illuminato di notte.',
+    'kino.2.ort': 'Collina dei Templi', 'kino.2.satz': 'Un crinale di calcarenite, e dietro il mare.',
+    'kino.3.ort': 'Tempio dei Dioscuri', 'kino.3.satz': 'Quattro colonne diventate il simbolo di Agrigento.',
+    'kino.4.ort': 'Tempio di Giunone', 'kino.4.satz': "All'estremità est della collina, tra agavi e mandorli.",
+    'kino.5.ort': 'Agrigento', 'kino.5.satz': 'Il centro storico sulla collina — è lì che si trova il Boulevard.',
+    'impressum.bilder': 'Crediti fotografici',
+    'nav.oeffnen': 'Apri il menu', 'nav.schliessen': 'Chiudi il menu',
+    'cta.reservieren': 'Prenota un tavolo', 'cta.karte': 'Guarda il menu',
+    'hero.h1': 'Ristorante Boulevard — Ristorante e Pizzeria ad Agrigento, Sicilia',
+    'hero.bildbeschreibung': "L'ingresso illuminato del Ristorante Boulevard di sera",
+    'hero.zeile1': 'Mangiare siciliano', 'hero.zeile2': 'alla luce della lanterna',
+    'hero.satz': 'Pesce del mercato, pasta come a casa e pizza dal forno a legna — a dieci minuti dalla Valle dei Templi, dietro un cancello di edera.',
+    'hero.scrollen': 'Scorri',
+    'ben.titel1': 'Un cancello, una lanterna,', 'ben.titel2': 'e dietro, la sera.',
+    'ben.text1': 'Il Boulevard si trova nel centro storico di Agrigento, a pochi minuti dalla Valle dei Templi. Chi varca il cancello in ferro battuto si lascia la strada alle spalle: pietra viva, edera, luce calda e una volta che resiste da secoli.',
+    'ben.text2': 'Cuciniamo siciliano — con il pesce del mercato di Porto Empedocle, verdure della zona, olio e mandorle di aziende che conosciamo. E la pizza dal forno a legna, impasto a lunga lievitazione, sottile e con il cornicione.',
+    'ben.zitat1': '«Prima i templi, poi la tavola.»', 'ben.zitat2': 'Fanno parte della stessa giornata ad Agrigento.',
+    'tafel.titel': 'In breve',
+    'tafel.kueche': 'Cucina', 'tafel.kueche.wert': 'Siciliana, pesce, pizza dal forno a legna',
+    'tafel.lage': 'Dove siamo', 'tafel.lage.wert': 'Centro storico, Agrigento — 10 minuti dalla Valle dei Templi',
+    'tafel.plaetze': 'Sala', 'tafel.plaetze.wert': "Sala nella volta, terrazza sotto l'edera",
+    'tafel.wissen': 'Da sapere', 'tafel.wissen.wert': 'Prenotazione consigliata, soprattutto da giugno a settembre',
+    'tafel.gruppen': 'Gruppi', 'tafel.gruppen.wert': 'Feste e menu fino a 40 persone su richiesta',
+    'karte.titel': 'Il menu', 'karte.secondi': 'Secondi e Dolci', 'karte.tagespreis': 'Prezzo del giorno',
+    'karte.hinweis': 'Allergeni e ingredienti su richiesta in sala. Alcuni piatti dipendono dal pescato e dalla stagione — il menu del giorno è affisso all’ingresso.',
+    'g1': 'Melanzane, sedano, capperi, mandorle tostate',
+    'g2': 'Sarde ripiene, pinoli, arancia, alloro',
+    'g3': 'Pecorino, salame, olive, pane fatto in casa',
+    'g4': "Arancia, finocchio, cipolla rossa, olio d'oliva",
+    'g5': 'Pesto di mandorle e basilico, pomodorini',
+    'g6': 'Ricci di mare, stagionale — chiedere in sala',
+    'g7': 'Seppia, limone, prezzemolo',
+    'g8': 'Sarde, finocchietto selvatico, uvetta, zafferano',
+    'g9': 'Pomodoro San Marzano, fior di latte, basilico',
+    'g10': 'Verdure grigliate, ricotta salata, origano',
+    'g11': 'Salame piccante, nduja, miele, peperoncino',
+    'g12': 'Pistacchio di Bronte, mortadella, burrata',
+    'g13': "Pesce intero del mercato, limone, olio d'oliva",
+    'g14': 'Involtini di spada, pangrattato, menta',
+    'g15': 'Riempito al momento con ricotta di pecora',
+    'g16': 'Limoni di Sicilia, con brioche',
+    'abend.zitat': 'Quando si accendono le luci sui templi, da noi si accende la lanterna.',
+    'abend.quelle': 'La sera al Boulevard',
+    'kontakt.eyebrow': 'Prenotazioni', 'kontakt.titel1': 'Un tavolo', 'kontakt.titel2': 'per voi',
+    'kontakt.text': 'Scriveteci giorno e ora — confermiamo il prima possibile. Per la stessa sera è più veloce una telefonata.',
+    'form.name': 'Nome', 'form.telefon': 'Telefono', 'form.datum': 'Data', 'form.zeit': 'Ora',
+    'form.personen': 'Persone', 'form.mehr': '7 o più', 'form.wunsch': 'Richieste',
+    'form.wunsch.ph': 'Terrazza, seggiolone, allergie …', 'form.senden': 'Invia la richiesta',
+    'form.hinweis': 'La richiesta apre il vostro programma di posta con i dati già inseriti.',
+    'form.gesendet': 'Il messaggio è pronto nel vostro programma di posta: resta solo da inviarlo.',
+    'mail.betreff': 'Richiesta tavolo', 'mail.name': 'Nome', 'mail.telefon': 'Telefono', 'mail.datum': 'Data',
+    'mail.zeit': 'Ora', 'mail.personen': 'Persone', 'mail.wunsch': 'Richieste',
+    'zeiten.titel': 'Orari',
+    'tag.mo': 'Lunedì', 'tag.zu': 'Chiuso', 'tag.didon': 'Martedì – Giovedì',
+    'tag.frsa': 'Venerdì – Sabato', 'tag.so': 'Domenica',
+    'karte.link': '— sulla mappa',
+    'anfahrt.titel': 'Come arrivare',
+    'anfahrt.text': 'Dalla Valle dei Templi circa dieci minuti in auto. Parcheggio al Piazzale Rosselli, da lì cinque minuti a piedi nel centro storico.',
+    'fuss.reservierung': 'Prenotazioni', 'fuss.karte': 'Menu',
+    'impressum.titel': 'Informazioni legali e privacy', 'impressum.inhaber': 'Titolare',
+    'impressum.datenschutz': 'Questo sito non usa cookie e non integra servizi esterni. Le richieste di prenotazione arrivano via e-mail e vengono usate solo per rispondere.'
+  },
+  en: {
+    'meta.titel': 'Boulevard — Restaurant & Pizzeria in Agrigento, Sicily',
+    'meta.beschreibung': 'Ristorante Boulevard in Agrigento: Sicilian cooking and wood-fired pizza, minutes from the Valley of the Temples. Open evenings, booking recommended.',
+    'nav.willkommen': 'Welcome', 'nav.karte': 'Menu', 'nav.abend': 'Evenings', 'nav.kontakt': 'Contact',
+    'nav.templi': 'The temples',
+    'karte.alacarta': 'Alla carta',
+    'degu.eyebrow': 'Tasting menu', 'degu.proPerson': 'per person', 'degu.mindestens': 'Two guests minimum',
+    'degu.lupe': 'View the menu larger', 'degu.schliessen': 'Close', 'degu.primo': 'Primo piatto',
+    'degu.a1': 'Octopus salad', 'degu.a2': 'Swordfish caponata', 'degu.a3': 'Prawn cocktail',
+    'degu.a4': 'Fried rice ball with fish', 'degu.a5': 'Oyster', 'degu.a6': 'Marinated anchovies',
+    'degu.a7': 'Mussels in broth', 'degu.a8': 'Sweet-and-sour tuna',
+    'degu.primoZusatz': 'Pacchero with seafood — one dish for two',
+    'degu.wasser': 'Water included', 'degu.kaffee': 'Coffee or digestivo',
+    'degu.fussnote': 'If fresh product is unavailable, quality frozen product may be used.',
+    'kino.eyebrow': 'La Valle dei Templi',
+    'kino.titel1': 'Ten minutes from here,', 'kino.titel2': 'standing for 2,500 years.',
+    'kino.zurueck': 'Previous image', 'kino.vor': 'Next image',
+    'kino.hinweis': 'Scroll sideways or drag',
+    'kino.1.ort': 'Tempio della Concordia', 'kino.1.satz': 'The best-preserved Greek temple in Sicily — floodlit after dark.',
+    'kino.2.ort': 'Collina dei Templi', 'kino.2.satz': 'A limestone ridge, and the sea behind it.',
+    'kino.3.ort': 'Tempio dei Dioscuri', 'kino.3.satz': 'Four columns that became the emblem of Agrigento.',
+    'kino.4.ort': 'Tempio di Giunone', 'kino.4.satz': 'At the eastern end of the ridge, among agaves and almond trees.',
+    'kino.5.ort': 'Agrigento', 'kino.5.satz': 'The old town on the hill — that is where the Boulevard is.',
+    'impressum.bilder': 'Image credits',
+    'nav.oeffnen': 'Open menu', 'nav.schliessen': 'Close menu',
+    'cta.reservieren': 'Book a table', 'cta.karte': 'See the menu',
+    'hero.h1': 'Ristorante Boulevard — restaurant and pizzeria in Agrigento, Sicily',
+    'hero.bildbeschreibung': 'The lit entrance of Ristorante Boulevard at night',
+    'hero.zeile1': 'Sicilian cooking', 'hero.zeile2': 'by lantern light',
+    'hero.satz': 'Fish from the market, pasta the way it is made at home and pizza from the wood-fired oven — ten minutes from the Valley of the Temples, behind a gate of ivy.',
+    'hero.scrollen': 'Scroll',
+    'ben.titel1': 'A gate, a lantern,', 'ben.titel2': 'and the evening behind it.',
+    'ben.text1': 'The Boulevard sits in the old centre of Agrigento, a few minutes from the Valley of the Temples. Step through the wrought-iron gate and the street falls away: bare stone, ivy, warm light and a vault that has stood for centuries.',
+    'ben.text2': 'We cook Sicilian — fish from the market at Porto Empedocle, vegetables from nearby, oil and almonds from growers we know. And pizza from the wood-fired oven: slow-proved dough, thin, with a raised rim.',
+    'ben.zitat1': '“Temples first, then the table.”', 'ben.zitat2': 'Both belong to the same day in Agrigento.',
+    'tafel.titel': 'At a glance',
+    'tafel.kueche': 'Kitchen', 'tafel.kueche.wert': 'Sicilian, fish, wood-fired pizza',
+    'tafel.lage': 'Where', 'tafel.lage.wert': 'Old town, Agrigento — 10 minutes from the Valley of the Temples',
+    'tafel.plaetze': 'Seating', 'tafel.plaetze.wert': 'Vaulted dining room, terrace under the ivy',
+    'tafel.wissen': 'Good to know', 'tafel.wissen.wert': 'Booking recommended, especially June to September',
+    'tafel.gruppen': 'Groups', 'tafel.gruppen.wert': 'Parties and set menus for up to 40 guests on request',
+    'karte.titel': 'The menu', 'karte.secondi': 'Secondi & Dolci', 'karte.tagespreis': 'Market price',
+    'karte.hinweis': 'Ask us about allergens at the table. Some dishes depend on the catch and the season — the day’s menu is posted by the door.',
+    'g1': 'Aubergine, celery, capers, toasted almonds',
+    'g2': 'Stuffed sardines, pine nuts, orange, bay',
+    'g3': 'Pecorino, salami, olives, house bread',
+    'g4': 'Orange, fennel, red onion, olive oil',
+    'g5': 'Almond and basil pesto, cherry tomatoes',
+    'g6': 'Sea urchin, seasonal — please ask',
+    'g7': 'Cuttlefish, lemon, parsley',
+    'g8': 'Sardines, wild fennel, raisins, saffron',
+    'g9': 'San Marzano tomato, fior di latte, basil',
+    'g10': 'Grilled vegetables, ricotta salata, oregano',
+    'g11': 'Spicy salami, nduja, honey, chilli',
+    'g12': 'Bronte pistachio, mortadella, burrata',
+    'g13': 'Whole fish from the market, lemon, olive oil',
+    'g14': 'Swordfish rolls, breadcrumbs, mint',
+    'g15': "Filled to order with sheep's ricotta",
+    'g16': 'Sicilian lemons, with brioche',
+    'abend.zitat': 'When the floodlights come on over the temples, we light the lantern.',
+    'abend.quelle': 'Evenings at the Boulevard',
+    'kontakt.eyebrow': 'Bookings', 'kontakt.titel1': 'A table', 'kontakt.titel2': 'for you',
+    'kontakt.text': 'Send us the day and time — we confirm as soon as we can. For the same evening, a phone call is quicker.',
+    'form.name': 'Name', 'form.telefon': 'Phone', 'form.datum': 'Date', 'form.zeit': 'Time',
+    'form.personen': 'Guests', 'form.mehr': '7 or more', 'form.wunsch': 'Requests',
+    'form.wunsch.ph': 'Terrace, high chair, allergies …', 'form.senden': 'Send request',
+    'form.hinweis': 'This opens your email app with the details filled in.',
+    'form.gesendet': 'Your email app has the message ready — just send it.',
+    'mail.betreff': 'Table request', 'mail.name': 'Name', 'mail.telefon': 'Phone', 'mail.datum': 'Date',
+    'mail.zeit': 'Time', 'mail.personen': 'Guests', 'mail.wunsch': 'Requests',
+    'zeiten.titel': 'Opening hours',
+    'tag.mo': 'Monday', 'tag.zu': 'Closed', 'tag.didon': 'Tuesday – Thursday',
+    'tag.frsa': 'Friday – Saturday', 'tag.so': 'Sunday',
+    'karte.link': '— on the map',
+    'anfahrt.titel': 'Getting here',
+    'anfahrt.text': 'About ten minutes by car from the Valley of the Temples. Park at Piazzale Rosselli, then five minutes on foot through the old town.',
+    'fuss.reservierung': 'Bookings', 'fuss.karte': 'Menu',
+    'impressum.titel': 'Legal notice & privacy', 'impressum.inhaber': 'Owner',
+    'impressum.datenschutz': 'This site sets no cookies and loads no external services. Booking requests are sent by email and used only to answer them.'
+  }
+};
+
+var sprache = 'de';
+
+function textVon(schluessel){
+  var w = TEXTE[sprache][schluessel];
+  return (w === undefined) ? TEXTE.de[schluessel] : w;
+}
+
+function spracheSetzen(neu){
+  if(!TEXTE[neu]) neu = 'de';
+  sprache = neu;
+  document.documentElement.lang = neu;
+  document.title = textVon('meta.titel');
+  var beschreibung = document.querySelector('meta[name="description"]');
+  if(beschreibung) beschreibung.setAttribute('content', textVon('meta.beschreibung'));
+
+  document.querySelectorAll('[data-t]').forEach(function(el){
+    el.textContent = textVon(el.getAttribute('data-t'));
+  });
+  document.querySelectorAll('[data-t-ph]').forEach(function(el){
+    el.setAttribute('placeholder', textVon(el.getAttribute('data-t-ph')));
+  });
+  document.querySelectorAll('[data-t-aria]').forEach(function(el){
+    el.setAttribute('aria-label', textVon(el.getAttribute('data-t-aria')));
+  });
+  var offen = document.getElementById('menue').classList.contains('offen');
+  document.getElementById('burger').setAttribute('aria-label', textVon(offen ? 'nav.schliessen' : 'nav.oeffnen'));
+
+  document.querySelectorAll('.sprachen button').forEach(function(b){
+    b.setAttribute('aria-pressed', b.getAttribute('data-sprache') === neu ? 'true' : 'false');
+  });
+}
+
+(function(){
+  var sanft = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var klein = window.matchMedia('(max-width: 700px)').matches;
+
+  window.addEventListener('load', function(){
+    setTimeout(function(){ document.body.classList.add('geladen'); }, sanft ? 0 : 700);
+  });
+  document.getElementById('jahr').textContent = new Date().getFullYear();
+
+  /* Sprache: Browser fragen, dann umschaltbar */
+  var wunsch = (navigator.language || 'de').slice(0,2).toLowerCase();
+  spracheSetzen(TEXTE[wunsch] ? wunsch : 'de');
+  document.querySelectorAll('.sprachen button').forEach(function(b){
+    b.addEventListener('click', function(){ spracheSetzen(b.getAttribute('data-sprache')); });
+  });
+
+  /* Kolonnade: dorische Säulen erzeugen */
+  document.querySelectorAll('[data-kolonnade] svg > g:last-of-type').forEach(function(g){
+    var n = window.innerWidth < 700 ? 11 : 24, breite = 1200 / n;
+    var NS = 'http://www.w3.org/2000/svg';
+    function linie(x1,y1,x2,y2,o){
+      var l = document.createElementNS(NS,'line');
+      l.setAttribute('x1',x1); l.setAttribute('y1',y1); l.setAttribute('x2',x2); l.setAttribute('y2',y2);
+      l.setAttribute('stroke','rgba(201,150,63,'+o+')'); l.setAttribute('stroke-width','1');
+      g.appendChild(l);
+    }
+    for (var i = 0; i < n; i++){
+      var x = i * breite + breite * 0.34, w = breite * 0.32, t = w * 0.1;
+      var schaft = document.createElementNS(NS,'path');
+      schaft.setAttribute('d','M'+x+' 84 L'+(x+t)+' 26 L'+(x+w-t)+' 26 L'+(x+w)+' 84 Z');
+      schaft.setAttribute('fill','rgba(201,150,63,.05)');
+      g.appendChild(schaft);
+      linie(x,84,x+t,26,.34); linie(x+w,84,x+w-t,26,.34);
+      linie(x+w*0.34,84,x+w*0.36,26,.13); linie(x+w*0.66,84,x+w*0.64,26,.13);
+      var kap = document.createElementNS(NS,'rect');
+      kap.setAttribute('x', x-w*0.12); kap.setAttribute('y', 21);
+      kap.setAttribute('width', w*1.24); kap.setAttribute('height', 4);
+      kap.setAttribute('fill','rgba(201,150,63,.22)');
+      g.appendChild(kap);
+      var bas = document.createElementNS(NS,'rect');
+      bas.setAttribute('x', x-w*0.08); bas.setAttribute('y', 84);
+      bas.setAttribute('width', w*1.16); bas.setAttribute('height', 3);
+      bas.setAttribute('fill','rgba(201,150,63,.18)');
+      g.appendChild(bas);
+    }
+  });
+
+  /* Leuchtkasten für die Speisekarte */
+  var kasten = document.getElementById('leuchtkasten');
+  var oeffner = document.getElementById('karte-oeffnen');
+  if(kasten && oeffner){
+    var zu = document.getElementById('kasten-zu');
+    function kastenAuf(){
+      kasten.classList.add('offen'); document.body.classList.add('kasten-offen'); zu.focus();
+    }
+    function kastenZu(){
+      kasten.classList.remove('offen'); document.body.classList.remove('kasten-offen'); oeffner.focus();
+    }
+    oeffner.addEventListener('click', kastenAuf);
+    zu.addEventListener('click', kastenZu);
+    kasten.addEventListener('click', function(e){ if(e.target === kasten) kastenZu(); });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && kasten.classList.contains('offen')) kastenZu();
+    });
+  }
+
+  /* Kinorolle */
+  var rolle = document.getElementById('rolle');
+  if(rolle){
+    var zurueck = document.getElementById('rolle-zurueck'), vor = document.getElementById('rolle-vor');
+    function schritt(){ var s = rolle.querySelector('.szene'); return s ? s.offsetWidth + 24 : 400; }
+    function knoepfe(){
+      zurueck.disabled = rolle.scrollLeft < 12;
+      vor.disabled = rolle.scrollLeft > rolle.scrollWidth - rolle.clientWidth - 12;
+    }
+    zurueck.addEventListener('click', function(){ rolle.scrollBy({left: -schritt(), behavior: 'smooth'}); });
+    vor.addEventListener('click', function(){ rolle.scrollBy({left: schritt(), behavior: 'smooth'}); });
+    rolle.addEventListener('scroll', knoepfe, { passive: true });
+    knoepfe();
+    var kinoblick = new IntersectionObserver(function(e){
+      e.forEach(function(x){ x.target.classList.toggle('imblick', x.isIntersecting); });
+    }, { threshold: 0.4 });
+    rolle.querySelectorAll('.szene').forEach(function(sz){ kinoblick.observe(sz); });
+  }
+
+  /* Enthüllen beim Scrollen */
+  var beobachter = new IntersectionObserver(function(eintraege){
+    eintraege.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('sichtbar'); beobachter.unobserve(e.target); }
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.auf, [data-kolonnade]').forEach(function(el){ beobachter.observe(el); });
+
+  /* Kopfzeile und Parallaxe */
+  var kopf = document.getElementById('kopf');
+  var auftaktbild = document.getElementById('auftaktbild');
+  var bandbild = document.getElementById('bandbild');
+  var band = document.getElementById('sera');
+  var laeuft = false;
+  function beiScroll(){
+    if(laeuft) return; laeuft = true;
+    requestAnimationFrame(function(){
+      var y = window.scrollY;
+      kopf.classList.toggle('fest', y > 60);
+      if(!sanft && !klein){
+        if(y < window.innerHeight * 1.2){
+          auftaktbild.style.transform = 'scale(1.06) translateY(' + (y * 0.16) + 'px)';
+        }
+        var r = band.getBoundingClientRect();
+        if(r.top < window.innerHeight && r.bottom > 0){
+          var p = (window.innerHeight - r.top) / (window.innerHeight + r.height);
+          bandbild.style.transform = 'translateY(' + ((p - 0.5) * 70) + 'px)';
+        }
+      }
+      laeuft = false;
+    });
+  }
+  window.addEventListener('scroll', beiScroll, { passive: true });
+  beiScroll();
+
+  /* Mobiles Menü */
+  var burger = document.getElementById('burger'), menue = document.getElementById('menue');
+  burger.addEventListener('click', function(){
+    var offen = menue.classList.toggle('offen');
+    document.body.classList.toggle('menue-offen', offen);
+    burger.setAttribute('aria-expanded', offen ? 'true' : 'false');
+    burger.setAttribute('aria-label', textVon(offen ? 'nav.schliessen' : 'nav.oeffnen'));
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && menue.classList.contains('offen')){
+      menue.classList.remove('offen'); document.body.classList.remove('menue-offen');
+      burger.setAttribute('aria-expanded','false'); burger.focus();
+    }
+  });
+  menue.addEventListener('click', function(e){
+    if(e.target.tagName === 'A' || e.target.parentNode.tagName === 'A'){
+      menue.classList.remove('offen'); document.body.classList.remove('menue-offen');
+      burger.setAttribute('aria-expanded','false');
+    }
+  });
+
+  /* Reservierungsanfrage */
+  document.getElementById('reservierung').addEventListener('submit', function(e){
+    e.preventDefault();
+    var d = new FormData(e.target);
+    var betreff = textVon('mail.betreff') + ' — ' + (d.get('name') || '');
+    var text =
+      textVon('mail.name') + ': ' + (d.get('name')||'') + '\n' +
+      textVon('mail.telefon') + ': ' + (d.get('telefon')||'') + '\n' +
+      textVon('mail.datum') + ': ' + (d.get('datum')||'') + '\n' +
+      textVon('mail.zeit') + ': ' + (d.get('zeit')||'') + '\n' +
+      textVon('mail.personen') + ': ' + (d.get('personen')||'') + '\n' +
+      textVon('mail.wunsch') + ': ' + (d.get('wunsch')||'');
+    window.location.href = 'mailto:info@boulevard-agrigento.it?subject=' +
+      encodeURIComponent(betreff) + '&body=' + encodeURIComponent(text);
+    var hinweis = document.getElementById('formhinweis');
+    hinweis.removeAttribute('data-t');
+    hinweis.textContent = textVon('form.gesendet');
+  });
+})();
+
+</script>
+</body>
+</html>
