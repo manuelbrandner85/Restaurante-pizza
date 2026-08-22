@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manuelbrandner85.github.io/Restaurante-pizza/sitemap.xml
