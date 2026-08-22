@@ -339,6 +339,25 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
   .szene:hover figure{transform:none}
 }
 
+/* ---------- Formularfelder: Systemdarstellung abschalten ---------- */
+.feld select{
+  -webkit-appearance:none;-moz-appearance:none;appearance:none;
+  background-color:rgba(0,0,0,.32);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23C9963F' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1.1rem center;background-size:13px 8px;
+  padding-right:3rem;color:var(--avorio);cursor:pointer;
+}
+.feld select:focus{background-color:rgba(0,0,0,.5)}
+.feld select::-ms-expand{display:none}
+.feld select option{background-color:#14100C;color:#EDE3D0}
+/* Kalender- und Uhrsymbol sichtbar machen */
+.feld input[type="date"],.feld input[type="time"]{-webkit-appearance:none;appearance:none}
+.feld input::-webkit-calendar-picker-indicator{
+  filter:invert(72%) sepia(38%) saturate(560%) hue-rotate(1deg) brightness(92%);
+  opacity:.85;cursor:pointer;
+}
+.feld input::-webkit-date-and-time-value{text-align:left}
+
 /* ---------- Handy-Feinschliff ---------- */
 html{scroll-padding-top:86px}
 *{-webkit-tap-highlight-color:rgba(201,150,63,.18)}
@@ -905,7 +924,7 @@ body.kasten-offen{overflow:hidden}
         </div>
         <div class="paar">
           <div class="feld"><label for="datum" data-t="form.datum">Datum</label><input id="datum" name="datum" type="date" required></div>
-          <div class="feld"><label for="zeit" data-t="form.zeit">Uhrzeit</label><input id="zeit" name="zeit" type="time" value="20:00" required></div>
+          <div class="feld"><label for="zeit" data-t="form.zeit">Uhrzeit</label><input id="zeit" name="zeit" type="time" value="20:00" step="900" required></div>
         </div>
         <div class="feld"><label for="personen" data-t="form.personen">Personen</label>
           <select id="personen" name="personen">
@@ -1373,6 +1392,19 @@ function spracheSetzen(neu){
     setTimeout(function(){ document.body.classList.add('geladen'); }, sanft ? 0 : 700);
   });
   document.getElementById('jahr').textContent = new Date().getFullYear();
+
+  /* Datumsfeld vorbelegen, damit es nie leer und ohne Format dasteht */
+  (function(){
+    var feld = document.getElementById('datum');
+    if(!feld) return;
+    var d = new Date();
+    if(d.getHours() >= 22) d.setDate(d.getDate() + 1);
+    var iso = function(x){
+      return x.getFullYear() + '-' + String(x.getMonth()+1).padStart(2,'0') + '-' + String(x.getDate()).padStart(2,'0');
+    };
+    feld.value = iso(d);
+    feld.min = iso(new Date());
+  })();
 
   /* Sprache: Browser fragen, dann umschaltbar */
   var wunsch = (navigator.language || 'de').slice(0,2).toLowerCase();
