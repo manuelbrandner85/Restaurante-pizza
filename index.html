@@ -88,7 +88,7 @@ body{
   font-family:var(--f-text);font-weight:300;font-size:clamp(15px,1.05vw,17px);line-height:1.75;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-img{max-width:100%;display:block}
+img{max-width:100%;display:block;height:auto}
 a{color:inherit}
 h1,h2,h3{font-family:var(--f-display);font-weight:600;letter-spacing:.09em;margin:0;line-height:1.15}
 .wrap{width:min(1180px,90vw);margin-inline:auto}
@@ -764,7 +764,7 @@ body.kasten-offen{overflow:hidden}
 
 <header id="kopf">
   <div class="wrap navzeile">
-    <a class="marke" href="#oben"><img class="marken-wappen" width="320" height="320" src="bilder/siegel.webp" alt=""><span class="wortmarke">Boule<span class="v">v</span>ard</span></a>
+    <a class="marke" href="#oben"><img width="320" height="320" class="marken-wappen" src="bilder/siegel.webp" alt=""><span class="wortmarke">Boule<span class="v">v</span>ard</span></a>
     <nav id="menue">
       <ul>
         <li><a href="#benvenuti" data-t="nav.willkommen">Benvenuti</a></li>
@@ -817,7 +817,7 @@ body.kasten-offen{overflow:hidden}
 </div>
 
 <section class="wappenblock auf" aria-hidden="true">
-  <img loading="lazy" width="760" height="570" src="bilder/wappen.webp" srcset="bilder/wappen-klein.webp 420w, bilder/wappen.webp 900w" sizes="(max-width:900px) 70vw, 420px" alt="">
+  <img width="760" height="570" loading="lazy" src="bilder/wappen.webp" srcset="bilder/wappen-klein.webp 420w, bilder/wappen.webp 900w" sizes="(max-width:900px) 70vw, 420px" alt="">
 </section>
 
 <section class="stanza" id="benvenuti" style="padding-top:clamp(2rem,4vw,3rem)">
@@ -899,7 +899,7 @@ body.kasten-offen{overflow:hidden}
 
     <div class="degustazione auf">
       <button class="blatt-knopf" type="button" id="karte-oeffnen" data-t-aria="degu.lupe" aria-label="Speisekarte vergrößert ansehen">
-        <img loading="lazy" width="780" height="1075" src="bilder/degustazione.webp" srcset="bilder/degustazione-klein.webp 520w, bilder/degustazione.webp 780w" sizes="(max-width:900px) 90vw, 440px" alt="Menù Degustazione di pesce des Ristorante Boulevard">
+        <img width="780" height="975" loading="lazy" src="bilder/degustazione.webp" srcset="bilder/degustazione-klein.webp 520w, bilder/degustazione.webp 780w" sizes="(max-width:900px) 90vw, 440px" alt="Menù Degustazione di pesce des Ristorante Boulevard">
         <span class="lupe" data-t="degu.lupe">Karte vergrößern</span>
       </button>
       <div class="degu-text">
@@ -937,7 +937,7 @@ body.kasten-offen{overflow:hidden}
     <p class="eyebrow auf" style="text-align:center;margin-bottom:clamp(2rem,4vw,3rem)" data-t="karte.alacarta">Alla carta</p>
     <div class="karte">
       <div class="gang auf">
-        <div class="gang-bild"><div class="rahmen"><img loading="lazy" width="1400" height="933" src="bilder/antipasti.webp" srcset="bilder/antipasti-klein.webp 560w, bilder/antipasti.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.antipasti"></div></div>
+        <div class="gang-bild"><div class="rahmen"><img width="1000" height="666" loading="lazy" src="bilder/antipasti.webp" srcset="bilder/antipasti-klein.webp 560w, bilder/antipasti.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.antipasti"></div></div>
         <h3>Antipasti</h3>
         <div class="speise"><span class="name">Caponata agrigentina</span><span class="preis">9 €</span><span class="zutaten" data-t="g1">Aubergine, Sellerie, Kapern, geröstete Mandeln</span></div>
         <div class="speise"><span class="name">Sarde a beccafico</span><span class="preis">11 €</span><span class="zutaten" data-t="g2">Gefüllte Sardinen, Pinienkerne, Orange, Lorbeer</span></div>
@@ -945,7 +945,7 @@ body.kasten-offen{overflow:hidden}
         <div class="speise"><span class="name">Insalata di arance</span><span class="preis">8 €</span><span class="zutaten" data-t="g4">Orange, Fenchel, rote Zwiebel, Olivenöl</span></div>
       </div>
       <div class="gang auf v2">
-        <div class="gang-bild"><div class="rahmen"><img loading="lazy" width="1400" height="933" src="bilder/primi.webp" srcset="bilder/primi-klein.webp 560w, bilder/primi.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.primi"></div></div>
+        <div class="gang-bild"><div class="rahmen"><img width="1000" height="666" loading="lazy" src="bilder/primi.webp" srcset="bilder/primi-klein.webp 560w, bilder/primi.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.primi"></div></div>
         <h3>Primi</h3>
         <div class="speise"><span class="name">Busiate alla trapanese</span><span class="preis">13 €</span><span class="zutaten" data-t="g5">Mandel-Basilikum-Pesto, Kirschtomaten</span></div>
         <div class="speise"><span class="name">Spaghetti ai ricci di mare</span><span class="preis">19 €</span><span class="zutaten" data-t="g6">Seeigel, saisonal — bitte erfragen</span></div>
@@ -953,7 +953,7 @@ body.kasten-offen{overflow:hidden}
         <div class="speise"><span class="name">Pasta con le sarde</span><span class="preis">14 €</span><span class="zutaten" data-t="g8">Sardinen, wilder Fenchel, Rosinen, Safran</span></div>
       </div>
       <div class="gang auf">
-        <div class="gang-bild"><div class="rahmen"><img loading="lazy" width="1400" height="933" src="bilder/pizza.webp" srcset="bilder/pizza-klein.webp 560w, bilder/pizza.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.pizza"></div></div>
+        <div class="gang-bild"><div class="rahmen"><img width="1000" height="666" loading="lazy" src="bilder/pizza.webp" srcset="bilder/pizza-klein.webp 560w, bilder/pizza.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.pizza"></div></div>
         <h3>Dal forno a legna</h3>
         <div class="speise"><span class="name">Margherita</span><span class="preis">8 €</span><span class="zutaten" data-t="g9">San-Marzano-Tomate, Fior di latte, Basilikum</span></div>
         <div class="speise"><span class="name">Contadina</span><span class="preis">12 €</span><span class="zutaten" data-t="g10">Grillgemüse, Ricotta salata, Oregano</span></div>
@@ -961,7 +961,7 @@ body.kasten-offen{overflow:hidden}
         <div class="speise"><span class="name">Valle dei Templi</span><span class="preis">14 €</span><span class="zutaten" data-t="g12">Pistazie aus Bronte, Mortadella, Burrata</span></div>
       </div>
       <div class="gang auf v2">
-        <div class="gang-bild"><div class="rahmen"><img loading="lazy" width="1400" height="933" src="bilder/secondi.webp" srcset="bilder/secondi-klein.webp 560w, bilder/secondi.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.secondi"></div></div>
+        <div class="gang-bild"><div class="rahmen"><img width="1000" height="666" loading="lazy" src="bilder/secondi.webp" srcset="bilder/secondi-klein.webp 560w, bilder/secondi.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.secondi"></div></div>
         <h3 data-t="karte.secondi">Secondi &amp; Dolci</h3>
         <div class="speise"><span class="name">Pesce del giorno alla griglia</span><span class="preis" data-t="karte.tagespreis">Tagespreis</span><span class="zutaten" data-t="g13">Ganzer Fisch vom Markt, Zitrone, Olivenöl</span></div>
         <div class="speise"><span class="name">Involtini di pesce spada</span><span class="preis">22 €</span><span class="zutaten" data-t="g14">Schwertfischröllchen, Semmelbrösel, Minze</span></div>
@@ -1090,14 +1090,14 @@ body.kasten-offen{overflow:hidden}
   <button class="lk-zu" type="button" id="kasten-zu" data-t-aria="degu.schliessen" aria-label="Schließen">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
-  <img id="kasten-bild" width="900" height="1305" data-quelle="bilder/degustazione-gross.webp" alt="Menù Degustazione di pesce — Antipasti, Primo piatto, 30 € pro Person">
+  <img width="900" height="1352" id="kasten-bild" data-quelle="bilder/degustazione-gross.webp" alt="Menù Degustazione di pesce — Antipasti, Primo piatto, 30 € pro Person">
 </div>
 
 </main>
 
 <footer>
   <div class="wrap">
-    <img class="wappen" loading="lazy" width="760" height="570" src="bilder/wappen.webp" alt="Boulevard Ristorante Pizzeria">
+    <img width="760" height="570" class="wappen" loading="lazy" src="bilder/wappen.webp" alt="Boulevard Ristorante Pizzeria">
     <p class="zeile">Agrigento &middot; Sicilia &nbsp;—&nbsp; <a href="#kontakt" data-t="fuss.reservierung">Reservierung</a> &nbsp;&middot;&nbsp; <a href="#cucina" data-t="fuss.karte">Karte</a></p>
     <p class="zeile"><a class="impressum-link" id="impressum-link" href="impressum.html" data-t="impressum.titel">Impressum &amp; Datenschutz</a></p>
     <p class="zeile" style="margin-top:1.2rem;opacity:.6">© <span id="jahr"></span> Ristorante Boulevard</p>
