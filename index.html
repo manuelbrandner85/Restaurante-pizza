@@ -1016,14 +1016,7 @@ body.kasten-offen{overflow:hidden}
   <div class="wrap">
     <img class="wappen" loading="lazy" src="bilder/wappen.webp" alt="Boulevard Ristorante Pizzeria">
     <p class="zeile">Agrigento &middot; Sicilia &nbsp;—&nbsp; <a href="#kontakt" data-t="fuss.reservierung">Reservierung</a> &nbsp;&middot;&nbsp; <a href="#cucina" data-t="fuss.karte">Karte</a></p>
-    <details id="impressum" class="impressum">
-      <summary data-t="impressum.titel">Impressum &amp; Datenschutz</summary>
-      <p>Ristorante Boulevard &middot; Viale della Vittoria 13, 92100 Agrigento (AG), Italia<br>
-      <span data-t="impressum.inhaber">Inhaber</span>: Vor- und Nachname &middot; P. IVA 00000000000<br>
-      Tel. +39 0922 661578 &middot; info@boulevard-agrigento.it</p>
-      <p data-t="impressum.datenschutz">Diese Seite setzt keine Cookies und bindet keine externen Dienste ein.</p>
-      <p class="nachweis"><span data-t="impressum.bilder">Bildnachweis</span>: Tempio della Concordia bei Nacht — Dreirik (CC0). Tempio dei Dioscuri, Tempio di Giunone, Panorama — Effems (CC BY-SA 4.0), <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>.</p>
-    </details>
+    <p class="zeile"><a class="impressum-link" id="impressum-link" href="impressum.html" data-t="impressum.titel">Impressum &amp; Datenschutz</a></p>
     <p class="zeile" style="margin-top:1.2rem;opacity:.6">© <span id="jahr"></span> Ristorante Boulevard</p>
   </div>
 </footer>
@@ -1321,6 +1314,11 @@ function spracheSetzen(neu){
   document.querySelectorAll('.sprachen button').forEach(function(b){
     b.setAttribute('aria-pressed', b.getAttribute('data-sprache') === neu ? 'true' : 'false');
   });
+  var impressum = document.getElementById('impressum-link');
+  if(impressum){
+    var iz = impressum.getAttribute('href').split('?')[0];
+    if(iz.indexOf('impressum.html') !== -1) impressum.setAttribute('href', iz + '?l=' + neu);
+  }
   var anfahrt = document.getElementById('anfahrt-karte');
   if(anfahrt){
     var ziel = anfahrt.getAttribute('href').split('?')[0];

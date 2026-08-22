@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0A0806">
-<title>Anfahrt — Ristorante Boulevard, Agrigento</title>
-<meta name="description" content="So finden Sie das Ristorante Boulevard im historischen Zentrum von Agrigento.">
+<meta name="robots" content="noindex, follow">
+<title>Impressum und Datenschutz — Ristorante Boulevard, Agrigento</title>
+<meta name="description" content="Impressum, Datenschutzhinweise und Bildnachweis des Ristorante Boulevard in Agrigento.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
@@ -369,7 +370,7 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
 .marken-wappen{height:38px;width:38px}
 .marke{display:flex;align-items:center;gap:.85rem;font-family:var(--f-display);font-size:.95rem;letter-spacing:.34em;color:var(--avorio);text-decoration:none}
 
-/* ---------- Anfahrtsseite ---------- */
+/* ---------- Rechtliche Seite ---------- */
 .zurueck{
   display:inline-flex;align-items:center;gap:.7rem;text-decoration:none;
   font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(237,227,208,.7);
@@ -378,27 +379,28 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
 .zurueck:hover{color:var(--oro-hell)}
 .zurueck svg{width:15px;height:15px;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
 .zurueck:hover svg{transform:translateX(-5px)}
-.a-kopf{padding:clamp(6.5rem,14vw,9rem) 0 clamp(2rem,5vw,3rem)}
-.a-kopf h1{font-family:var(--f-display);font-weight:600;font-size:clamp(1.9rem,4.4vw,3rem);letter-spacing:.07em;margin:.6rem 0 0}
-.a-kopf h1 em{font-family:var(--f-akzent);font-style:italic;font-weight:400;color:var(--oro-hell);letter-spacing:.01em;display:block;text-transform:none}
-.a-raster{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(2rem,4vw,3.5rem);align-items:start;padding-bottom:clamp(4rem,9vw,7rem)}
-.kartenfeld{position:relative;aspect-ratio:4/3;border:1px solid var(--linie);background:#0B0907;overflow:hidden}
-.kartenfeld iframe{width:100%;height:100%;border:0;display:block;filter:saturate(.85) contrast(1.05)}
-.vorschalt{
-  position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:2rem;
-  background:linear-gradient(160deg,rgba(201,150,63,.08),transparent 60%),var(--pietra);
+.r-kopf{padding:clamp(6.5rem,14vw,9rem) 0 clamp(2rem,5vw,3rem)}
+.r-kopf h1{font-family:var(--f-display);font-weight:600;font-size:clamp(1.9rem,4.4vw,3rem);letter-spacing:.07em;margin:.6rem 0 0}
+.r-kopf h1 em{font-family:var(--f-akzent);font-style:italic;font-weight:400;color:var(--oro-hell);letter-spacing:.01em;display:block;text-transform:none}
+.r-raster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,3vw,2rem);padding-bottom:clamp(4rem,9vw,7rem);align-items:start}
+.r-block{
+  border:1px solid var(--linie);padding:clamp(1.4rem,3vw,2.1rem);background:#181310;
+  box-shadow:var(--auf-mittel),var(--kante);
 }
-.vorschalt p{max-width:36ch;color:rgba(237,227,208,.7);font-size:.9rem;margin:0 0 1.6rem}
-.vorschalt .eyebrow{margin-bottom:.9rem}
-.a-block{border:1px solid var(--linie);padding:clamp(1.4rem,3vw,2rem);margin-bottom:1.2rem;background:var(--pietra)}
-.a-block h2{font-family:var(--f-text);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--oro);font-weight:400;margin:0 0 .9rem}
-.a-block p{margin:0;color:rgba(237,227,208,.78);font-size:.94rem;line-height:1.7}
-.a-block a{color:var(--oro-hell);text-decoration:none;border-bottom:1px solid transparent}
-.a-block a:hover{border-color:var(--oro)}
-.a-liste{list-style:none;margin:0;padding:0}
-.a-liste li{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px dotted rgba(201,150,63,.18);font-size:.9rem}
-.a-liste li:last-child{border-bottom:0}
-.a-liste span:last-child{color:var(--oro-hell)}
+.r-block.breit{grid-column:1 / -1}
+.r-block h2{
+  font-family:var(--f-text);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--oro);font-weight:400;margin:0 0 1rem;
+}
+.r-block p{margin:0 0 .9rem;color:rgba(237,227,208,.78);font-size:.94rem;line-height:1.75}
+.r-block p:last-child{margin-bottom:0}
+.r-block a{color:var(--oro-hell);text-decoration:none;border-bottom:1px solid transparent}
+.r-block a:hover{border-color:var(--oro)}
+.r-block .klein{font-size:.82rem;color:rgba(237,227,208,.5)}
+.offen{
+  display:inline-block;margin-top:.4rem;padding:.3rem .7rem;font-size:.68rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--oro);border:1px dashed rgba(201,150,63,.5);
+}
 
 @media (max-width:900px){
   .sprachen{padding:0}
@@ -411,10 +413,9 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
   .feld input,.feld select,.feld textarea{font-size:16px}
 }
 @media (max-width:900px){
-  .a-raster{grid-template-columns:1fr}
-  .kartenfeld{aspect-ratio:1/1}
+  .r-raster{grid-template-columns:1fr}
   .zurueck{min-height:46px}
-  .a-block a{display:inline-block;min-height:44px;display:inline-flex;align-items:center}
+  .r-block a{min-height:44px;display:inline-flex;align-items:center}
 }
 
 </style>
@@ -423,7 +424,7 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
 
 <header id="kopf" class="fest">
   <div class="wrap navzeile">
-    <a class="marke" href="index.html"><img class="marken-wappen" src="bilder/siegel.webp" alt=""><span class="wortmarke">Boule<span class="v">v</span>ard</span></a>
+    <a class="marke" href="index.html"><img class="marken-wappen" width="320" height="320" src="bilder/siegel.webp" alt=""><span class="wortmarke">Boule<span class="v">v</span>ard</span></a>
     <div class="sprachen" role="group" aria-label="Sprache / Lingua / Language">
       <button type="button" data-sprache="de" lang="de">DE</button>
       <button type="button" data-sprache="it" lang="it">IT</button>
@@ -432,57 +433,60 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
   </div>
 </header>
 
-<div class="wrap a-kopf">
-  <a class="zurueck" id="zurueck" href="index.html">
+<main>
+<div class="wrap r-kopf">
+  <a class="zurueck" href="index.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H6M11 18l-6-6 6-6"/></svg>
     <span data-t="zurueck">Zur Startseite</span>
   </a>
-  <p class="eyebrow" style="margin-top:1.4rem" data-t="eyebrow">Come arrivare</p>
-  <h1><span data-t="titel1">So finden Sie uns</span><em data-t="titel2">am Viale della Vittoria</em></h1>
+  <p class="eyebrow" style="margin-top:1.4rem" data-t="eyebrow">Informazioni legali</p>
+  <h1><span data-t="titel1">Impressum</span> <em data-t="titel2">und Datenschutz</em></h1>
 </div>
 
-<div class="wrap a-raster">
-  <div>
-    <div class="kartenfeld" id="kartenfeld">
-      <div class="vorschalt" id="vorschalt">
-        <div>
-          <p class="eyebrow" data-t="karte.eyebrow">Google Maps</p>
-          <p data-t="karte.hinweis">Die Karte wird erst auf Ihren Klick geladen. Dabei werden Daten an Google übertragen.</p>
-          <button class="knopf" type="button" id="karte-laden"><span data-t="karte.laden">Karte laden</span></button>
-        </div>
-      </div>
-    </div>
-    <p style="margin:1.2rem 0 0"><a class="knopf" href="https://www.google.com/maps/dir/?api=1&amp;destination=Boulevard+Ristorante+Pizzeria,+Viale+della+Vittoria+13,+Agrigento" target="_blank" rel="noopener"><span data-t="route">Route berechnen</span></a></p>
+<div class="wrap r-raster">
+  <div class="r-block">
+    <h2 data-t="betreiber">Betreiber</h2>
+    <p>Ristorante Boulevard<br>
+    Viale della Vittoria 13<br>
+    92100 Agrigento (AG)<br>
+    Italia</p>
+    <p><a href="tel:+390922661578">+39 0922 661578</a><br>
+    <a href="https://www.facebook.com/boulevardagrigento" target="_blank" rel="noopener">facebook.com/boulevardagrigento</a></p>
   </div>
 
-  <aside>
-    <div class="a-block">
-      <h2 data-t="adresse">Adresse</h2>
-      <p>Ristorante Boulevard<br>Viale della Vittoria 13<br>92100 Agrigento (AG)<br>Italia</p>
-    </div>
-    <div class="a-block">
-      <h2 data-t="auto">Mit dem Auto</h2>
-      <p data-t="auto.text">Vom Tal der Tempel etwa zehn Minuten. Die Altstadt ist weitgehend Fußgängerzone — parken Sie am Piazzale Rosselli, von dort sind es fünf Minuten zu Fuß.</p>
-    </div>
-    <div class="a-block">
-      <h2 data-t="fuss">Zu Fuß</h2>
-      <p data-t="fuss.text">Von der Via Atenea aus liegt der Eingang hinter einem schmiedeeisernen Tor. Abends ist die Laterne über dem Bogen das sicherste Erkennungszeichen.</p>
-    </div>
-    <div class="a-block">
-      <h2 data-t="entfernungen">Entfernungen</h2>
-      <ul class="a-liste">
-        <li><span data-t="e1">Valle dei Templi</span><span>10 min</span></li>
-        <li><span data-t="e2">Bahnhof Agrigento Centrale</span><span data-t="e2.wert">zu Fuß</span></li>
-        <li><span data-t="e3">Scala dei Turchi</span><span>25 min</span></li>
-        <li><span data-t="e4">Flughafen Palermo</span><span>2 h</span></li>
-      </ul>
-    </div>
-    <div class="a-block">
-      <h2 data-t="kontakt">Kontakt</h2>
-      <p><a href="tel:+390922661578">+39 0922 661578</a><br><a href="mailto:info@boulevard-agrigento.it">info@boulevard-agrigento.it</a></p>
-    </div>
-  </aside>
+  <div class="r-block">
+    <h2 data-t="angaben">Rechtliche Angaben</h2>
+    <p><span data-t="inhaber">Inhaber</span>: <span class="offen">Vor- und Nachname</span><br>
+    <span data-t="steuer">P. IVA / Steuernummer</span>: <span class="offen">00000000000</span><br>
+    <span data-t="verantwortlich">Verantwortlich für den Inhalt</span>: <span class="offen">Vor- und Nachname</span></p>
+    <p class="klein" data-t="nachtragen">Die eingerahmten Angaben müssen vor der Veröffentlichung noch eingetragen werden.</p>
+  </div>
+
+  <div class="r-block breit">
+    <h2 data-t="datenschutz">Datenschutz</h2>
+    <p data-t="ds1">Diese Seite setzt keine Cookies und verwendet keine Besucherstatistik. Es werden keine Konten angelegt und keine Daten an Dritte weitergegeben.</p>
+    <p data-t="ds2">Auf der Seite „Anfahrt“ lässt sich eine Karte von Google Maps laden. Das geschieht ausschließlich nach ausdrücklichem Klick. Erst dann werden Daten — darunter Ihre IP-Adresse — an Google übertragen. Vorher entsteht keinerlei Verbindung zu Google.</p>
+    <p data-t="ds3">Das Reservierungsformular sendet nichts an einen Server. Es öffnet Ihr eigenes E-Mail-Programm mit den ausgefüllten Angaben; erst wenn Sie die Nachricht absenden, erreichen uns die Daten. Wir verwenden sie ausschließlich zur Bearbeitung Ihrer Anfrage.</p>
+    <p data-t="ds4">Die Seite wird bei GitHub Pages gehostet. Wie bei jedem Webserver werden dabei technische Zugriffsdaten wie IP-Adresse, Zeitpunkt und abgerufene Datei verarbeitet, um die Auslieferung zu ermöglichen und Angriffe abzuwehren.</p>
+    <p data-t="ds5">Die Schriften werden von Google Fonts geladen. Dabei wird Ihre IP-Adresse an Google übertragen.</p>
+  </div>
+
+  <div class="r-block breit">
+    <h2 data-t="bilder">Bildnachweis</h2>
+    <p data-t="bilder1">Eingang, Wappen und Speisekarte: Ristorante Boulevard.</p>
+    <p>Tempio della Concordia bei Nacht — Dreirik (CC0).<br>
+    Tempio dei Dioscuri, Tempio di Giunone, Panorama — Effems (CC BY-SA 4.0).<br>
+    <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a></p>
+    <p class="klein" data-t="bilder2">Die Aufnahmen unter CC BY-SA 4.0 wurden farblich bearbeitet. Die Nennung der Urheber ist Bedingung der Lizenz.</p>
+  </div>
+
+  <div class="r-block breit">
+    <h2 data-t="haftung">Haftung</h2>
+    <p data-t="haftung1">Die Inhalte dieser Seite werden mit Sorgfalt erstellt. Für Preise, Öffnungszeiten und Verfügbarkeit einzelner Gerichte gilt der Aushang im Lokal; kurzfristige Änderungen bleiben vorbehalten.</p>
+    <p data-t="haftung2">Für Inhalte externer Seiten, auf die verwiesen wird, sind ausschließlich deren Betreiber verantwortlich.</p>
+  </div>
 </div>
+</main>
 
 <footer>
   <div class="wrap">
@@ -490,8 +494,7 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 12H6M11 18l-6-6 6-6"/></svg>
       <span data-t="zurueck">Zur Startseite</span>
     </a>
-    <p class="zeile">Agrigento &middot; Sicilia &nbsp;—&nbsp; <a href="impressum.html" id="impressum-link" data-t="impressum">Impressum &amp; Datenschutz</a></p>
-    <p class="zeile" style="margin-top:.6rem;opacity:.6">© <span id="jahr"></span> Ristorante Boulevard</p>
+    <p class="zeile">Agrigento &middot; Sicilia &nbsp;—&nbsp; © <span id="jahr"></span> Ristorante Boulevard</p>
   </div>
 </footer>
 
@@ -499,49 +502,67 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
 
 var TEXTE = {
   de: {
-    'meta.titel': 'Anfahrt — Ristorante Boulevard, Agrigento',
-    'meta.beschreibung': 'So finden Sie das Ristorante Boulevard am Viale della Vittoria 13 in Agrigento: Adresse, Parken, Entfernungen und Karte.',
-    'zurueck': 'Zur Startseite', 'eyebrow': 'Come arrivare',
-    'titel1': 'So finden Sie uns', 'titel2': 'am Viale della Vittoria',
-    'karte.eyebrow': 'Google Maps',
-    'karte.hinweis': 'Die Karte wird erst auf Ihren Klick geladen. Dabei werden Daten an Google übertragen.',
-    'karte.laden': 'Karte laden', 'route': 'Route berechnen',
-    'adresse': 'Adresse', 'auto': 'Mit dem Auto',
-    'auto.text': 'Vom Tal der Tempel etwa zehn Minuten. Der Viale della Vittoria liegt oberhalb der Altstadt; Parkplätze finden Sie entlang der Allee und am Piazzale Rosselli.',
-    'fuss': 'Zu Fuß',
-    'fuss.text': 'Vom Bahnhof Agrigento Centrale sind es wenige Minuten zu Fuß. Der Eingang liegt hinter einem schmiedeeisernen Tor — abends ist die Laterne über dem Bogen das sicherste Erkennungszeichen.',
-    'entfernungen': 'Entfernungen', 'e1': 'Valle dei Templi', 'e2': 'Bahnhof Agrigento Centrale', 'e2.wert': 'zu Fuß',
-    'e3': 'Scala dei Turchi', 'e4': 'Flughafen Palermo', 'kontakt': 'Kontakt', 'impressum': 'Impressum & Datenschutz'
+    'meta.titel': 'Impressum und Datenschutz — Ristorante Boulevard, Agrigento',
+    'meta.beschreibung': 'Impressum, Datenschutzhinweise und Bildnachweis des Ristorante Boulevard, Viale della Vittoria 13, Agrigento.',
+    'zurueck': 'Zur Startseite', 'eyebrow': 'Informazioni legali',
+    'titel1': 'Impressum', 'titel2': 'und Datenschutz',
+    'betreiber': 'Betreiber', 'angaben': 'Rechtliche Angaben',
+    'inhaber': 'Inhaber', 'steuer': 'P. IVA / Steuernummer', 'verantwortlich': 'Verantwortlich für den Inhalt',
+    'nachtragen': 'Die eingerahmten Angaben müssen vor der Veröffentlichung noch eingetragen werden.',
+    'datenschutz': 'Datenschutz',
+    'ds1': 'Diese Seite setzt keine Cookies und verwendet keine Besucherstatistik. Es werden keine Konten angelegt und keine Daten an Dritte weitergegeben.',
+    'ds2': 'Auf der Seite „Anfahrt“ lässt sich eine Karte von Google Maps laden. Das geschieht ausschließlich nach ausdrücklichem Klick. Erst dann werden Daten — darunter Ihre IP-Adresse — an Google übertragen. Vorher entsteht keinerlei Verbindung zu Google.',
+    'ds3': 'Das Reservierungsformular sendet nichts an einen Server. Es öffnet Ihr eigenes E-Mail-Programm mit den ausgefüllten Angaben; erst wenn Sie die Nachricht absenden, erreichen uns die Daten. Wir verwenden sie ausschließlich zur Bearbeitung Ihrer Anfrage.',
+    'ds4': 'Die Seite wird bei GitHub Pages gehostet. Wie bei jedem Webserver werden dabei technische Zugriffsdaten wie IP-Adresse, Zeitpunkt und abgerufene Datei verarbeitet, um die Auslieferung zu ermöglichen und Angriffe abzuwehren.',
+    'ds5': 'Die Schriften werden von Google Fonts geladen. Dabei wird Ihre IP-Adresse an Google übertragen.',
+    'bilder': 'Bildnachweis',
+    'bilder1': 'Eingang, Wappen und Speisekarte: Ristorante Boulevard.',
+    'bilder2': 'Die Aufnahmen unter CC BY-SA 4.0 wurden farblich bearbeitet. Die Nennung der Urheber ist Bedingung der Lizenz.',
+    'haftung': 'Haftung',
+    'haftung1': 'Die Inhalte dieser Seite werden mit Sorgfalt erstellt. Für Preise, Öffnungszeiten und Verfügbarkeit einzelner Gerichte gilt der Aushang im Lokal; kurzfristige Änderungen bleiben vorbehalten.',
+    'haftung2': 'Für Inhalte externer Seiten, auf die verwiesen wird, sind ausschließlich deren Betreiber verantwortlich.'
   },
   it: {
-    'meta.titel': 'Come arrivare — Ristorante Boulevard, Agrigento',
-    'meta.beschreibung': 'Come raggiungere il Ristorante Boulevard nel centro storico di Agrigento: indirizzo, parcheggio, distanze e mappa.',
-    'zurueck': 'Torna alla home', 'eyebrow': 'Come arrivare',
-    'titel1': 'Dove ci trovate', 'titel2': 'sul Viale della Vittoria',
-    'karte.eyebrow': 'Google Maps',
-    'karte.hinweis': 'La mappa viene caricata solo dopo il vostro clic. In quel momento i dati vengono trasmessi a Google.',
-    'karte.laden': 'Carica la mappa', 'route': 'Calcola il percorso',
-    'adresse': 'Indirizzo', 'auto': 'In auto',
-    'auto.text': 'Dalla Valle dei Templi circa dieci minuti. Il Viale della Vittoria si trova sopra il centro storico; si parcheggia lungo il viale o al Piazzale Rosselli.',
-    'fuss': 'A piedi',
-    'fuss.text': "Dalla stazione di Agrigento Centrale sono pochi minuti a piedi. L'ingresso è dietro un cancello in ferro battuto — la sera la lanterna sopra l'arco è il riferimento più sicuro.",
-    'entfernungen': 'Distanze', 'e1': 'Valle dei Templi', 'e2': 'Stazione Agrigento Centrale', 'e2.wert': 'a piedi',
-    'e3': 'Scala dei Turchi', 'e4': 'Aeroporto di Palermo', 'kontakt': 'Contatti', 'impressum': 'Informazioni legali e privacy'
+    'meta.titel': 'Informazioni legali e privacy — Ristorante Boulevard, Agrigento',
+    'meta.beschreibung': 'Informazioni legali, privacy e crediti fotografici del Ristorante Boulevard, Viale della Vittoria 13, Agrigento.',
+    'zurueck': 'Torna alla home', 'eyebrow': 'Informazioni legali',
+    'titel1': 'Informazioni legali', 'titel2': 'e privacy',
+    'betreiber': 'Esercente', 'angaben': 'Dati fiscali',
+    'inhaber': 'Titolare', 'steuer': 'P. IVA / Codice fiscale', 'verantwortlich': 'Responsabile dei contenuti',
+    'nachtragen': 'I campi incorniciati vanno completati prima della pubblicazione.',
+    'datenschutz': 'Privacy',
+    'ds1': 'Questo sito non usa cookie né statistiche di visita. Non vengono creati account e nessun dato viene ceduto a terzi.',
+    'ds2': 'Nella pagina „Come arrivare“ è possibile caricare una mappa di Google Maps. Avviene solo dopo un clic esplicito. Solo allora i dati — compreso il vostro indirizzo IP — vengono trasmessi a Google. Prima non esiste alcun collegamento con Google.',
+    'ds3': 'Il modulo di prenotazione non invia nulla a un server. Apre il vostro programma di posta con i dati già inseriti; i dati ci raggiungono solo quando inviate il messaggio. Li usiamo esclusivamente per rispondere alla richiesta.',
+    'ds4': 'Il sito è ospitato su GitHub Pages. Come su qualsiasi server web vengono trattati dati tecnici di accesso — indirizzo IP, orario, file richiesto — per consentire la consegna e difendersi da attacchi.',
+    'ds5': 'I caratteri tipografici vengono caricati da Google Fonts. In questo passaggio il vostro indirizzo IP viene trasmesso a Google.',
+    'bilder': 'Crediti fotografici',
+    'bilder1': 'Ingresso, logo e menu: Ristorante Boulevard.',
+    'bilder2': 'Le immagini con licenza CC BY-SA 4.0 sono state modificate nel colore. La citazione degli autori è condizione della licenza.',
+    'haftung': 'Responsabilità',
+    'haftung1': 'I contenuti sono redatti con cura. Per prezzi, orari e disponibilità dei piatti fa fede quanto esposto in sala; sono possibili variazioni a breve termine.',
+    'haftung2': 'Dei contenuti dei siti esterni collegati rispondono esclusivamente i rispettivi gestori.'
   },
   en: {
-    'meta.titel': 'Getting here — Ristorante Boulevard, Agrigento',
-    'meta.beschreibung': 'How to find Ristorante Boulevard in the old centre of Agrigento: address, parking, distances and map.',
-    'zurueck': 'Back to the home page', 'eyebrow': 'Come arrivare',
-    'titel1': 'How to find us', 'titel2': 'on Viale della Vittoria',
-    'karte.eyebrow': 'Google Maps',
-    'karte.hinweis': 'The map loads only when you click. At that point data is sent to Google.',
-    'karte.laden': 'Load the map', 'route': 'Get directions',
-    'adresse': 'Address', 'auto': 'By car',
-    'auto.text': 'About ten minutes from the Valley of the Temples. Viale della Vittoria runs above the old town; park along the avenue or at Piazzale Rosselli.',
-    'fuss': 'On foot',
-    'fuss.text': 'A few minutes on foot from Agrigento Centrale station. The entrance sits behind a wrought-iron gate — after dark the lantern above the arch is the surest landmark.',
-    'entfernungen': 'Distances', 'e1': 'Valle dei Templi', 'e2': 'Agrigento Centrale station', 'e2.wert': 'on foot',
-    'e3': 'Scala dei Turchi', 'e4': 'Palermo airport', 'kontakt': 'Contact', 'impressum': 'Legal notice & privacy'
+    'meta.titel': 'Legal notice & privacy — Ristorante Boulevard, Agrigento',
+    'meta.beschreibung': 'Legal notice, privacy information and image credits for Ristorante Boulevard, Viale della Vittoria 13, Agrigento.',
+    'zurueck': 'Back to the home page', 'eyebrow': 'Informazioni legali',
+    'titel1': 'Legal notice', 'titel2': 'and privacy',
+    'betreiber': 'Operator', 'angaben': 'Company details',
+    'inhaber': 'Owner', 'steuer': 'VAT / tax number', 'verantwortlich': 'Responsible for content',
+    'nachtragen': 'The framed entries still need to be filled in before publication.',
+    'datenschutz': 'Privacy',
+    'ds1': 'This site sets no cookies and uses no visitor analytics. No accounts are created and no data is passed to third parties.',
+    'ds2': 'On the „Getting here“ page a Google Maps view can be loaded. This happens only after an explicit click. Only then is data — including your IP address — sent to Google. Before that, no connection to Google is made.',
+    'ds3': 'The booking form sends nothing to a server. It opens your own email program with the details filled in; the data reaches us only when you send the message. We use it solely to answer your enquiry.',
+    'ds4': 'The site is hosted on GitHub Pages. As with any web server, technical access data such as IP address, time and requested file are processed to deliver the page and defend against attacks.',
+    'ds5': 'The typefaces are loaded from Google Fonts. In doing so your IP address is transmitted to Google.',
+    'bilder': 'Image credits',
+    'bilder1': 'Entrance, emblem and menu: Ristorante Boulevard.',
+    'bilder2': 'The CC BY-SA 4.0 photographs have been colour-graded. Crediting the authors is a condition of the licence.',
+    'haftung': 'Liability',
+    'haftung1': 'The contents of this site are prepared with care. For prices, opening hours and the availability of individual dishes, the notice in the restaurant applies; short-notice changes are possible.',
+    'haftung2': 'The operators of any external sites linked here are solely responsible for their content.'
   }
 };
 
@@ -562,34 +583,15 @@ function spracheSetzen(neu){
   document.querySelectorAll('a.marke, a.zurueck').forEach(function(a){
     a.setAttribute('href', 'index.html?l=' + neu);
   });
-  var il = document.getElementById('impressum-link');
-  if(il) il.setAttribute('href', 'impressum.html?l=' + neu);
 }
 
 (function(){
   document.getElementById('jahr').textContent = new Date().getFullYear();
-
   var abfrage = new URLSearchParams(window.location.search).get('l');
   var wunsch = abfrage || (navigator.language || 'de').slice(0,2).toLowerCase();
   spracheSetzen(TEXTE[wunsch] ? wunsch : 'de');
-
   document.querySelectorAll('.sprachen button').forEach(function(b){
     b.addEventListener('click', function(){ spracheSetzen(b.getAttribute('data-sprache')); });
-  });
-
-  /* Zwei-Klick-Lösung: Google lädt erst auf Wunsch */
-  document.getElementById('karte-laden').addEventListener('click', function(){
-    var feld = document.getElementById('kartenfeld');
-    var rahmen = document.createElement('iframe');
-    rahmen.setAttribute('title', textVon('karte.eyebrow'));
-    rahmen.setAttribute('loading', 'lazy');
-    rahmen.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
-    rahmen.setAttribute('allowfullscreen', '');
-    rahmen.src = 'https://www.google.com/maps?q=' +
-      encodeURIComponent('Boulevard Ristorante Pizzeria, Viale della Vittoria 13, Agrigento, Italia') +
-      '&hl=' + sprache + '&z=16&output=embed';
-    feld.appendChild(rahmen);
-    document.getElementById('vorschalt').remove();
   });
 })();
 
