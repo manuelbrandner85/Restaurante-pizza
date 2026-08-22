@@ -613,6 +613,28 @@ body.kasten-offen{overflow:hidden}
   .fortschritt{display:none}
 }
 
+/* ---------- Bilder in der Speisekarte ---------- */
+.gang-bild{
+  background:#16110D;padding:10px;border:1px solid rgba(201,150,63,.16);
+  box-shadow:var(--auf-weit),var(--kante);margin:0 0 1.6rem;
+  transition:transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.gang-bild .rahmen{position:relative;aspect-ratio:3/2;overflow:hidden;background:#060504}
+.gang-bild img{width:100%;height:100%;object-fit:cover;display:block}
+.gang-bild .rahmen::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(6,5,4,.35),transparent 30%,transparent 60%,rgba(6,5,4,.55));
+}
+.gang:hover .gang-bild{transform:translateY(-4px)}
+.gang > h3{margin-bottom:1.4rem}
+@media (max-width:900px){
+  .gang-bild{padding:7px;margin-bottom:1.2rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .gang-bild{transition:none}
+  .gang:hover .gang-bild{transform:none}
+}
+
 /* ---------- Anfahrtskarte mit Rollover ---------- */
 .anfahrt-karte{
   display:block;text-decoration:none;margin-top:2.2rem;position:relative;
@@ -860,6 +882,7 @@ body.kasten-offen{overflow:hidden}
     <p class="eyebrow auf" style="text-align:center;margin-bottom:clamp(2rem,4vw,3rem)" data-t="karte.alacarta">Alla carta</p>
     <div class="karte">
       <div class="gang auf">
+        <div class="gang-bild"><div class="rahmen"><img loading="lazy" width="1400" height="933" src="bilder/antipasti.webp" srcset="bilder/antipasti-klein.webp 560w, bilder/antipasti.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.antipasti"></div></div>
         <h3>Antipasti</h3>
         <div class="speise"><span class="name">Caponata agrigentina</span><span class="preis">9 €</span><span class="zutaten" data-t="g1">Aubergine, Sellerie, Kapern, geröstete Mandeln</span></div>
         <div class="speise"><span class="name">Sarde a beccafico</span><span class="preis">11 €</span><span class="zutaten" data-t="g2">Gefüllte Sardinen, Pinienkerne, Orange, Lorbeer</span></div>
@@ -867,6 +890,7 @@ body.kasten-offen{overflow:hidden}
         <div class="speise"><span class="name">Insalata di arance</span><span class="preis">8 €</span><span class="zutaten" data-t="g4">Orange, Fenchel, rote Zwiebel, Olivenöl</span></div>
       </div>
       <div class="gang auf v2">
+        <div class="gang-bild"><div class="rahmen"><img loading="lazy" width="1400" height="933" src="bilder/primi.webp" srcset="bilder/primi-klein.webp 560w, bilder/primi.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.primi"></div></div>
         <h3>Primi</h3>
         <div class="speise"><span class="name">Busiate alla trapanese</span><span class="preis">13 €</span><span class="zutaten" data-t="g5">Mandel-Basilikum-Pesto, Kirschtomaten</span></div>
         <div class="speise"><span class="name">Spaghetti ai ricci di mare</span><span class="preis">19 €</span><span class="zutaten" data-t="g6">Seeigel, saisonal — bitte erfragen</span></div>
@@ -874,6 +898,7 @@ body.kasten-offen{overflow:hidden}
         <div class="speise"><span class="name">Pasta con le sarde</span><span class="preis">14 €</span><span class="zutaten" data-t="g8">Sardinen, wilder Fenchel, Rosinen, Safran</span></div>
       </div>
       <div class="gang auf">
+        <div class="gang-bild"><div class="rahmen"><img loading="lazy" width="1400" height="933" src="bilder/pizza.webp" srcset="bilder/pizza-klein.webp 560w, bilder/pizza.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.pizza"></div></div>
         <h3>Dal forno a legna</h3>
         <div class="speise"><span class="name">Margherita</span><span class="preis">8 €</span><span class="zutaten" data-t="g9">San-Marzano-Tomate, Fior di latte, Basilikum</span></div>
         <div class="speise"><span class="name">Contadina</span><span class="preis">12 €</span><span class="zutaten" data-t="g10">Grillgemüse, Ricotta salata, Oregano</span></div>
@@ -881,6 +906,7 @@ body.kasten-offen{overflow:hidden}
         <div class="speise"><span class="name">Valle dei Templi</span><span class="preis">14 €</span><span class="zutaten" data-t="g12">Pistazie aus Bronte, Mortadella, Burrata</span></div>
       </div>
       <div class="gang auf v2">
+        <div class="gang-bild"><div class="rahmen"><img loading="lazy" width="1400" height="933" src="bilder/secondi.webp" srcset="bilder/secondi-klein.webp 560w, bilder/secondi.webp 1000w" sizes="(max-width:900px) 90vw, 520px" alt="" data-t-alt="bild.secondi"></div></div>
         <h3 data-t="karte.secondi">Secondi &amp; Dolci</h3>
         <div class="speise"><span class="name">Pesce del giorno alla griglia</span><span class="preis" data-t="karte.tagespreis">Tagespreis</span><span class="zutaten" data-t="g13">Ganzer Fisch vom Markt, Zitrone, Olivenöl</span></div>
         <div class="speise"><span class="name">Involtini di pesce spada</span><span class="preis">22 €</span><span class="zutaten" data-t="g14">Schwertfischröllchen, Semmelbrösel, Minze</span></div>
@@ -1029,6 +1055,10 @@ var TEXTE = {
     'meta.beschreibung': 'Ristorante Boulevard in Agrigento: sizilianische Küche und Pizza aus dem Holzofen, wenige Minuten vom Tal der Tempel. Abends geöffnet, Reservierung empfohlen.',
     'nav.willkommen': 'Benvenuti', 'nav.karte': 'Die Karte', 'nav.abend': 'Am Abend', 'nav.kontakt': 'Kontakt',
     'nav.templi': 'Die Tempel',
+    'bild.antipasti': 'Caponata und Sarde a beccafico auf dunklen Keramiktellern im Kerzenlicht',
+    'bild.primi': 'Busiate mit Mandelpesto und Pasta con le sarde',
+    'bild.pizza': 'Pizza Margherita frisch aus dem Holzofen',
+    'bild.secondi': 'Gegrillter Fisch mit Zitrone und ein frisch gefülltes Cannolo',
     'anfahrt.cta': 'Karte öffnen',
     'anfahrt.langtext': 'Das Boulevard liegt im historischen Zentrum von Agrigento. Vom Tal der Tempel sind es etwa zehn Minuten mit dem Auto, zu Fuß gut eine halbe Stunde bergauf.',
     'karte.alacarta': 'Alla carta',
@@ -1110,6 +1140,10 @@ var TEXTE = {
     'meta.beschreibung': 'Ristorante Boulevard ad Agrigento: cucina siciliana e pizza dal forno a legna, a pochi minuti dalla Valle dei Templi. Aperto la sera, prenotazione consigliata.',
     'nav.willkommen': 'Benvenuti', 'nav.karte': 'Il menu', 'nav.abend': 'La sera', 'nav.kontakt': 'Contatti',
     'nav.templi': 'I templi',
+    'bild.antipasti': 'Caponata e sarde a beccafico su piatti di ceramica scura, a lume di candela',
+    'bild.primi': 'Busiate al pesto di mandorle e pasta con le sarde',
+    'bild.pizza': 'Pizza margherita appena uscita dal forno a legna',
+    'bild.secondi': 'Pesce alla griglia con limone e un cannolo appena riempito',
     'anfahrt.cta': 'Apri la mappa',
     'anfahrt.langtext': 'Il Boulevard si trova nel centro storico di Agrigento. Dalla Valle dei Templi sono circa dieci minuti in auto, a piedi una mezz’ora in salita.',
     'karte.alacarta': 'Alla carta',
@@ -1189,6 +1223,10 @@ var TEXTE = {
     'meta.beschreibung': 'Ristorante Boulevard in Agrigento: Sicilian cooking and wood-fired pizza, minutes from the Valley of the Temples. Open evenings, booking recommended.',
     'nav.willkommen': 'Welcome', 'nav.karte': 'Menu', 'nav.abend': 'Evenings', 'nav.kontakt': 'Contact',
     'nav.templi': 'The temples',
+    'bild.antipasti': 'Caponata and sarde a beccafico on dark ceramic plates by candlelight',
+    'bild.primi': 'Busiate with almond pesto and pasta con le sarde',
+    'bild.pizza': 'Pizza margherita straight from the wood-fired oven',
+    'bild.secondi': 'Grilled fish with lemon and a freshly filled cannolo',
     'anfahrt.cta': 'Open the map',
     'anfahrt.langtext': 'The Boulevard is in the old centre of Agrigento. From the Valley of the Temples it is about ten minutes by car, or a good half hour on foot, uphill.',
     'karte.alacarta': 'Alla carta',
@@ -1302,6 +1340,9 @@ function spracheSetzen(neu){
     if(el.classList.contains('worte')) el.removeAttribute('data-roh');
   });
   worteAufteilen();
+  document.querySelectorAll('[data-t-alt]').forEach(function(el){
+    el.setAttribute('alt', textVon(el.getAttribute('data-t-alt')));
+  });
   document.querySelectorAll('[data-t-ph]').forEach(function(el){
     el.setAttribute('placeholder', textVon(el.getAttribute('data-t-ph')));
   });
