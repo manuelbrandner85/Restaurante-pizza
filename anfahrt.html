@@ -373,6 +373,37 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
 }
 .feld input::-webkit-date-and-time-value{text-align:left}
 
+/* ---------- Fokus: sichtbar und gestaltet, nicht Browser-Standard ---------- */
+:focus-visible{
+  outline:2px solid var(--oro-hell);
+  outline-offset:3px;
+  border-radius:1px;
+}
+:focus:not(:focus-visible){outline:none}
+
+/* Sprungmarke für Tastatur und Vorlesesoftware */
+.sprungmarke{
+  position:fixed;top:0;left:50%;transform:translate(-50%,-120%);z-index:130;
+  background:var(--oro);color:var(--nero);padding:.9rem 1.6rem;
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;
+  transition:transform .25s cubic-bezier(.16,1,.3,1);
+}
+.sprungmarke:focus{transform:translate(-50%,0)}
+
+/* Zeile in der Karte reagiert auf den Zeiger */
+.speise{transition:border-color .3s ease}
+.speise .name,.speise .preis{transition:color .3s ease}
+.speise:hover .name{color:#FFF6E4}
+.speise:hover .preis{color:var(--oro-hell)}
+.speise:hover{border-bottom-color:rgba(201,150,63,.45)}
+
+/* Beschriftung auf dem Kartenfoto lesbar machen */
+.blatt-knopf .lupe{
+  background:linear-gradient(to top,rgba(6,5,4,.97),rgba(6,5,4,.75) 55%,transparent);
+  color:var(--avorio);text-shadow:0 1px 6px rgba(0,0,0,.9);
+  padding-top:2.4rem;
+}
+
 .marke .wortmarke{text-transform:uppercase;padding-left:.34em}
 .marke .v{
   color:var(--rosa);
@@ -436,6 +467,7 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
 </head>
 <body class="geladen">
 
+<a class="sprungmarke" href="#kartenfeld">Zum Inhalt</a>
 <header id="kopf" class="fest">
   <div class="wrap navzeile">
     <a class="marke" href="index.html"><img width="320" height="320" class="marken-wappen" src="bilder/siegel.webp" alt=""><span class="wortmarke">Boule<span class="v">v</span>ard</span></a>

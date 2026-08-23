@@ -60,6 +60,8 @@
   }
 }
 </script>
+<link rel="preload" as="image" href="bilder/eingang-klein.webp" media="(max-width: 700px)">
+<link rel="preload" as="image" href="bilder/eingang.webp" media="(min-width: 701px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
@@ -412,6 +414,37 @@ header.fest{box-shadow:0 1px 0 var(--linie),0 14px 34px rgba(0,0,0,.5)}
 }
 .feld input::-webkit-date-and-time-value{text-align:left}
 
+/* ---------- Fokus: sichtbar und gestaltet, nicht Browser-Standard ---------- */
+:focus-visible{
+  outline:2px solid var(--oro-hell);
+  outline-offset:3px;
+  border-radius:1px;
+}
+:focus:not(:focus-visible){outline:none}
+
+/* Sprungmarke für Tastatur und Vorlesesoftware */
+.sprungmarke{
+  position:fixed;top:0;left:50%;transform:translate(-50%,-120%);z-index:130;
+  background:var(--oro);color:var(--nero);padding:.9rem 1.6rem;
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;
+  transition:transform .25s cubic-bezier(.16,1,.3,1);
+}
+.sprungmarke:focus{transform:translate(-50%,0)}
+
+/* Zeile in der Karte reagiert auf den Zeiger */
+.speise{transition:border-color .3s ease}
+.speise .name,.speise .preis{transition:color .3s ease}
+.speise:hover .name{color:#FFF6E4}
+.speise:hover .preis{color:var(--oro-hell)}
+.speise:hover{border-bottom-color:rgba(201,150,63,.45)}
+
+/* Beschriftung auf dem Kartenfoto lesbar machen */
+.blatt-knopf .lupe{
+  background:linear-gradient(to top,rgba(6,5,4,.97),rgba(6,5,4,.75) 55%,transparent);
+  color:var(--avorio);text-shadow:0 1px 6px rgba(0,0,0,.9);
+  padding-top:2.4rem;
+}
+
 /* ---------- Handy-Feinschliff ---------- */
 html{scroll-padding-top:86px}
 *{-webkit-tap-highlight-color:rgba(201,150,63,.18)}
@@ -759,6 +792,7 @@ body.kasten-offen{overflow:hidden}
 </head>
 <body>
 
+<a class="sprungmarke" href="#benvenuti" data-t="sprung">Zum Inhalt springen</a>
 <div id="vorhang"><i class="flamme"></i></div>
 <div class="fortschritt" id="fortschritt" aria-hidden="true"></div>
 
@@ -1015,7 +1049,7 @@ body.kasten-offen{overflow:hidden}
         </div>
         <div class="feld"><label for="wunsch" data-t="form.wunsch">Wünsche</label><textarea id="wunsch" name="wunsch" data-t-ph="form.wunsch.ph" placeholder="Terrasse, Kinderstuhl, Allergien …"></textarea></div>
         <button class="knopf" type="submit"><span data-t="form.senden">Anfrage senden</span></button>
-        <p class="hinweis" id="formhinweis" data-t="form.hinweis" style="margin-top:1rem">Die Anfrage öffnet Ihr E-Mail-Programm mit den ausgefüllten Angaben.</p>
+        <p class="hinweis" id="formhinweis" role="status" aria-live="polite" data-t="form.hinweis" style="margin-top:1rem">Die Anfrage öffnet Ihr E-Mail-Programm mit den ausgefüllten Angaben.</p>
       </form>
     </div>
     <aside class="auf v2">
@@ -1111,7 +1145,7 @@ var TEXTE = {
     'meta.titel': 'Boulevard — Ristorante & Pizzeria in Agrigento, Sizilien',
     'meta.beschreibung': 'Ristorante Boulevard in Agrigento: sizilianische Küche und Pizza aus dem Holzofen, wenige Minuten vom Tal der Tempel. Abends geöffnet, Reservierung empfohlen.',
     'nav.willkommen': 'Benvenuti', 'nav.karte': 'Die Karte', 'nav.abend': 'Am Abend', 'nav.kontakt': 'Kontakt',
-    'nav.templi': 'Die Tempel',
+    'nav.templi': 'Die Tempel', 'sprung': 'Zum Inhalt springen',
     'bild.antipasti': 'Caponata und Sarde a beccafico auf dunklen Keramiktellern im Kerzenlicht',
     'bild.primi': 'Busiate mit Mandelpesto und Pasta con le sarde',
     'bild.pizza': 'Pizza Margherita frisch aus dem Holzofen',
@@ -1196,7 +1230,7 @@ var TEXTE = {
     'meta.titel': 'Boulevard — Ristorante e Pizzeria ad Agrigento, Sicilia',
     'meta.beschreibung': 'Ristorante Boulevard ad Agrigento: cucina siciliana e pizza dal forno a legna, a pochi minuti dalla Valle dei Templi. Aperto la sera, prenotazione consigliata.',
     'nav.willkommen': 'Benvenuti', 'nav.karte': 'Il menu', 'nav.abend': 'La sera', 'nav.kontakt': 'Contatti',
-    'nav.templi': 'I templi',
+    'nav.templi': 'I templi', 'sprung': 'Vai al contenuto',
     'bild.antipasti': 'Caponata e sarde a beccafico su piatti di ceramica scura, a lume di candela',
     'bild.primi': 'Busiate al pesto di mandorle e pasta con le sarde',
     'bild.pizza': 'Pizza margherita appena uscita dal forno a legna',
@@ -1279,7 +1313,7 @@ var TEXTE = {
     'meta.titel': 'Boulevard — Restaurant & Pizzeria in Agrigento, Sicily',
     'meta.beschreibung': 'Ristorante Boulevard in Agrigento: Sicilian cooking and wood-fired pizza, minutes from the Valley of the Temples. Open evenings, booking recommended.',
     'nav.willkommen': 'Welcome', 'nav.karte': 'Menu', 'nav.abend': 'Evenings', 'nav.kontakt': 'Contact',
-    'nav.templi': 'The temples',
+    'nav.templi': 'The temples', 'sprung': 'Skip to content',
     'bild.antipasti': 'Caponata and sarde a beccafico on dark ceramic plates by candlelight',
     'bild.primi': 'Busiate with almond pesto and pasta con le sarde',
     'bild.pizza': 'Pizza margherita straight from the wood-fired oven',
