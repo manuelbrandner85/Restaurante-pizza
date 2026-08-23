@@ -722,6 +722,17 @@ body.kasten-offen{overflow:hidden}
   .gang:hover .gang-bild{transform:none}
 }
 
+/* Zwei gleichwertige Wege zur Reservierung */
+.wege{display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap}
+.wege .oder{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(237,227,208,.45)}
+.knopf.anrufen{display:inline-flex;align-items:center;gap:.7rem;text-decoration:none}
+.knopf.anrufen svg{width:15px;height:15px;position:relative;z-index:2}
+@media (max-width:700px){
+  .wege{flex-direction:column;align-items:stretch;gap:.8rem}
+  .wege .oder{text-align:center}
+  .knopf.anrufen{justify-content:center}
+}
+
 /* ---------- Anfahrtskarte mit Rollover ---------- */
 .anfahrt-karte{
   display:block;text-decoration:none;margin-top:2.2rem;position:relative;
@@ -1048,7 +1059,14 @@ body.kasten-offen{overflow:hidden}
           </select>
         </div>
         <div class="feld"><label for="wunsch" data-t="form.wunsch">Wünsche</label><textarea id="wunsch" name="wunsch" data-t-ph="form.wunsch.ph" placeholder="Terrasse, Kinderstuhl, Allergien …"></textarea></div>
-        <button class="knopf" type="submit"><span data-t="form.senden">Anfrage senden</span></button>
+        <div class="wege">
+          <button class="knopf" type="submit"><span data-t="form.senden">Anfrage senden</span></button>
+          <span class="oder" data-t="form.oder">oder</span>
+          <a class="knopf anrufen" href="tel:+390922661578">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6.5 3h3l1.5 4.5-2 1.5a12 12 0 0 0 6 6l1.5-2L21 14.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6.5 3z"/></svg>
+            <span>+39 0922 661578</span>
+          </a>
+        </div>
         <p class="hinweis" id="formhinweis" role="status" aria-live="polite" data-t="form.hinweis" style="margin-top:1rem">Die Anfrage öffnet Ihr E-Mail-Programm mit den ausgefüllten Angaben.</p>
       </form>
     </div>
@@ -1145,7 +1163,7 @@ var TEXTE = {
     'meta.titel': 'Boulevard — Ristorante & Pizzeria in Agrigento, Sizilien',
     'meta.beschreibung': 'Ristorante Boulevard in Agrigento: sizilianische Küche und Pizza aus dem Holzofen, wenige Minuten vom Tal der Tempel. Abends geöffnet, Reservierung empfohlen.',
     'nav.willkommen': 'Benvenuti', 'nav.karte': 'Die Karte', 'nav.abend': 'Am Abend', 'nav.kontakt': 'Kontakt',
-    'nav.templi': 'Die Tempel', 'sprung': 'Zum Inhalt springen',
+    'nav.templi': 'Die Tempel', 'sprung': 'Zum Inhalt springen', 'form.oder': 'oder',
     'bild.antipasti': 'Caponata und Sarde a beccafico auf dunklen Keramiktellern im Kerzenlicht',
     'bild.primi': 'Busiate mit Mandelpesto und Pasta con le sarde',
     'bild.pizza': 'Pizza Margherita frisch aus dem Holzofen',
@@ -1230,7 +1248,7 @@ var TEXTE = {
     'meta.titel': 'Boulevard — Ristorante e Pizzeria ad Agrigento, Sicilia',
     'meta.beschreibung': 'Ristorante Boulevard ad Agrigento: cucina siciliana e pizza dal forno a legna, a pochi minuti dalla Valle dei Templi. Aperto la sera, prenotazione consigliata.',
     'nav.willkommen': 'Benvenuti', 'nav.karte': 'Il menu', 'nav.abend': 'La sera', 'nav.kontakt': 'Contatti',
-    'nav.templi': 'I templi', 'sprung': 'Vai al contenuto',
+    'nav.templi': 'I templi', 'sprung': 'Vai al contenuto', 'form.oder': 'oppure',
     'bild.antipasti': 'Caponata e sarde a beccafico su piatti di ceramica scura, a lume di candela',
     'bild.primi': 'Busiate al pesto di mandorle e pasta con le sarde',
     'bild.pizza': 'Pizza margherita appena uscita dal forno a legna',
@@ -1313,7 +1331,7 @@ var TEXTE = {
     'meta.titel': 'Boulevard — Restaurant & Pizzeria in Agrigento, Sicily',
     'meta.beschreibung': 'Ristorante Boulevard in Agrigento: Sicilian cooking and wood-fired pizza, minutes from the Valley of the Temples. Open evenings, booking recommended.',
     'nav.willkommen': 'Welcome', 'nav.karte': 'Menu', 'nav.abend': 'Evenings', 'nav.kontakt': 'Contact',
-    'nav.templi': 'The temples', 'sprung': 'Skip to content',
+    'nav.templi': 'The temples', 'sprung': 'Skip to content', 'form.oder': 'or',
     'bild.antipasti': 'Caponata and sarde a beccafico on dark ceramic plates by candlelight',
     'bild.primi': 'Busiate with almond pesto and pasta con le sarde',
     'bild.pizza': 'Pizza margherita straight from the wood-fired oven',
