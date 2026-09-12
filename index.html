@@ -162,10 +162,24 @@ nav a.knopf::after{display:none}
 /* ---------- Auftakt ---------- */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .auftakt{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.auftakt-buehne{position:relative}
+.auftakt-gepinnt .auftakt{position:sticky;top:0;height:100svh;min-height:100svh}
 .auftakt .bild{
-  position:absolute;inset:-8% 0 -8%;background:#000 center/cover no-repeat;
+  position:absolute;inset:-8% 0 -8%;background:#000;overflow:hidden;
+  transform:scale(1.06);transform-origin:50% 55%;will-change:transform;
+}
+.auftakt .bild-innen{
+  position:absolute;inset:0;display:block;
+  background:#000 center/cover no-repeat;
   background-image:url("bilder/eingang.webp");
-  transform:scale(1.06);will-change:transform;
+  transform-origin:50% 55%;
+  animation:eintreten 26s cubic-bezier(.33,0,.67,1) forwards;
+  will-change:transform;
+}
+/* Der Schritt durch das Tor: langsam, nie zurück */
+@keyframes eintreten{
+  from{transform:scale(1)}
+  to{transform:scale(1.09)}
 }
 .auftakt .schleier{
   position:absolute;inset:0;
@@ -316,7 +330,7 @@ footer .zeile a:hover{color:var(--oro)}
 
 /* ---------- Mobil ---------- */
 @media (max-width:700px){
-  .auftakt .bild{background-position:50% 32%;background-image:url("bilder/eingang-klein.webp")}
+  .auftakt .bild-innen{background-position:50% 42%;background-image:url("bilder/eingang-klein.webp")}
   .band .bild{background-image:url("bilder/abend-klein.webp")}
   .auftakt .schleier{
     background:
@@ -344,6 +358,7 @@ body.menue-offen{overflow:hidden}
   .merksatz{padding-left:1.1rem}
 }
 @media (prefers-reduced-motion:reduce){
+  .auftakt .bild-innen{animation:none}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
   .auf{opacity:1;transform:none}
@@ -833,8 +848,9 @@ body.kasten-offen{overflow:hidden}
 </header>
 
 <main>
+<div class="auftakt-buehne" id="auftakt-buehne">
 <section class="auftakt" id="oben">
-  <div class="bild" id="auftaktbild" role="img" data-t-aria="hero.bildbeschreibung" aria-label="Beleuchteter Eingang des Ristorante Boulevard bei Nacht"></div>
+  <div class="bild" id="auftaktbild" role="img" data-t-aria="hero.bildbeschreibung" aria-label="Beleuchteter Eingang des Ristorante Boulevard bei Nacht"><span class="bild-innen"></span></div>
   <div class="schleier"></div>
   <div class="laterne"></div>
   <div class="uebergabe" id="uebergabe"></div>
@@ -850,6 +866,7 @@ body.kasten-offen{overflow:hidden}
   </div>
   <div class="abwaerts"><i></i><span data-t="hero.scrollen">Scrollen</span></div>
 </section>
+</div>
 
 <div class="kolonnade" data-kolonnade>
   <svg viewBox="0 0 1200 96" preserveAspectRatio="none" aria-hidden="true">
@@ -1662,6 +1679,7 @@ function spracheSetzen(neu){
   var band = document.getElementById('sera');
   var auftaktInhalt = document.querySelector('.auftakt-inhalt');
   var uebergabe = document.getElementById('uebergabe');
+  var laterne = document.querySelector('.laterne');
   var fortschritt = document.getElementById('fortschritt');
   var buehne = document.getElementById('kino-buehne');
   var rolle = document.getElementById('rolle');
@@ -1691,9 +1709,19 @@ function spracheSetzen(neu){
 
   /* Alle Maße einmal nehmen, im Frame nur noch rechnen */
   var M = {};
+  var auftaktBuehne = document.getElementById('auftakt-buehne');
+  var auftaktAbschnitt = document.getElementById('oben');
+  function auftaktMessen(){
+    var lang = window.matchMedia('(min-width: 900px)').matches && !sanft;
+    document.body.classList.toggle('auftakt-gepinnt', lang);
+    auftaktBuehne.style.height = lang ? Math.round(window.innerHeight * 1.55) + 'px' : '';
+  }
+
   function masseNehmen(){
     var y = window.scrollY, fh = window.innerHeight;
     M.fh = fh;
+    M.auftaktWeg = Math.max(1, auftaktBuehne.getBoundingClientRect().height - fh);
+    M.auftaktEnde = auftaktBuehne.getBoundingClientRect().height + y - (auftaktBuehne.getBoundingClientRect().top + y) + fh * 0.3;
     M.gesamt = Math.max(1, document.body.scrollHeight - fh);
     var rb = band.getBoundingClientRect();
     M.bandOben = rb.top + y; M.bandHoehe = rb.height;
@@ -1715,14 +1743,21 @@ function spracheSetzen(neu){
       if(fortschritt) fortschritt.style.width = (klemm(y / M.gesamt, 0, 1) * 100) + '%';
 
       if(!sanft){
-        var a = klemm(y / fh, 0, 1);
+        var a = M.auftaktWeg > 0 ? klemm(y / M.auftaktWeg, 0, 1) : klemm(y / fh, 0, 1);
         if(a < 1.01 && auftaktInhalt){
-          auftaktInhalt.style.transform = 'translate3d(0,' + (-a * 90) + 'px,0)';
-          auftaktInhalt.style.opacity = String(1 - klemm(a * 1.5, 0, 1));
-          uebergabe.style.opacity = String(klemm((a - 0.35) * 1.4, 0, 0.85));
+          auftaktInhalt.style.transform = 'translate3d(0,' + (-a * 70) + 'px,0)';
+          auftaktInhalt.style.opacity = String(1 - klemm(a * 1.25, 0, 1));
+          uebergabe.style.opacity = String(klemm((a - 0.72) * 2.4, 0, 0.72));
+        }
+        /* Scrollen = Schritt nach vorn: die Kamera fährt durch das Tor */
+        if(y < M.auftaktEnde){
+          var naeher = 1.06 + a * 0.42;
+          auftaktbild.style.transform = klein
+            ? 'scale(' + naeher + ')'
+            : 'scale(' + naeher + ') translateY(' + (y * 0.14) + 'px)';
+          if(laterne) laterne.style.transform = 'translateX(-50%) scale(' + (1 + a * 0.8) + ')';
         }
         if(!klein){
-          if(y < fh * 1.2) auftaktbild.style.transform = 'scale(1.06) translateY(' + (y * 0.16) + 'px)';
           var bo = M.bandOben - y;
           if(bo < fh && bo + M.bandHoehe > 0){
             var pb = (fh - bo) / (fh + M.bandHoehe);
@@ -1756,9 +1791,10 @@ function spracheSetzen(neu){
   var neuMessen;
   window.addEventListener('resize', function(){
     clearTimeout(neuMessen);
-    neuMessen = setTimeout(function(){ buehneMessen(); masseNehmen(); beiScroll(); }, 150);
+    neuMessen = setTimeout(function(){ auftaktMessen(); buehneMessen(); masseNehmen(); beiScroll(); }, 150);
   });
-  window.addEventListener('load', function(){ buehneMessen(); masseNehmen(); beiScroll(); });
+  window.addEventListener('load', function(){ auftaktMessen(); buehneMessen(); masseNehmen(); beiScroll(); });
+  auftaktMessen();
   buehneMessen();
   masseNehmen();
   beiScroll();
